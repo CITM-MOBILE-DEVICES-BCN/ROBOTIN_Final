@@ -34,27 +34,24 @@ public class Navigation : MonoBehaviour
 
     public void LoadScreen(GameObject screen)
     {
-        //if (!activeScreens.Contains(screen))
-        //{
+
             Instantiate(screen);
-           // activeScreens.Add(screen);
-        //}
+
     }
 
     public void UnLoadScreen(GameObject screen)
     {
-        //activeScreens.Remove(screen);
+
         Destroy(screen);
         
     }
 
-    public void LoadPopUp(GameObject popUp)
+    public GameObject LoadPopUp(GameObject popUp)
     {
-        //if (!activePopUp.Contains(popUp))
-        //{
-            Instantiate(popUp);
-           // activePopUp.Add(popUp);
-        //}
+
+        var menu = Instantiate(popUp);
+        return menu;
+
     }
 
     public void UnLoadPopUp(GameObject popUp)
@@ -62,7 +59,7 @@ public class Navigation : MonoBehaviour
         PopUpSpawn popUpSpawn = popUp.GetComponentInChildren<PopUpSpawn>();
 
         popUpSpawn.DespawnPopUp();
-        //activePopUp.Remove(activePopUp.Find(x => x.name == popUp.name));
+
         Destroy(popUp,popUpSpawn.dissapearTime);
     }
 

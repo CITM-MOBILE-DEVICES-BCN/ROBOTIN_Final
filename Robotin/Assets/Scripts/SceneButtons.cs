@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class SceneButtons : MonoBehaviour 
 {
+
+    private GameObject currentPopUp;
+
     public void LoadScene(string scene)
     {
         Navigation.instance.LoadScene(scene);
@@ -22,12 +25,19 @@ public class SceneButtons : MonoBehaviour
 
     public void LoadPopUp(GameObject popUp)
     {
-        Navigation.instance.LoadPopUp(popUp);
+        if (!currentPopUp)
+        {
+            currentPopUp = Navigation.instance.LoadPopUp(popUp);
+
+        }
     }
 
     public void UnLoadPopUp(GameObject popUp)
     {
-        Navigation.instance.UnLoadPopUp(popUp);
+
+         Navigation.instance.UnLoadPopUp(popUp);
+
+        
     }
 
 }

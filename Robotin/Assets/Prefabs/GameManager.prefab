@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8674619769438390720}
-  - component: {fileID: 4623058871720443870}
+  - component: {fileID: -5898996036283102877}
   m_Layer: 0
-  m_Name: Navigation
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4623058871720443870
+--- !u!114 &-5898996036283102877
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,9 +41,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6068969340371903970}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cf488737cb654c48ba7a0b9a99d49a4, type: 3}
+  m_Script: {fileID: 11500000, guid: c59da9f82cd50c14ea1d3cb1384a4e35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screens: []
-  scenes:
-  - 

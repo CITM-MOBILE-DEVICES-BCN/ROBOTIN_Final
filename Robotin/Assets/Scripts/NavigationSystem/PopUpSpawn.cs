@@ -7,7 +7,6 @@ namespace NavigationSystem
 { 
     public class PopUpSpawn : MonoBehaviour
     {
-    
         [SerializeField] float scaleUpTime = 0.2f; 
         [SerializeField] float scaleDownTime = 0.15f;
         [SerializeField] public float dissapearTime = 0.1f;
@@ -42,7 +41,6 @@ namespace NavigationSystem
             }
             transform.localScale = finalScale;
         }
-    
         public void DespawnPopUp()
         {
             StartCoroutine(DespawnAnim());

@@ -9,7 +9,6 @@ using static UnityEngine.Rendering.HDROutputUtils;
 
 public class LoadingScreen : MonoBehaviour
 {
-
     public Slider loadingSlider;
 
     private float progress = 0;
@@ -23,7 +22,6 @@ public class LoadingScreen : MonoBehaviour
         StartCoroutine("LoadGame");
         stepIncrement =  1.0f / (float)numSteps;
     }
-
 
     private IEnumerator LoadGame()
     {

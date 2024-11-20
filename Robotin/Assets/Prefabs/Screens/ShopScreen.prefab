@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9036363899289875476}
   - component: {fileID: 3113541051067484093}
   m_Layer: 5
-  m_Name: ItemButton
+  m_Name: ItemButton5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -407,7 +407,7 @@ GameObject:
   - component: {fileID: 5786959173913466645}
   - component: {fileID: 4355032082434039483}
   m_Layer: 5
-  m_Name: Items
+  m_Name: ItemButtons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -810,7 +810,7 @@ GameObject:
   - component: {fileID: 4281119479539555402}
   - component: {fileID: 5487125758302130681}
   m_Layer: 5
-  m_Name: ItemButton
+  m_Name: ItemButton2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1038,19 +1038,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3579217174853375905}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7928324717438505743}
-        m_TargetAssemblyTypeName: SceneButtons, Assembly-CSharp
-        m_MethodName: UnLoadScreen
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 5783835024235997462}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &3965179494438814733
 GameObject:
   m_ObjectHideFlags: 0
@@ -1064,7 +1052,7 @@ GameObject:
   - component: {fileID: 5889509925485313342}
   - component: {fileID: 8671082252695924136}
   m_Layer: 5
-  m_Name: ItemButton
+  m_Name: ItemButton6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1591,7 +1579,7 @@ GameObject:
   - component: {fileID: 567861591095673492}
   - component: {fileID: 1652592256478081760}
   m_Layer: 5
-  m_Name: ItemButton
+  m_Name: ItemButton1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1711,7 +1699,7 @@ GameObject:
   - component: {fileID: 7087251772741302443}
   - component: {fileID: 7557227610586349499}
   - component: {fileID: 8819721720418650154}
-  - component: {fileID: 7928324717438505743}
+  - component: {fileID: 8460121927989359965}
   m_Layer: 5
   m_Name: ShopScreen
   m_TagString: Untagged
@@ -1806,7 +1794,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &7928324717438505743
+--- !u!114 &8460121927989359965
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1815,9 +1803,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5783835024235997462}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b86c2f792efcf44a8ec13675d85db0f, type: 3}
+  m_Script: {fileID: 11500000, guid: b62192f4e026d2a49a16e4a93725b881, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backButton: {fileID: 535069518794114253}
+  itemExample: {fileID: 1652592256478081760}
 --- !u!1 &6628872466551531438
 GameObject:
   m_ObjectHideFlags: 0
@@ -1906,7 +1896,7 @@ GameObject:
   - component: {fileID: 3583824937915710808}
   - component: {fileID: 7166981283185813770}
   m_Layer: 5
-  m_Name: ItemButton
+  m_Name: ItemButton4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2299,7 +2289,7 @@ GameObject:
   - component: {fileID: 7549461808395412466}
   - component: {fileID: 3305957713476459147}
   m_Layer: 5
-  m_Name: ItemButton
+  m_Name: ItemButton3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

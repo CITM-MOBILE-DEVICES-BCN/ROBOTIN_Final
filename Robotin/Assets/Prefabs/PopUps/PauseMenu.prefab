@@ -120,19 +120,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5195263306721178874}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6195367712920138363}
-        m_TargetAssemblyTypeName: SceneButtons, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: RobotinMeta
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1429671786731948814
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,19 +572,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2859705383919116196}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6195367712920138363}
-        m_TargetAssemblyTypeName: SceneButtons, Assembly-CSharp
-        m_MethodName: UnLoadPopUp
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 8908560048866398491}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &7413895738398030562
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,7 +796,7 @@ GameObject:
   - component: {fileID: 676770346563269877}
   - component: {fileID: 6747766735471231747}
   - component: {fileID: 1531892175312571856}
-  - component: {fileID: 6195367712920138363}
+  - component: {fileID: 2177918679433763010}
   m_Layer: 5
   m_Name: PauseMenu
   m_TagString: Untagged
@@ -911,7 +887,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &6195367712920138363
+--- !u!114 &2177918679433763010
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -920,6 +896,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8908560048866398491}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b86c2f792efcf44a8ec13675d85db0f, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ec39735c3a96554a8bd56afdacda9d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  continueButton: {fileID: 7738224921016562327}
+  exitButton: {fileID: 5877514038062067304}

@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour
     {
         navigation.LoadScreen(screen);
     }
-
     public void UnLoadScreen(GameObject screen)
     {
         navigation.UnLoadScreen(screen);
@@ -48,9 +47,6 @@ public class GameManager : MonoBehaviour
 
     public void UnLoadPopUp(GameObject popUp)
     {
-
         navigation.UnLoadPopUp(popUp);
-
-
     }
 }

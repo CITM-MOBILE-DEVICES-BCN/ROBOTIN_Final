@@ -7,7 +7,6 @@ namespace NavigationSystem
 { 
     public class Navigation
     {
-        
         public void LoadScene(string scene)
         {
             SceneManager.LoadScene(scene);
@@ -22,7 +21,9 @@ namespace NavigationSystem
         {
             GameObject.Destroy(screen);   
         }
-    
+
+        //A pop up needs to have a PopUpSpawn script attached to it (not to the canvas)
+        //so it has the spawn/despawn animation
         public GameObject LoadPopUp(GameObject popUp)
         {
             var menu = GameObject.Instantiate(popUp);
@@ -37,7 +38,5 @@ namespace NavigationSystem
     
             GameObject.Destroy(popUp,popUpSpawn.dissapearTime);
         }
-    
     }
-
 }

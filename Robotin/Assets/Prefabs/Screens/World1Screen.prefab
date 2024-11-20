@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 3253242443320612036}
   - component: {fileID: 1667396288790979451}
   - component: {fileID: 2783368536592944523}
-  - component: {fileID: 8067356778410282881}
+  - component: {fileID: 103153549516223027}
   m_Layer: 5
   m_Name: World1Screen
   m_TagString: Untagged
@@ -365,7 +365,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &8067356778410282881
+--- !u!114 &103153549516223027
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -374,9 +374,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2495762352351747192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b86c2f792efcf44a8ec13675d85db0f, type: 3}
+  m_Script: {fileID: 11500000, guid: 48b389d0ed5436346a7808e16dce8588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backButton: {fileID: 9190914184012312001}
+  level1Button: {fileID: 5880050322963922349}
 --- !u!1 &3537102649052497381
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,19 +635,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8332347403698562594}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8067356778410282881}
-        m_TargetAssemblyTypeName: SceneButtons, Assembly-CSharp
-        m_MethodName: UnLoadScreen
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2495762352351747192}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &6623668658883967524
 GameObject:
   m_ObjectHideFlags: 0
@@ -1183,7 +1173,7 @@ GameObject:
   - component: {fileID: 4512537999385162381}
   - component: {fileID: 7053999797466809707}
   m_Layer: 5
-  m_Name: ShopBg
+  m_Name: World1Bg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1366,16 +1356,4 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9079702851077386725}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8067356778410282881}
-        m_TargetAssemblyTypeName: SceneButtons, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: RobotinGame
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []

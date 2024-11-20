@@ -8,6 +8,7 @@ public class MetaScreen : MonoBehaviour
 
     [SerializeField] GameObject shopScreen;
 
+
     private void Start()
     {
         shopButton.onClick.AddListener(OnShopButtonClicked);

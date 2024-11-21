@@ -14,7 +14,7 @@ public class PauseMenuPopUp : MonoBehaviour
 
     private void OnPauseButtonClicked()
     {
-        GameManager.instance.UnLoadPopUp(gameObject);
+        GameManager.instance.UnLoadPopUp(gameObject.name);
         //You can add a resume game function here
     }
 

@@ -933,8 +933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseButton: {fileID: 690061426}
-  pauseMenuPopUp: {fileID: 8908560048866398491, guid: 44cbe18f731b7ef49a29b4359ce213a0,
-    type: 3}
+  pauseMenuPopUp: PauseMenu
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

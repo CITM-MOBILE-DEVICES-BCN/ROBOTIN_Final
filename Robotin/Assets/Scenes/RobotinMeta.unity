@@ -1648,11 +1648,10 @@ MonoBehaviour:
   world1Button: {fileID: 1950252611}
   world2Button: {fileID: 1739183131}
   world3Button: {fileID: 55217359}
-  shopScreen: {fileID: 5783835024235997462, guid: e94a21101bfecf848be4b9d44688195e,
-    type: 3}
-  world1: {fileID: 2495762352351747192, guid: 73975251217068b4ea495aa7acaf0169, type: 3}
-  world2: {fileID: 0}
-  world3: {fileID: 0}
+  shopScreen: ShopScreen
+  world1: World1Screen
+  world2: 
+  world3: 
 --- !u!1 &1739183129
 GameObject:
   m_ObjectHideFlags: 0

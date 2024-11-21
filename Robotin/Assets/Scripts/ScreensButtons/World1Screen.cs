@@ -16,7 +16,7 @@ public class World1Screen : MonoBehaviour
 
     private void OnBackButtonClicked()
     {
-        GameManager.instance.UnLoadScreen(gameObject);
+        GameManager.instance.UnLoadScreen(gameObject.name);
     }
 
     private void OnLevel1Clicked()

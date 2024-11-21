@@ -10,10 +10,10 @@ public class MetaScreen : MonoBehaviour
     [SerializeField] Button world2Button;
     [SerializeField] Button world3Button;
 
-    [SerializeField] GameObject shopScreen;
-    [SerializeField] GameObject world1;
-    [SerializeField] GameObject world2;
-    [SerializeField] GameObject world3;
+    [SerializeField] string shopScreen;
+    [SerializeField] string world1;
+    [SerializeField] string world2;
+    [SerializeField] string world3;
 
     private void Start()
     {

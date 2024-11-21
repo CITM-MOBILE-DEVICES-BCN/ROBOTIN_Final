@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameCanvasUI : MonoBehaviour
 {
     [SerializeField] Button pauseButton;
-    [SerializeField] GameObject pauseMenuPopUp;
+    [SerializeField] string pauseMenuPopUp;
 
     private void Start()
     {

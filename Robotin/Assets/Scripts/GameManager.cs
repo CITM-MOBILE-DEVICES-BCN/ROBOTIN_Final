@@ -7,6 +7,15 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     Navigation navigation;
+
+    public List<GameObject> screenList;
+
+    public List<GameObject> popUpList;
+
+    public List<GameObject> activeScreens;
+
+    public List<GameObject> activePopUps;
+
     private GameObject currentPopUp;
 
     void Awake()
@@ -26,27 +35,59 @@ public class GameManager : MonoBehaviour
     public void LoadScene(string scene)
     {
         navigation.LoadScene(scene);
-    }
 
-    public void LoadScreen(GameObject screen)
-    {
-        navigation.LoadScreen(screen);
-    }
-    public void UnLoadScreen(GameObject screen)
-    {
-        navigation.UnLoadScreen(screen);
-    }
-
-    public void LoadPopUp(GameObject popUp)
-    {
-        if (!currentPopUp)
+        if (activeScreens != null)
         {
-            currentPopUp = navigation.LoadPopUp(popUp);
+            activeScreens.Clear();
+        }
+
+        if (activePopUps != null)
+        {
+            activePopUps.Clear();
+        }       
+    }
+
+    public void LoadScreen(string screenName)
+    {
+        var screen = screenList.Find(x => x.name == screenName);
+        if (screen != null)
+        {
+            activeScreens.Add(navigation.LoadScreen(screen));
+        }
+    }
+    public void UnLoadScreen(string screenName)
+    {
+        var screen = activeScreens.Find(x => x.name.Equals(screenName));
+    
+        if (screen != null) 
+        { 
+            navigation.UnLoadScreen(screen);
+            
+            activeScreens.Remove(screen);
         }
     }
 
-    public void UnLoadPopUp(GameObject popUp)
+    public void LoadPopUp(string popUpName)
     {
-        navigation.UnLoadPopUp(popUp);
+        var popUp = popUpList.Find(x => x.name == popUpName);
+
+        if (currentPopUp == null && popUp != null)
+        {
+            currentPopUp = navigation.LoadPopUp(popUp);
+            Debug.Log(popUpName);
+            activePopUps.Add(currentPopUp);
+        }
+    }
+
+    public void UnLoadPopUp(string popUpName)
+    {
+        var popUp = activePopUps.Find(x => x.name.Equals(popUpName));
+        
+        if (popUp != null)
+        {
+            navigation.UnLoadPopUp(popUp);
+            currentPopUp = null;
+            activePopUps.Remove(popUp);
+        }
     }
 }

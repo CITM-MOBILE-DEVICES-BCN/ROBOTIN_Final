@@ -12,9 +12,9 @@ namespace NavigationSystem
             SceneManager.LoadScene(scene);
         }
     
-        public void LoadScreen(GameObject screen)
+        public GameObject LoadScreen(GameObject screen)
         {
-            GameObject.Instantiate(screen);
+            return GameObject.Instantiate(screen);
         }
     
         public void UnLoadScreen(GameObject screen)
@@ -26,8 +26,7 @@ namespace NavigationSystem
         //so it has the spawn/despawn animation
         public GameObject LoadPopUp(GameObject popUp)
         {
-            var menu = GameObject.Instantiate(popUp);
-            return menu;
+            return GameObject.Instantiate(popUp);
         }
     
         public void UnLoadPopUp(GameObject popUp)

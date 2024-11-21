@@ -44,3 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c59da9f82cd50c14ea1d3cb1384a4e35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  screenList:
+  - {fileID: 5783835024235997462, guid: e94a21101bfecf848be4b9d44688195e, type: 3}
+  - {fileID: 2495762352351747192, guid: 73975251217068b4ea495aa7acaf0169, type: 3}
+  popUpList:
+  - {fileID: 8908560048866398491, guid: 44cbe18f731b7ef49a29b4359ce213a0, type: 3}

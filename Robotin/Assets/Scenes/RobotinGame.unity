@@ -1152,6 +1152,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rayRange: 1.35
   rayOffsetX: 0.75
+  jumpForce: 0
+  maxJumpForce: 1000
 --- !u!50 &1614153390
 Rigidbody2D:
   serializedVersion: 4

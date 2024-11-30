@@ -6,13 +6,28 @@ public class PlayerController : MonoBehaviour
 {
 
     private int direction = 1;
+    private Rigidbody2D rb;
     [SerializeField] private float rayRange = 5f;
     [SerializeField] private float rayOffsetX = 0.75f;
+    [SerializeField] private float jumpForce = 0;
+    [SerializeField] private float maxJumpForce = 100f;
+    private RaycastHit2D hit;
+
+
+    enum playerState
+    {
+        idle,
+        moving,
+        preparingToJump,
+        jumping,
+        falling
+    }
+    playerState state = playerState.moving;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -23,20 +38,42 @@ public class PlayerController : MonoBehaviour
         Ray2D playerRay = new Ray2D(rayOrigin, transform.TransformDirection(directionRay * rayRange));
         Debug.DrawRay(rayOrigin, transform.TransformDirection(directionRay * rayRange), Color.red);
 
-        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, directionRay, rayRange);
+        hit = Physics2D.Raycast(rayOrigin, directionRay, rayRange);
 
-        if (hit)
+        if (Input.GetKey(KeyCode.Space) && state == playerState.moving)
         {
-            Move();
-        }
-        else if (!hit)
-        {
-            direction *= -1;
-        }
-        
-        
+            state = playerState.preparingToJump;
+            if (jumpForce < maxJumpForce)
+            {
+                jumpForce += 10f;
+            }
+                
 
-        
+        }
+        else if (Input.GetKeyUp(KeyCode.Space) && state == playerState.preparingToJump)
+        {
+            state = playerState.jumping;
+        }
+
+
+        switch (state)
+        {
+            case playerState.idle:
+                break;
+            case playerState.moving:
+                Move();
+                break;
+            case playerState.preparingToJump:
+                break;
+            case playerState.jumping:
+                Jump();
+                StartCoroutine(JumpCoroutine());
+                break;
+            case playerState.falling:
+                IsTouchingGround();
+                break;
+        }
+
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -57,6 +94,35 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        transform.Translate(0.05f * direction, 0, 0);
+        if (hit)
+        {
+            transform.Translate(0.05f * direction, 0, 0);
+        }
+        else if (!hit)
+        {
+            direction *= -1;
+        }
+    }
+
+    private void Jump()
+    {
+        Vector2 jumpDirection = new Vector2(direction, 1);
+        rb.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
+        jumpForce = 0;
+    }
+
+    private void IsTouchingGround()
+    {
+        if(hit)
+        {
+            state = playerState.moving;
+        }
+        
+    }
+
+    IEnumerator JumpCoroutine()
+    {
+        yield return new WaitForSeconds(0.05f);
+        state = playerState.falling;
     }
 }

@@ -40,12 +40,12 @@ public class PlayerController : MonoBehaviour
 
         hit = Physics2D.Raycast(rayOrigin, directionRay, rayRange);
 
-        if (Input.GetKey(KeyCode.Space) && state == playerState.moving)
+        if (Input.GetKey(KeyCode.Space))
         {
             state = playerState.preparingToJump;
             if (jumpForce < maxJumpForce)
             {
-                jumpForce += 10f;
+                jumpForce += 0.5f;
             }
                 
 
@@ -70,7 +70,6 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(JumpCoroutine());
                 break;
             case playerState.falling:
-                IsTouchingGround();
                 break;
         }
 
@@ -80,8 +79,14 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            transform.Translate(-0.5f * direction, 0, 0);
+            transform.Translate(-0.3f * direction, 0, 0);
         }
+        else if (IsTouchingGround() && state == playerState.falling)
+        {
+            state = playerState.moving;
+            rb.velocity = Vector2.zero;
+        }
+
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -89,7 +94,9 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
         {
             direction *= -1;
+
         }
+        
     }
 
     private void Move()
@@ -111,13 +118,18 @@ public class PlayerController : MonoBehaviour
         jumpForce = 0;
     }
 
-    private void IsTouchingGround()
+    private bool IsTouchingGround()
     {
-        if(hit)
+        if(hit.collider == null)
         {
-            state = playerState.moving;
+            return false;
         }
-        
+        else if (hit.collider.CompareTag("Terrain"))
+        {
+            return true;
+        }
+
+        return false;
     }
 
     IEnumerator JumpCoroutine()

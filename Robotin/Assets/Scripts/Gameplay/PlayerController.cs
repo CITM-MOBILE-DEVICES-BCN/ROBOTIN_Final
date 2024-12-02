@@ -12,7 +12,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce = 0;
     [SerializeField] private float maxJumpForce = 100f;
     private RaycastHit2D hit;
-    [SerializeField] private bool canJumpWall = true;
+    [SerializeField] private bool isJumpWallUnlocked = true;
+    [SerializeField] private bool isDoubleJumpUnlocked = false;
+    [SerializeField] private bool canDoubleJump = false;
     private float wallJumpTimer = 0;
 
 
@@ -96,6 +98,11 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = Vector2.zero;
                 break;
             case playerState.falling:
+                if(canDoubleJump && Input.GetKeyDown(KeyCode.Space))
+                {
+                    canDoubleJump = false;
+                    DoubleJump();
+                }
                 break;
         }
 
@@ -107,7 +114,7 @@ public class PlayerController : MonoBehaviour
         {
             transform.Translate(-0.3f * direction, 0, 0);
 
-            if(state == playerState.falling && canJumpWall)
+            if(state == playerState.falling && isJumpWallUnlocked)
             {
                 state = playerState.preparingToWallJump;
                 
@@ -119,6 +126,17 @@ public class PlayerController : MonoBehaviour
         {
             state = playerState.moving;
             rb.velocity = Vector2.zero;
+        }
+
+        
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Orb") && isDoubleJumpUnlocked)
+        {
+            canDoubleJump = true;
         }
 
     }
@@ -147,9 +165,15 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        Vector2 jumpDirection = new Vector2(direction, 1);
+        Vector2 jumpDirection = new Vector2(direction, 1.5f);
         rb.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
         jumpForce = 0;
+    }
+
+    private void DoubleJump()
+    {
+        Vector2 jumpDirection = new Vector2(direction, 2.5f);
+        rb.AddForce(jumpDirection * 5, ForceMode2D.Impulse);
     }
 
     private bool IsTouchingGround()

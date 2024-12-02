@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 public class MetaScreen : MonoBehaviour
@@ -14,6 +15,8 @@ public class MetaScreen : MonoBehaviour
     [SerializeField] string world1;
     [SerializeField] string world2;
     [SerializeField] string world3;
+
+    [SerializeField] private TextMeshProUGUI totalScoreText;
 
     private void Start()
     {
@@ -48,5 +51,9 @@ public class MetaScreen : MonoBehaviour
     private void OnWorld3ButtonClicked()
     {
         GameManager.instance.LoadScreen(world3);
+    }
+    public void SetTotalScoreUI(int value)
+    {
+        totalScoreText.text = GameManager.instance.gameData.GetTotal().ToString();
     }
 }

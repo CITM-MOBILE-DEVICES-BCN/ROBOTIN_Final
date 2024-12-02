@@ -18,6 +18,11 @@ public class GameManager : MonoBehaviour
 
     private GameObject currentPopUp;
 
+    public ScoreManager scoreManager;
+
+    public GameData gameData;
+
+
     //TODO: implement a list of level managers (levels) and instantiate one depending on the data (current level)
     [SerializeField]
     private List<LevelManager> allLevels;
@@ -31,6 +36,8 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this.gameObject);
             navigation = new Navigation();
+            scoreManager = new ScoreManager();
+            gameData = new GameData();
         }
         else
         {

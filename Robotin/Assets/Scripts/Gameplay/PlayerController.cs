@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce = 0;
     [SerializeField] private float maxJumpForce = 100f;
     private RaycastHit2D hit;
+    [SerializeField] private bool canJumpWall = true;
+    private float wallJumpTimer = 0;
 
 
     enum playerState
@@ -20,6 +22,7 @@ public class PlayerController : MonoBehaviour
         moving,
         preparingToJump,
         jumping,
+        preparingToWallJump,
         falling
     }
     playerState state = playerState.moving;
@@ -40,7 +43,7 @@ public class PlayerController : MonoBehaviour
 
         hit = Physics2D.Raycast(rayOrigin, directionRay, rayRange);
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && state != playerState.falling && state != playerState.preparingToWallJump)
         {
             state = playerState.preparingToJump;
             if (jumpForce < maxJumpForce)
@@ -69,6 +72,29 @@ public class PlayerController : MonoBehaviour
                 Jump();
                 StartCoroutine(JumpCoroutine());
                 break;
+            case playerState.preparingToWallJump:
+                
+                wallJumpTimer += Time.deltaTime;
+                if (wallJumpTimer > 2)
+                {
+                    state = playerState.falling;
+                    wallJumpTimer = 0;
+                }
+                if (Input.GetKey(KeyCode.Space))
+                {
+                    if (jumpForce < maxJumpForce)
+                    {
+                        jumpForce += 0.5f;
+                    }
+                    
+                }
+                else if (Input.GetKeyUp(KeyCode.Space) && state == playerState.preparingToWallJump)
+                {
+                    state = playerState.jumping;
+                    wallJumpTimer = 0;
+                }
+                rb.velocity = Vector2.zero;
+                break;
             case playerState.falling:
                 break;
         }
@@ -80,8 +106,16 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
         {
             transform.Translate(-0.3f * direction, 0, 0);
+
+            if(state == playerState.falling && canJumpWall)
+            {
+                state = playerState.preparingToWallJump;
+                
+                
+            }
         }
-        else if (IsTouchingGround() && state == playerState.falling)
+        
+        if (IsTouchingGround() && state == playerState.falling)
         {
             state = playerState.moving;
             rb.velocity = Vector2.zero;
@@ -136,5 +170,15 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.05f);
         state = playerState.falling;
+    }
+
+    IEnumerator WallJumpCoroutine()
+    {
+        yield return new WaitForSeconds(2f);
+        if(state == playerState.preparingToWallJump)
+        {
+            state = playerState.falling;
+        }
+        
     }
 }

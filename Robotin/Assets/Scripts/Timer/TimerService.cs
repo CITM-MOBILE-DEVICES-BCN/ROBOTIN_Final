@@ -1,198 +1,206 @@
 using System;
-
 namespace TimerModule
 {
-	public class TimerService
-	{
-		public Action<Timer> TimerStateChanged;
+    public class TimerService
+    {
+        public Action<Timer> TimerStateChanged;
 
-		private readonly IDateTimeProvider dateTimeProvider;
+        private readonly IDateTimeProvider dateTimeProvider;
 
-		public TimerService(IDateTimeProvider dateTimeProvider)
-		{
-			this.dateTimeProvider = dateTimeProvider;
-		}
+        public TimerService(IDateTimeProvider dateTimeProvider)
+        {
+            this.dateTimeProvider = dateTimeProvider;
+        }
 
-		public void ResetTimer(ref Timer timer)
-		{
-			timer = new Timer(timer.Duration);
-			TimerStateChanged?.Invoke(timer);
-		}
+        public void ResetTimer(ref Timer timer)
+        {
+            timer = new Timer(timer.Duration);
+            TimerStateChanged?.Invoke(timer);
+        }
 
-		public void StartTimer(Timer timer)
-		{
-			StartTimer(timer, timer.Duration);
-		}
+        public void StartTimer(Timer timer)
+        {
+            StartTimer(timer, timer.Duration);
+        }
 
-		public void StartTimer(Timer timer, TimeSpan duration)
-		{
-			if (timer.State == TimerState.Running)
-			{
-				return;
-			}
+        public void StartTimer(Timer timer, TimeSpan duration)
+        {
+            if (timer.State == TimerState.Running)
+            {
+                return;
+            }
 
-			timer.Duration = duration;
-			timer.FreezeDuration = TimeSpan.Zero;
-			timer.State = TimerState.Running;
-			timer.StartTime = dateTimeProvider.UtcNow;
-			TimerStateChanged?.Invoke(timer);
-		}
+            timer.Duration = duration;
+            timer.FreezeDuration = TimeSpan.Zero;
+            timer.State = TimerState.Running;
+            timer.StartTime = dateTimeProvider.UtcNow;
+            TimerStateChanged?.Invoke(timer);
+        }
 
-		public void StopTimer(Timer timer)
-		{
-			if (timer.State == TimerState.Stopped)
-			{
-				return;
-			}
+        public void StopTimer(Timer timer)
+        {
+            if (timer.State == TimerState.Stopped)
+            {
+                return;
+            }
 
-			timer.State = TimerState.Stopped;
-			timer.StopTime = dateTimeProvider.UtcNow;
-			TimerStateChanged?.Invoke(timer);
-		}
+            timer.State = TimerState.Stopped;
+            timer.StopTime = dateTimeProvider.UtcNow;
+            TimerStateChanged?.Invoke(timer);
+        }
 
-		public void PauseTimer(Timer timer)
-		{
-			if (timer.State == TimerState.Paused || timer.State == TimerState.Stopped)
-			{
-				return;
-			}
+        public void PauseTimer(Timer timer)
+        {
+            if (timer.State == TimerState.Paused || timer.State == TimerState.Stopped)
+            {
+                return;
+            }
 
-			timer.State = TimerState.Paused;
-			timer.PauseStartTime = dateTimeProvider.UtcNow;
-			TimerStateChanged?.Invoke(timer);
-		}
+            timer.State = TimerState.Paused;
+            timer.PauseStartTime = dateTimeProvider.UtcNow;
+            TimerStateChanged?.Invoke(timer);
+        }
 
-		public void ResumeTimer(Timer timer)
-		{
-			if (timer.State != TimerState.Paused)
-			{
-				return;
-			}
+        public void ResumeTimer(Timer timer)
+        {
+            if (timer.State != TimerState.Paused)
+            {
+                return;
+            }
 
-			timer.State = timer.PreviousState;
-			timer.PauseEndTime = dateTimeProvider.UtcNow;
-			if (timer.State == TimerState.Frozen)
-			{
-				timer.TotalPausedDuringFreezedTime += timer.GetLastPauseTime;
-			}
-			TimerStateChanged?.Invoke(timer);
-		}
+            timer.State = timer.PreviousState;
+            timer.PauseEndTime = dateTimeProvider.UtcNow;
+            if (timer.State == TimerState.Frozen)
+            {
+                timer.TotalPausedDuringFreezedTime += timer.GetLastPauseTime;
+            }
+            TimerStateChanged?.Invoke(timer);
+        }
 
-		public void FreezeTimer(Timer timer, TimeSpan freezeDuration)
-		{
-			if (timer.State == TimerState.Frozen || timer.State == TimerState.Paused || timer.State == TimerState.Stopped)
-			{
-				return;
-			}
+        public void FreezeTimer(Timer timer, TimeSpan freezeDuration)
+        {
+            if (timer.State == TimerState.Frozen || timer.State == TimerState.Paused || timer.State == TimerState.Stopped)
+            {
+                return;
+            }
 
-			timer.State = TimerState.Frozen;
-			timer.FreezeDuration = freezeDuration;
-			timer.FreezeStartTime = dateTimeProvider.UtcNow;
-			timer.TotalPausedDuringFreezedTime = TimeSpan.Zero;
-			TimerStateChanged?.Invoke(timer);
-		}
+            timer.State = TimerState.Frozen;
+            timer.FreezeDuration = freezeDuration;
+            timer.FreezeStartTime = dateTimeProvider.UtcNow;
+            timer.TotalPausedDuringFreezedTime = TimeSpan.Zero;
+            TimerStateChanged?.Invoke(timer);
+        }
 
-		public void DefrostTimer(Timer timer)
-		{
-			if (timer.State != TimerState.Frozen)
-			{
-				return;
-			}
+        public void DefrostTimer(Timer timer)
+        {
+            if (timer.State != TimerState.Frozen)
+            {
+                return;
+            }
 
-			if (IsTimerDefrosted(timer))
-			{
-				timer.State = TimerState.Running;
-				timer.TotalFreezedTime += timer.FreezeDuration;
-				timer.FreezeDuration = TimeSpan.Zero;
-				TimerStateChanged?.Invoke(timer);
-			}
-		}
+            if (IsTimerDefrosted(timer))
+            {
+                timer.State = TimerState.Running;
+                timer.TotalFreezedTime += timer.FreezeDuration;
+                timer.FreezeDuration = TimeSpan.Zero;
+                TimerStateChanged?.Invoke(timer);
+            }
+        }
 
-		public TimeSpan GetTimerRemainingTime(Timer timer)
-		{
-			if (timer.State == TimerState.Default)
-			{
-				return timer.Duration;
-			}
+        public TimeSpan GetTimerElapsedTime(Timer timer)
+        {
+            if (timer.State == TimerState.Default)
+            {
+                return TimeSpan.Zero;
+            }
 
-			if (timer.State == TimerState.Stopped)
-			{
-				var timerDurationUntilStopWithWaitings = (timer.StopTime - timer.StartTime) - GetTotalElapsedPausedTime(timer) - GetTotalElapsedFreezeTime(timer);
-				return timer.Duration - timerDurationUntilStopWithWaitings;
-			}
+            if (timer.State == TimerState.Stopped)
+            {
+                var timerDurationUntilStopWithWaitings = (timer.StopTime - timer.StartTime) - GetTotalElapsedPausedTime(timer) - GetTotalElapsedFreezeTime(timer);
+                return timerDurationUntilStopWithWaitings;
+            }
 
-			var timerDurationWithWaitings = timer.Duration + GetTotalElapsedPausedTime(timer) + GetTotalElapsedFreezeTime(timer);
-			var timedElapsedFromStart = dateTimeProvider.UtcNow - timer.StartTime;
-			var remainingTime = timerDurationWithWaitings - timedElapsedFromStart;
-			return remainingTime <= TimeSpan.Zero ? TimeSpan.Zero : remainingTime;
-		}
+            var timerDurationWithWaitings = GetTotalElapsedPausedTime(timer) + GetTotalElapsedFreezeTime(timer);
+            var timeElapsedFromStart = dateTimeProvider.UtcNow - timer.StartTime;
+            var elapsedTime = timeElapsedFromStart - timerDurationWithWaitings;
 
-		public TimeSpan GetTotalElapsedPausedTime(Timer timer)
-		{
-			if (timer.State == TimerState.Paused || timer.State == TimerState.Stopped)
-			{
-				return timer.TotalPausedTime + GetElapsedPausedTime(timer);
-			}
+            return elapsedTime >= timer.Duration ? timer.Duration : elapsedTime;
+        }
 
-			return timer.TotalPausedTime;
-		}
+        public void UpdateTimerState(Timer timer)
+        {
+            var elapsed = GetTimerElapsedTime(timer);
+            if (elapsed >= timer.Duration && timer.State == TimerState.Running)
+            {
+                StopTimer(timer);
+            }
+        }
 
-		public TimeSpan GetElapsedPausedTime(Timer timer)
-		{
-			if (timer.State == TimerState.Paused)
-			{
-				return dateTimeProvider.UtcNow - timer.PauseStartTime;
-			}
+        public TimeSpan GetTotalElapsedPausedTime(Timer timer)
+        {
+            if (timer.State == TimerState.Paused || timer.State == TimerState.Stopped)
+            {
+                return timer.TotalPausedTime + GetElapsedPausedTime(timer);
+            }
 
-			if (timer.PreviousState == TimerState.Paused && timer.State == TimerState.Stopped)
-			{
-				return timer.StopTime - timer.PauseStartTime;
-			}
+            return timer.TotalPausedTime;
+        }
 
-			return TimeSpan.Zero;
-		}
+        public TimeSpan GetElapsedPausedTime(Timer timer)
+        {
+            if (timer.State == TimerState.Paused)
+            {
+                return dateTimeProvider.UtcNow - timer.PauseStartTime;
+            }
 
-		public TimeSpan GetTotalElapsedFreezeTime(Timer timer)
-		{
-			if (timer.State == TimerState.Frozen || timer.State == TimerState.Paused || timer.State == TimerState.Stopped)
-			{
-				return timer.TotalFreezedTime + GetElapsedFreezeTime(timer);
-			}
+            if (timer.PreviousState == TimerState.Paused && timer.State == TimerState.Stopped)
+            {
+                return timer.StopTime - timer.PauseStartTime;
+            }
 
-			return timer.TotalFreezedTime;
-		}
+            return TimeSpan.Zero;
+        }
 
-		public TimeSpan GetElapsedFreezeTime(Timer timer)
-		{
-			if (timer.State == TimerState.Frozen)
-			{
-				return dateTimeProvider.UtcNow - timer.TotalPausedDuringFreezedTime - timer.FreezeStartTime;
-			}
+        public TimeSpan GetTotalElapsedFreezeTime(Timer timer)
+        {
+            if (timer.State == TimerState.Frozen || timer.State == TimerState.Paused || timer.State == TimerState.Stopped)
+            {
+                return timer.TotalFreezedTime + GetElapsedFreezeTime(timer);
+            }
 
-			if (timer.PreviousState == TimerState.Frozen && timer.State == TimerState.Paused)
-			{
-				return dateTimeProvider.UtcNow - GetElapsedPausedTime(timer) - timer.TotalPausedDuringFreezedTime - timer.FreezeStartTime;
-			}
+            return timer.TotalFreezedTime;
+        }
 
-			if (timer.PreviousState == TimerState.Frozen && timer.State == TimerState.Stopped)
-			{
-				return timer.StopTime - GetElapsedPausedTime(timer) - timer.TotalPausedDuringFreezedTime - timer.FreezeStartTime;
+        public TimeSpan GetElapsedFreezeTime(Timer timer)
+        {
+            if (timer.State == TimerState.Frozen)
+            {
+                return dateTimeProvider.UtcNow - timer.TotalPausedDuringFreezedTime - timer.FreezeStartTime;
+            }
 
-			}
+            if (timer.PreviousState == TimerState.Frozen && timer.State == TimerState.Paused)
+            {
+                return dateTimeProvider.UtcNow - GetElapsedPausedTime(timer) - timer.TotalPausedDuringFreezedTime - timer.FreezeStartTime;
+            }
 
-			return TimeSpan.Zero;
-		}
+            if (timer.PreviousState == TimerState.Frozen && timer.State == TimerState.Stopped)
+            {
+                return timer.StopTime - GetElapsedPausedTime(timer) - timer.TotalPausedDuringFreezedTime - timer.FreezeStartTime;
+            }
 
-		public bool IsTimerDefrosted(Timer timer)
-		{
-			if (timer.State != TimerState.Frozen && timer.State != TimerState.Paused)
-			{
-				return true;
-			}
+            return TimeSpan.Zero;
+        }
 
-			var isDefrosted = GetElapsedFreezeTime(timer) >= timer.FreezeDuration;
+        public bool IsTimerDefrosted(Timer timer)
+        {
+            if (timer.State != TimerState.Frozen && timer.State != TimerState.Paused)
+            {
+                return true;
+            }
 
-			return isDefrosted;
-		}
-	}
+            var isDefrosted = GetElapsedFreezeTime(timer) >= timer.FreezeDuration;
+
+            return isDefrosted;
+        }
+    }
 }

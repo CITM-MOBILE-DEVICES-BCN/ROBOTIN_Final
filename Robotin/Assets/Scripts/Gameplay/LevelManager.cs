@@ -33,7 +33,9 @@ public class LevelManager : MonoBehaviour
     {
         if (timer != null)
         {
-            if (timerService.GetTimerRemainingTime(timer) <= TimeSpan.Zero)
+            var elapsedTime = timerService.GetTimerElapsedTime(timer);
+
+            if (elapsedTime >= timer.Duration)
             {
                 timerService.StopTimer(timer);
             }
@@ -49,7 +51,7 @@ public class LevelManager : MonoBehaviour
 
     private float GetTimerRemainingTimeNormalized(Timer timer)
     {
-        return (float)(timerService.GetTimerRemainingTime(timer).TotalSeconds / timer.Duration.TotalSeconds);
+        return (float)(timerService.GetTimerElapsedTime(timer).TotalSeconds / timer.Duration.TotalSeconds);
     }
 
     //Called On Level Passed

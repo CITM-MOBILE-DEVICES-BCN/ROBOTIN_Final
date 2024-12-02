@@ -15,7 +15,7 @@ namespace TimerSampleScene
 		public void UpdateView(Timer timer, TimerService timerService)
 		{
 			currentTime.text = $"Duration Time: {timer.Duration}";
-			maxTime.text = $"Remaining Time: {timerService.GetTimerRemainingTime(timer)}";
+			maxTime.text = $"Remaining Time: {timerService.GetTimerElapsedTime(timer)}";
 		}
 	}
 }

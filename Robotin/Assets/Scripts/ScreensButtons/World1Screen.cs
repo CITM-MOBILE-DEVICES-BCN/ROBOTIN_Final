@@ -21,6 +21,6 @@ public class World1Screen : MonoBehaviour
 
     private void OnLevel1Clicked()
     {
-        GameManager.instance.LoadScene("RobotinGame");
+        GameManager.instance.LoadSceneAndLevel("RobotinGame");
     }
 }

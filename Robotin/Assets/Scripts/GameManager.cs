@@ -18,6 +18,12 @@ public class GameManager : MonoBehaviour
 
     private GameObject currentPopUp;
 
+    //TODO: implement a list of level managers (levels) and instantiate one depending on the data (current level)
+    [SerializeField]
+    private List<LevelManager> allLevels;
+
+    public LevelManager currentLevel;
+
     void Awake()
     {
         if (instance == null)
@@ -89,5 +95,26 @@ public class GameManager : MonoBehaviour
             currentPopUp = null;
             activePopUps.Remove(popUp);
         }
+    }
+
+    public void LoadSceneAndLevel(string sceneName)
+    {
+        StartCoroutine(LoadSceneAndLevelCoroutine(sceneName));
+    }
+
+    private IEnumerator LoadSceneAndLevelCoroutine(string sceneName)
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+
+        yield return new WaitUntil(() => UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == sceneName);
+
+        LoadLevel();
+    }
+
+    //TODO: Implement with save and load to load the level that is required based on the level data (current level), for the moment it will just load the first level
+    public void LoadLevel()
+    {
+        var level = Instantiate(allLevels[0]);
+        currentLevel = level;
     }
 }

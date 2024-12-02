@@ -49,3 +49,8 @@ MonoBehaviour:
   - {fileID: 2495762352351747192, guid: 73975251217068b4ea495aa7acaf0169, type: 3}
   popUpList:
   - {fileID: 8908560048866398491, guid: 44cbe18f731b7ef49a29b4359ce213a0, type: 3}
+  activeScreens: []
+  activePopUps: []
+  allLevels:
+  - {fileID: 840421198528815522, guid: daeea43fa31290446b7b7d3b424959a3, type: 3}
+  currentLevel: {fileID: 0}

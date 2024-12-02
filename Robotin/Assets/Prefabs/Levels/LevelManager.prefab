@@ -1807,8 +1807,11 @@ MonoBehaviour:
   jumpForce: 0
   maxJumpForce: 15
   isJumpWallUnlocked: 1
-  isDoubleJumpUnlocked: 1
+  isDoubleJumpUnlocked: 0
   canDoubleJump: 0
+  isDashUnlocked: 1
+  canDash: 0
+  hasDashed: 0
 --- !u!1001 &4702579305715537158
 PrefabInstance:
   m_ObjectHideFlags: 0

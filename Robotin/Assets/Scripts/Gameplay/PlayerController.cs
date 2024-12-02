@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,8 +16,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool isJumpWallUnlocked = true;
     [SerializeField] private bool isDoubleJumpUnlocked = false;
     [SerializeField] private bool canDoubleJump = false;
+    [SerializeField] private bool isDashUnlocked = false;
+    [SerializeField] private bool canDash = false;
+    [SerializeField] private bool hasDashed = false;
     private float wallJumpTimer = 0;
 
+   
 
     enum playerState
     {
@@ -29,14 +34,23 @@ public class PlayerController : MonoBehaviour
     }
     playerState state = playerState.moving;
 
+    private void Awake()
+    {
+        if(isDashUnlocked)
+        {
+            SwipeDetection.instance.swipePerformed += context => { Dash(context); };
+        }
+       
+    }
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         Vector3 directionRay = Vector3.down;
         Vector3 rayOrigin = new Vector3(transform.position.x + (rayOffsetX * direction), transform.position.y, transform.position.z);
@@ -98,7 +112,11 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = Vector2.zero;
                 break;
             case playerState.falling:
-                if(canDoubleJump && Input.GetKeyDown(KeyCode.Space))
+                if(!hasDashed && isDashUnlocked)
+                {
+                    canDash = true;
+                }
+                if (canDoubleJump && Input.GetKeyDown(KeyCode.Space))
                 {
                     canDoubleJump = false;
                     DoubleJump();
@@ -117,8 +135,8 @@ public class PlayerController : MonoBehaviour
             if(state == playerState.falling && isJumpWallUnlocked)
             {
                 state = playerState.preparingToWallJump;
-                
-                
+                hasDashed = false;
+
             }
         }
         
@@ -126,6 +144,7 @@ public class PlayerController : MonoBehaviour
         {
             state = playerState.moving;
             rb.velocity = Vector2.zero;
+            hasDashed = false;
         }
 
         
@@ -174,6 +193,18 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 jumpDirection = new Vector2(direction, 2.5f);
         rb.AddForce(jumpDirection * 5, ForceMode2D.Impulse);
+    }
+
+    private void Dash(Vector2 direction)
+    {
+        if(canDash)
+        {
+            rb.velocity = Vector2.zero;
+            rb.AddForce(direction * 20, ForceMode2D.Impulse);
+            hasDashed = true;
+            canDash = false;
+        }
+        
     }
 
     private bool IsTouchingGround()

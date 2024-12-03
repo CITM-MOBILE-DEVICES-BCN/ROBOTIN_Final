@@ -53,6 +53,29 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    public void Init(int level)
+    {
+        if(level == 1)
+        {
+            isJumpWallUnlocked = true;
+            isDoubleJumpUnlocked = false;
+            isDashUnlocked = false;
+        }
+        else if(level == 2)
+        {
+            isJumpWallUnlocked = true;
+            isDoubleJumpUnlocked = true;
+            isDashUnlocked = false;
+        }
+        else if (level >= GameManager.instance.maxLevelsPerLoop)
+        {
+            isJumpWallUnlocked = true;
+            isDoubleJumpUnlocked = true;
+            isDashUnlocked = true;
+        }
+        
+    }
+
     // Update is called once per frame
     private void Update()
     {

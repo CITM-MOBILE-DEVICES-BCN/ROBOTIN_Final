@@ -34,10 +34,11 @@ public class LevelManager : MonoBehaviour
 
         //Dependiendo de la dificultad inicializar flood con mas velocidad o menos 
 
+        // Dependiendo del nivel desbloquea unas habilidades u otras
+        player.Init(level);
 
-        //Dependiendo de la dificultad inicializar player con las habilidades que tenga
-        //si loop es >0 cargar todas las habilidades que tenga el player
-        //si no cargar solo las habilidades dependiendo de level
+
+
     }
 
     void Start()

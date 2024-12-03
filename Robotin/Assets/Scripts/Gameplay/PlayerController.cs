@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         {
             SwipeDetection.instance.swipePerformed += context => { Dash(context); };
         }
-       
+        Camera.main.GetComponent<CameraController>().player = gameObject;
     }
 
     // Start is called before the first frame update

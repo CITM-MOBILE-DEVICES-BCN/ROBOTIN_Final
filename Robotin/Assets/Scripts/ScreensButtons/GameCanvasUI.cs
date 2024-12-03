@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TimerModule;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +10,8 @@ public class GameCanvasUI : MonoBehaviour
     [SerializeField] Button pauseButton;
     [SerializeField] string pauseMenuPopUp;
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI currentTime;
+    [SerializeField] private TextMeshProUGUI maxTime;
 
     public static GameCanvasUI instance;
 
@@ -22,21 +25,29 @@ public class GameCanvasUI : MonoBehaviour
     private void Start()
     {
         pauseButton.onClick.AddListener(OnPauseButtonClicked);
-        scoreText.text = GameManager.instance.gameData.GetScore().ToString();
+        scoreText.text = GameManager.instance.scoreManager.GetCurrentScore().ToString();
        // bestText.text = GameManager.instance.levelData.best.ToString();
     }
     public void UpdateScoreUI()
     {
         scoreText.text = GameManager.instance.scoreManager.GetCurrentScore().ToString();
     }
+    
 
- 
+
+    public void UpdateTimerView(Timer timer, TimerService timerService)
+    {
+        currentTime.text = $"Duration Time: {timer.Duration}";
+        maxTime.text = $"Remaining Time: {timerService.GetTimerElapsedTime(timer)}";
+    }
+
+
     private void OnPauseButtonClicked()
     {
         GameManager.instance.LoadPopUp(pauseMenuPopUp);
 
         //TODO: Make a system to load diferent levels but for now it will just call the current level manager to pause the game
-        GameManager.instance.currentLevel.PauseResumeTimer();
+        GameManager.instance.currentLevel.timerManager.PauseResumeTimer();
 
         //You can add a pause game function here and if you want the same button to resume the
         //game create a bool so it unloads the popup and resumes the game

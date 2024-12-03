@@ -1,19 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TimerModule;
 using UnityEngine;
-
-public class ScoreManager 
+public class ScoreManager
 {
-   
-
     private int currentScore;
-
     private int highScore;
+
+    // Configurable factors for scoring
+    private int coinMultiplier = 10; 
+    private float timePenaltyFactor = 1f; 
+
+    public ScoreManager()
+    {
+        currentScore = 0;
+        highScore = 0;
+    }
 
     public void AddScore(int points)
     {
         currentScore += points;
-      GameCanvasUI.instance.UpdateScoreUI();
+        GameCanvasUI.instance.UpdateScoreUI();
     }
 
     public int GetCurrentScore()
@@ -21,5 +29,16 @@ public class ScoreManager
         return currentScore;
     }
 
-
+    //Call this funcion when you die/finish the level
+    public void CalculateLevelScore(int coinsCollected, float time)
+    {
+        int levelScore = Mathf.Max(0, (int)(coinsCollected * coinMultiplier - time * timePenaltyFactor));
+        currentScore += levelScore;
+        GameCanvasUI.instance.UpdateScoreUI();
+        if (currentScore > highScore)
+        {
+            highScore = currentScore;
+            // Save the high score to PlayerPrefs or another system if needed
+        }
+    }
 }

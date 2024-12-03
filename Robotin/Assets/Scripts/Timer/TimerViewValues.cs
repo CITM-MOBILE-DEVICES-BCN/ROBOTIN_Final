@@ -12,7 +12,7 @@ namespace TimerSampleScene
 		private TextMeshProUGUI maxTime;
 		
 
-		public void UpdateView(Timer timer, TimerService timerService)
+		public void UpdateTimerView(Timer timer, TimerService timerService)
 		{
 			currentTime.text = $"Duration Time: {timer.Duration}";
 			maxTime.text = $"Remaining Time: {timerService.GetTimerElapsedTime(timer)}";

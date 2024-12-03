@@ -54,6 +54,6 @@ public class MetaScreen : MonoBehaviour
     }
     public void SetTotalScoreUI(int value)
     {
-        totalScoreText.text = GameManager.instance.gameData.GetTotal().ToString();
+        totalScoreText.text = GameManager.instance.gameData.GetTotalScore().ToString();
     }
 }

@@ -1463,18 +1463,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -5898996036283102877, guid: 1bd7d96417bd93148a97d939ccd6962c,
-        type: 3}
-      propertyPath: currentLevel
-      value: 
-      objectReference: {fileID: 8936773658351510781, guid: 65a07eb68ea3c7d4fbaace34bf1cbcb2,
-        type: 3}
-    - target: {fileID: -5898996036283102877, guid: 1bd7d96417bd93148a97d939ccd6962c,
-        type: 3}
-      propertyPath: allLevels.Array.data[0]
-      value: 
-      objectReference: {fileID: 8936773658351510781, guid: 65a07eb68ea3c7d4fbaace34bf1cbcb2,
-        type: 3}
     - target: {fileID: 6068969340371903970, guid: 1bd7d96417bd93148a97d939ccd6962c,
         type: 3}
       propertyPath: m_Name
@@ -1533,81 +1521,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6068969340371903970, guid: 1bd7d96417bd93148a97d939ccd6962c,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 925419402}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1bd7d96417bd93148a97d939ccd6962c, type: 3}
---- !u!1 &925419401 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6068969340371903970, guid: 1bd7d96417bd93148a97d939ccd6962c,
-    type: 3}
-  m_PrefabInstance: {fileID: 925419400}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &925419402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 925419401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 235174e7fef0cde4eb79c7d78d54a7ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  position:
-    m_Name: Position
-    m_Type: 0
-    m_ExpectedControlType: Vector2
-    m_Id: 207bac92-5b07-4663-943f-b91b11e4b5bc
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 65d8e0f0-dba4-428a-a5c4-1123e8655943
-      m_Path: <Touchscreen>/position
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Position
-      m_Flags: 0
-    - m_Name: 
-      m_Id: d6285c38-765b-41e8-9100-80b40d7f9a03
-      m_Path: <Mouse>/position
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Position
-      m_Flags: 0
-    m_Flags: 0
-  press:
-    m_Name: Press
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: 326f852b-c6aa-408e-b6e9-d902df7671fd
-    m_Processors: 
-    m_Interactions: Press
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: b2cd3365-2157-4515-be50-f051142e5ac9
-      m_Path: <Touchscreen>/Press
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Press
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 80b514c4-9ac9-4529-8fd4-034cedba5044
-      m_Path: <Mouse>/press
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Press
-      m_Flags: 0
-    m_Flags: 0
-  swipeResistance: 100
 --- !u!1 &1208030195
 GameObject:
   m_ObjectHideFlags: 0

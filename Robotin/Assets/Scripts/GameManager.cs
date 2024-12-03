@@ -22,6 +22,10 @@ public class GameManager : MonoBehaviour
 
     public GameData gameData;
 
+    public int maxLevelsPerLoop = 3;
+
+
+
 
     //TODO: implement a list of level managers (levels) and instantiate one depending on the data (current level)
     [SerializeField]
@@ -32,12 +36,13 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         if (instance == null)
-        {
+        {            
             instance = this;
             DontDestroyOnLoad(this.gameObject);
             navigation = new Navigation();
             scoreManager = new ScoreManager();
             gameData = new GameData();
+            //gameData.Reset();
         }
         else
         {
@@ -104,24 +109,43 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void LoadSceneAndLevel(string sceneName)
+    public void LoadSceneAndLevel(string sceneName, int index)
     {
-        StartCoroutine(LoadSceneAndLevelCoroutine(sceneName));
+        StartCoroutine(LoadSceneAndLevelCoroutine(sceneName, index));
     }
 
-    private IEnumerator LoadSceneAndLevelCoroutine(string sceneName)
+    private IEnumerator LoadSceneAndLevelCoroutine(string sceneName, int index)
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
 
         yield return new WaitUntil(() => UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == sceneName);
 
-        LoadLevel();
+        LoadLevel(index);
     }
 
     //TODO: Implement with save and load to load the level that is required based on the level data (current level), for the moment it will just load the first level
-    public void LoadLevel()
+    public void LoadLevel(int index)
     {
-        var level = Instantiate(allLevels[0]);
+        int levelIndex = index % maxLevelsPerLoop;
+        if (levelIndex == 0)
+        {
+            levelIndex = maxLevelsPerLoop;
+        }
+        var level = Instantiate(allLevels[(levelIndex)-1]);
+        level.Init(index);
         currentLevel = level;
+
+    }
+
+    public void OnLevelFinished()
+    {
+        int nextLevel = currentLevel.level + 1;
+        if (currentLevel.isHardMode)
+        {
+            nextLevel += maxLevelsPerLoop;
+        }
+        gameData.UpdateLevelScore(currentLevel.level-1, scoreManager.GetCurrentScore());
+        gameData.SetNextLevel(nextLevel);
+        Debug.Log(gameData.GetNextLevel());
     }
 }

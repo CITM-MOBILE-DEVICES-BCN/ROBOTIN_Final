@@ -7,72 +7,49 @@ using TimerSampleScene;
 
 public class LevelManager : MonoBehaviour
 {
-    private Timer timer;
-    private IDateTimeProvider dateTimeProvider;
-    private TimerService timerService;
 
-    public TimerViewValues timerViewValues;
+    public PlayerController player;
+    public TimerManager timerManager;
+    public int level = 1;
+    public bool isHardMode = false;
+    public enum LevelState
+    {
+        Playing,
+        LevelPassed,
+        Pause,
+        GameOver
+    }
+
+    public void Init(int level)
+    {
+        if(level > GameManager.instance.maxLevelsPerLoop)
+        {
+            isHardMode = true;
+        }
+        else
+        {
+            isHardMode = false;
+        }
 
 
-    //TODO: Implement an state machine that will handle the pause state
-    private bool isOnPause = false;
+        //Dependiendo de la dificultad inicializar flood con mas velocidad o menos 
 
-    // Start is called before the first frame update
+
+        //Dependiendo de la dificultad inicializar player con las habilidades que tenga
+        //si loop es >0 cargar todas las habilidades que tenga el player
+        //si no cargar solo las habilidades dependiendo de level
+    }
+
     void Start()
     {
-        dateTimeProvider = new DateTimeProvider();
-        timerService = new TimerService(dateTimeProvider);        
-
-        timer = new Timer(TimeSpan.FromSeconds(0));
-
-        float duration = 30;
-        timerService.StartTimer(timer, TimeSpan.FromSeconds(duration));
+        timerManager = new TimerManager(30);
     }
 
     private void Update()
     {
-        if (timer != null)
-        {
-            var elapsedTime = timerService.GetTimerElapsedTime(timer);
-
-            if (elapsedTime >= timer.Duration)
-            {
-                timerService.StopTimer(timer);
-            }
-
-            if (timerService.IsTimerDefrosted(timer))
-            {
-                timerService.DefrostTimer(timer);
-            }
-
-            timerViewValues.UpdateView(timer, timerService);
-        }
+        timerManager.UpdateTime();       
     }
 
-    private float GetTimerRemainingTimeNormalized(Timer timer)
-    {
-        return (float)(timerService.GetTimerElapsedTime(timer).TotalSeconds / timer.Duration.TotalSeconds);
-    }
 
-    //Called On Level Passed
-    public void ResetTimer()
-    {
-        timerService.ResetTimer(ref timer);
-    }
-    public void PauseResumeTimer()
-    {
-        if (!isOnPause)
-        {
-            timerService.PauseTimer(timer);
-            isOnPause = true;
-
-        }
-        else
-        {
-            timerService.ResumeTimer(timer);
-            isOnPause = false;
-        }
-
-    }
 
 }

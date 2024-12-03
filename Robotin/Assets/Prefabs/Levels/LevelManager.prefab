@@ -1215,7 +1215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73a3f11f74b13b479b5e07b314ebe6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 9213743585388958676}
   level: 1
   isHardMode: 0
 --- !u!1 &7813972808065888894

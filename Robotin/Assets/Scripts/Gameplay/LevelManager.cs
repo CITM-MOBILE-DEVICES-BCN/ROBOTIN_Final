@@ -8,7 +8,7 @@ using TimerSampleScene;
 public class LevelManager : MonoBehaviour
 {
 
-    public PlayerController player;
+    public GameObject player;
     public TimerManager timerManager;
     public int level = 1;
     public bool isHardMode = false;
@@ -35,8 +35,7 @@ public class LevelManager : MonoBehaviour
         //Dependiendo de la dificultad inicializar flood con mas velocidad o menos 
 
         // Dependiendo del nivel desbloquea unas habilidades u otras
-        player.Init(level);
-
+        player.GetComponent<PlayerController>().Init(level);
 
 
     }
@@ -44,6 +43,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         timerManager = new TimerManager(30);
+        
     }
 
     private void Update()

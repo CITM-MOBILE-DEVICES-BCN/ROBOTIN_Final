@@ -197,7 +197,13 @@ public class PlayerController : MonoBehaviour
             hasDashed = false;
         }
 
-        
+        if (collision.gameObject.CompareTag("FloodLayer"))
+        {
+            GameManager.instance.LoadScene("RobotinMeta");
+            Debug.Log("Game Over");
+        }
+
+
 
     }
 

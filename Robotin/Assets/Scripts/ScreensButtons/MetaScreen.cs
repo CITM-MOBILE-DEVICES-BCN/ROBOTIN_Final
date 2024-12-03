@@ -25,6 +25,7 @@ public class MetaScreen : MonoBehaviour
         world1Button.onClick.AddListener(OnWorld1ButtonClicked);
         world2Button.onClick.AddListener(OnWorld2ButtonClicked);
         world3Button.onClick.AddListener(OnWorld3ButtonClicked);
+        totalScoreText.text = GameManager.instance.gameData.GetTotalScore().ToString();
 
     }
 
@@ -52,8 +53,8 @@ public class MetaScreen : MonoBehaviour
     {
         GameManager.instance.LoadScreen(world3);
     }
-    public void SetTotalScoreUI(int value)
-    {
-        totalScoreText.text = GameManager.instance.gameData.GetTotalScore().ToString();
-    }
+    //public void SetTotalScoreUI(int value)
+    //{
+    //    totalScoreText.text = GameManager.instance.gameData.GetTotalScore().ToString();
+    //}
 }

@@ -6,13 +6,16 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
 
-    private int direction = 1;
+    private int direction = -1;
     private Rigidbody2D rb;
     [SerializeField] private float rayRange = 5f;
-    [SerializeField] private float rayOffsetX = 0.75f;
+    [SerializeField] private float rayOffsetX = 0.5f;
     [SerializeField] private float jumpForce = 0;
     [SerializeField] private float maxJumpForce = 100f;
-    private RaycastHit2D hit;
+    private RaycastHit2D hitLeft;
+    private RaycastHit2D hitRight;
+    private RaycastHit2D hitFront;
+    private RaycastHit2D hitBack;
     [SerializeField] private bool isJumpWallUnlocked = true;
     [SerializeField] private bool isDoubleJumpUnlocked = false;
     [SerializeField] private bool canDoubleJump = false;
@@ -20,7 +23,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool canDash = false;
     [SerializeField] private bool hasDashed = false;
     private float wallJumpTimer = 0;
-
+    [SerializeField] LayerMask levelMask;
+    private bool isBorder = false;
    
 
     enum playerState
@@ -32,7 +36,7 @@ public class PlayerController : MonoBehaviour
         preparingToWallJump,
         falling
     }
-    playerState state = playerState.moving;
+    playerState state = playerState.falling;
 
     private void Awake()
     {
@@ -52,12 +56,25 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        Vector3 directionRay = Vector3.down;
-        Vector3 rayOrigin = new Vector3(transform.position.x + (rayOffsetX * direction), transform.position.y, transform.position.z);
-        Ray2D playerRay = new Ray2D(rayOrigin, transform.TransformDirection(directionRay * rayRange));
-        Debug.DrawRay(rayOrigin, transform.TransformDirection(directionRay * rayRange), Color.red);
+        Vector3 directionRayDown = Vector3.down;
+        Vector3 directionRayWall = Vector3.left;
+        Vector3 rayOriginLeft = new Vector3(transform.position.x + (rayOffsetX), transform.position.y, transform.position.z);
+        Vector3 rayOriginRight = new Vector3(transform.position.x + (-rayOffsetX), transform.position.y, transform.position.z);
+        Vector3 rayOriginFront = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        Vector3 rayOriginBack = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        Ray2D playerRayLeft = new Ray2D(rayOriginLeft, transform.TransformDirection(directionRayDown * rayRange));
+        Ray2D playerRayRight = new Ray2D(rayOriginRight, transform.TransformDirection(directionRayDown * rayRange));
+        Ray2D playerRayFront = new Ray2D(rayOriginFront, transform.TransformDirection(directionRayWall * rayRange));
+        Ray2D playerRayBack = new Ray2D(rayOriginBack, transform.TransformDirection(-directionRayWall * rayRange));
+        Debug.DrawRay(rayOriginLeft, transform.TransformDirection(directionRayDown * rayRange), Color.red);
+        Debug.DrawRay(rayOriginRight, transform.TransformDirection(directionRayDown * rayRange), Color.red);
+        Debug.DrawRay(rayOriginFront, transform.TransformDirection(directionRayWall * rayRange), Color.red);
+        Debug.DrawRay(rayOriginBack, transform.TransformDirection(-directionRayWall * rayRange), Color.red);
 
-        hit = Physics2D.Raycast(rayOrigin, directionRay, rayRange);
+        hitLeft = Physics2D.Raycast(rayOriginLeft, directionRayDown, rayRange, levelMask);
+        hitRight = Physics2D.Raycast(rayOriginRight, directionRayDown, rayRange, levelMask);
+        hitFront = Physics2D.Raycast(rayOriginFront, directionRayWall, rayRange, levelMask);
+        hitBack = Physics2D.Raycast(rayOriginBack, directionRayWall, rayRange, levelMask);
 
         if (Input.GetKey(KeyCode.Space) && state != playerState.falling && state != playerState.preparingToWallJump)
         {
@@ -89,12 +106,13 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(JumpCoroutine());
                 break;
             case playerState.preparingToWallJump:
-                
+                rb.velocity = Vector2.zero;
                 wallJumpTimer += Time.deltaTime;
                 if (wallJumpTimer > 2)
                 {
                     state = playerState.falling;
                     wallJumpTimer = 0;
+                    rb.gravityScale = 1;
                 }
                 if (Input.GetKey(KeyCode.Space))
                 {
@@ -108,8 +126,9 @@ public class PlayerController : MonoBehaviour
                 {
                     state = playerState.jumping;
                     wallJumpTimer = 0;
+                    rb.gravityScale = 1;
                 }
-                rb.velocity = Vector2.zero;
+                
                 break;
             case playerState.falling:
                 if(!hasDashed && isDashUnlocked)
@@ -135,6 +154,7 @@ public class PlayerController : MonoBehaviour
             if(state == playerState.falling && isJumpWallUnlocked)
             {
                 state = playerState.preparingToWallJump;
+                rb.gravityScale = 0;
                 hasDashed = false;
 
             }
@@ -172,13 +192,19 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        if (hit)
+        if (IsTouchingGround())
         {
             transform.Translate(0.05f * direction, 0, 0);
         }
-        else if (!hit)
+
+        if((hitLeft.collider == null || hitRight.collider == null) && !isBorder)
         {
             direction *= -1;
+            isBorder = true;
+        }
+        else if (isBorder && hitLeft.collider != null && hitRight.collider != null)
+        {
+            isBorder = false;
         }
     }
 
@@ -209,15 +235,48 @@ public class PlayerController : MonoBehaviour
 
     private bool IsTouchingGround()
     {
-        if(hit.collider == null)
+        if (hitLeft.collider == null && hitRight.collider == null)
         {
             return false;
         }
-        else if (hit.collider.CompareTag("Terrain"))
+        else if (hitLeft.collider != null && hitLeft.collider.CompareTag("Terrain"))
+        {
+            return true;
+        }
+        else if(hitRight.collider != null && hitRight.collider.CompareTag("Terrain"))
         {
             return true;
         }
 
+        return false;
+    }
+
+    private void IsInBorder()
+    {
+
+        if(hitLeft.collider == null ||  hitRight.collider == null)
+        {
+            isBorder = true;
+        }
+
+        if(isBorder && hitLeft.collider != null && hitRight.collider != null)
+        {
+            isBorder = false;
+        }
+
+        
+    }
+
+    private bool IsTouchingWall()
+    {
+        if(hitFront.collider == null && hitBack.collider == null)
+        {
+            return false;
+        }
+        else if (hitFront.collider.CompareTag("Wall") || hitBack.collider.CompareTag("Wall"))
+        {
+            return true;
+        }
         return false;
     }
 

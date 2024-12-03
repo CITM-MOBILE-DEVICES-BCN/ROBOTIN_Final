@@ -11,6 +11,10 @@ public class CameraController : MonoBehaviour
     float y;
     public GameObject player;
 
+    private void Awake()
+    {
+        player = GameManager.instance.currentLevel.player;
+    }
 
     void Start()
     {

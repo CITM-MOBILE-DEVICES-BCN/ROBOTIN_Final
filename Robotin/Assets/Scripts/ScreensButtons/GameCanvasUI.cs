@@ -37,8 +37,8 @@ public class GameCanvasUI : MonoBehaviour
 
     public void UpdateTimerView(Timer timer, TimerService timerService)
     {
-        currentTime.text = $"Duration Time: {timer.Duration}";
-        maxTime.text = $"Remaining Time: {timerService.GetTimerElapsedTime(timer)}";
+        currentTime.text = $"Duration Time: {(int)timer.Duration.TotalSeconds}";
+        maxTime.text = $"Remaining Time: {(int)timerService.GetTimerElapsedTime(timer).TotalSeconds}";
     }
 
 

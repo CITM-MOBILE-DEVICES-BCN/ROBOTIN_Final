@@ -139,13 +139,9 @@ public class GameManager : MonoBehaviour
 
     public void OnLevelFinished()
     {
-        int nextLevel = currentLevel.level + 1;
-        if (currentLevel.isHardMode)
-        {
-            nextLevel += maxLevelsPerLoop;
-        }
-        gameData.UpdateLevelScore(currentLevel.level-1, scoreManager.GetCurrentScore());
-        gameData.SetNextLevel(nextLevel);
+        int finalscore = scoreManager.CalculateLevelScore(currentLevel.timerManager.GetCurrentTime(), currentLevel.timeToCompleteLevel);
+        gameData.UpdateLevelScore(currentLevel.levelOnWorld-1, finalscore);
+        gameData.SetNextLevel(currentLevel.levelOnWorld+1);
         Debug.Log(gameData.GetNextLevel());
     }
 }

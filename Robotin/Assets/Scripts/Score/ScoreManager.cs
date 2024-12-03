@@ -30,15 +30,9 @@ public class ScoreManager
     }
 
     //Call this funcion when you die/finish the level
-    public void CalculateLevelScore(int coinsCollected, float time)
+    public int CalculateLevelScore(float time, float maxTime)
     {
-        int levelScore = Mathf.Max(0, (int)(coinsCollected * coinMultiplier - time * timePenaltyFactor));
-        currentScore += levelScore;
-        GameCanvasUI.instance.UpdateScoreUI();
-        if (currentScore > highScore)
-        {
-            highScore = currentScore;
-            // Save the high score to PlayerPrefs or another system if needed
-        }
+        int finalTimeMultiplayer = (int)(maxTime - time);
+        return currentScore + finalTimeMultiplayer;
     }
 }

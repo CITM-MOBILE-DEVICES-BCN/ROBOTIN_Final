@@ -10,8 +10,10 @@ public class LevelManager : MonoBehaviour
 
     public GameObject player;
     public TimerManager timerManager;
-    public int level = 1;
-    public bool isHardMode = false;
+    public int levelOnWorld;
+    public float timeToCompleteLevel;
+    [SerializeField] private int level = 1;
+
     public enum LevelState
     {
         Playing,
@@ -22,14 +24,9 @@ public class LevelManager : MonoBehaviour
 
     public void Init(int level)
     {
-        if(level > GameManager.instance.maxLevelsPerLoop)
-        {
-            isHardMode = true;
-        }
-        else
-        {
-            isHardMode = false;
-        }
+        levelOnWorld = level;
+
+
 
 
         //Dependiendo de la dificultad inicializar flood con mas velocidad o menos 
@@ -42,15 +39,25 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-        timerManager = new TimerManager(30);
-        
+        timeToCompleteLevel = (int)CalculateMaxTime(level);
+        timerManager = new TimerManager(timeToCompleteLevel);
     }
+
 
     private void Update()
     {
         timerManager.UpdateTime();       
     }
 
+    public float CalculateMaxTime(int dificulty)
+    {
+        //Base num 30
+        return 30 - ((dificulty / GameManager.instance.maxLevelsPerLoop) * 5);
+    }
 
 
 }
+
+
+
+

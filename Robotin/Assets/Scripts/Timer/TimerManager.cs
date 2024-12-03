@@ -45,6 +45,7 @@ public class TimerManager
     private float GetTimerRemainingTimeNormalized(Timer timer)
     {
         return (float)(timerService.GetTimerElapsedTime(timer).TotalSeconds / timer.Duration.TotalSeconds);
+        
     }
 
     //Called On Level Passed
@@ -67,5 +68,10 @@ public class TimerManager
             isOnPause = false;
         }
 
+    }
+
+    public float GetCurrentTime()
+    {
+        return timerService.GetTimerElapsedTime(timer).Seconds;
     }
 }

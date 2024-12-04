@@ -58,12 +58,14 @@ public class TimerManager
     {
         if (!isOnPause)
         {
+            Time.timeScale = 0;
             timerService.PauseTimer(timer);
             isOnPause = true;
 
         }
         else
         {
+            Time.timeScale = 1;
             timerService.ResumeTimer(timer);
             isOnPause = false;
         }

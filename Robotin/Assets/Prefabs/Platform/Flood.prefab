@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedPipe: 1
+  dificultyFactor: 0.2
 --- !u!61 &1593797716843604621
 BoxCollider2D:
   m_ObjectHideFlags: 0

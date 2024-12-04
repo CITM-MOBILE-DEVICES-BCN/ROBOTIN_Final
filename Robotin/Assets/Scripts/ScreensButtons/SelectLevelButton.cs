@@ -22,6 +22,7 @@ public class SelectLevelButton : MonoBehaviour
         }
         else
         {
+            levelNameText.text = "Level Blocked";
             levelScoreText.gameObject.SetActive(false);
             levelButton.interactable = false;
         }

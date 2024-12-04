@@ -5,10 +5,11 @@ using UnityEngine;
 public class FloodController : MonoBehaviour
 {
     [SerializeField] private float speedPipe = 1.0f;
+    [SerializeField] private float dificultyFactor = 0.2f;
 
     public void Init(int level)
     {
-        speedPipe = (level/GameManager.instance.maxLevelsPerLoop)+1;
+        speedPipe = dificultyFactor*((level /GameManager.instance.maxLevelsPerLoop)+1);
     }
     void Update()
     {

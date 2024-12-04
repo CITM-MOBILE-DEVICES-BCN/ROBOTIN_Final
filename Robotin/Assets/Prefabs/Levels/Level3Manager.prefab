@@ -522,7 +522,7 @@ MonoBehaviour:
   floodController: {fileID: 5520255954428618302}
   levelOnWorld: 0
   timeToCompleteLevel: 0
-  level: 3
+  level: 2
 --- !u!1 &7813972808065888894
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,7 +19,7 @@ public class JumpPadControllerL : MonoBehaviour
     private void Jump()
     {
         Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
-        Vector2 direction = new Vector2(-1, 1).normalized;
+        Vector2 direction = new Vector2(-1, 2).normalized;
         rb.AddForce(direction * rb.velocity.magnitude * 5, ForceMode2D.Impulse);
 
     }

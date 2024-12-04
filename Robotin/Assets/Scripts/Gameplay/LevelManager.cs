@@ -22,17 +22,12 @@ public class LevelManager : MonoBehaviour
         GameOver
     }
 
-    public void Init(int level)
+    public void Init(int level, Sprite skinPlayer)
     {
         levelOnWorld = level;
 
-
-
-
-        //Dependiendo de la dificultad inicializar flood con mas velocidad o menos 
-
         // Dependiendo del nivel desbloquea unas habilidades u otras
-        player.GetComponent<PlayerController>().Init(level);
+        player.GetComponent<PlayerController>().Init(level, skinPlayer);
 
 
     }

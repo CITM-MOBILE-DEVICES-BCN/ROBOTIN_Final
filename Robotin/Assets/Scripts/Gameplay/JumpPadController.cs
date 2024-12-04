@@ -4,12 +4,35 @@ using UnityEngine;
 
 public class JumpPadController : MonoBehaviour
 {
-    private void OnCollisionEnter2D(Collision2D collision)
+    [SerializeField] public GameObject player;
+    [SerializeField] public int a;
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+            Jump();
         }
+    }
+
+    private void Jump()
+    {
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+        Vector2 direction = new Vector2(1, 1).normalized;
+        rb.AddForce(direction * rb.velocity.magnitude * 10, ForceMode2D.Impulse);
         
+    }
+
+    private void Update()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        a = 10;
+        Debug.Log(player.gameObject.name);
+
+        if (Input.GetKey(KeyCode.Backspace))
+        {
+            Jump();
+        }
     }
 }

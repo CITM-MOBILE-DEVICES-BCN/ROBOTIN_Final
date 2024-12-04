@@ -119,7 +119,10 @@ public class PlayerController : MonoBehaviour
         {
             case playerState.idle:
                 break;
-          
+            case playerState.moving:
+                Move();
+                break;
+                
             case playerState.preparingToJump:
                 break;
             case playerState.jumping:
@@ -167,14 +170,10 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (state==playerState.moving)
-        {
-            Move();
-        }
         
            
           
-        }
+    }
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Wall"))

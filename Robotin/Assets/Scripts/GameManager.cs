@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
 
     public GameData gameData;
 
+    public PlayerData playerData;
+
     public int maxLevelsPerLoop = 3;
 
 
@@ -42,6 +44,7 @@ public class GameManager : MonoBehaviour
             navigation = new Navigation();
             scoreManager = new ScoreManager();
             gameData = new GameData();
+            playerData = new PlayerData();
             //gameData.Reset();
         }
         else
@@ -132,7 +135,8 @@ public class GameManager : MonoBehaviour
             levelIndex = maxLevelsPerLoop;
         }
         var level = Instantiate(allLevels[(levelIndex)-1]);
-        level.Init(index);
+        playerData.currentLevel = index;
+        level.Init(index, playerData.playerSkin);
         currentLevel = level;
 
     }

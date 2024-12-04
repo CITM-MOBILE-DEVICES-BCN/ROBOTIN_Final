@@ -25,8 +25,8 @@ public class PlayerController : MonoBehaviour
     private float wallJumpTimer = 0;
     [SerializeField] LayerMask levelMask;
     private bool isBorder = false;
-   
 
+    public SpriteRenderer playerSkin;
     enum playerState
     {
         idle,
@@ -45,6 +45,8 @@ public class PlayerController : MonoBehaviour
             SwipeDetection.instance.swipePerformed += context => { Dash(context); };
         }
         Camera.main.GetComponent<CameraController>().player = gameObject;
+        playerSkin = GetComponent<SpriteRenderer>();
+        playerSkin.sprite = GameManager.instance.playerData.playerSkin;
     }
 
     // Start is called before the first frame update
@@ -53,7 +55,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public void Init(int level)
+    public void Init(int level, Sprite skin)
     {
         if(level == 1)
         {
@@ -73,7 +75,8 @@ public class PlayerController : MonoBehaviour
             isDoubleJumpUnlocked = true;
             isDashUnlocked = true;
         }
-        
+
+        playerSkin.sprite = skin;
     }
 
     // Update is called once per frame

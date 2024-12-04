@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.iOS;
 
 public class PlayerController : MonoBehaviour
 {
@@ -42,10 +43,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        if(isDashUnlocked)
-        {
-            SwipeDetection.instance.swipePerformed += context => { Dash(context); };
-        }
+        
         Camera.main.GetComponent<CameraController>().player = gameObject;
         playerSkin = GetComponent<SpriteRenderer>();
         playerSkin.sprite = GameManager.instance.playerData.playerSkin;
@@ -79,6 +77,10 @@ public class PlayerController : MonoBehaviour
         }
 
         playerSkin.sprite = skin;
+        if (isDashUnlocked)
+        {
+            SwipeDetection.instance.swipePerformed += context => { Dash(context); };
+        }
     }
 
     // Update is called once per frame
@@ -103,6 +105,7 @@ public class PlayerController : MonoBehaviour
         hitRight = Physics2D.Raycast(rayOriginRight, directionRayDown, rayRange, levelMask);
         hitFront = Physics2D.Raycast(rayOriginFront, directionRayWall, rayRange, levelMask);
         hitBack = Physics2D.Raycast(rayOriginBack, directionRayWall, rayRange, levelMask);
+        
 
         if (Input.GetKey(KeyCode.Space) && state != playerState.falling && state != playerState.preparingToWallJump)
         {
@@ -217,9 +220,22 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Orb") && isDoubleJumpUnlocked)
         {
+            GameObject Orb;
+
+            Orb = collision.gameObject;
             canDoubleJump = true;
+            Orb.SetActive(false);
+            StartCoroutine(RespawnOrb(Orb));
+            Orb = null;
+
         }
 
+    }
+    IEnumerator RespawnOrb(GameObject Orb)
+    {
+        yield return new WaitForSeconds(5);
+        Orb.SetActive(true);
+        Orb = null;
     }
 
     private void OnCollisionExit2D(Collision2D collision)

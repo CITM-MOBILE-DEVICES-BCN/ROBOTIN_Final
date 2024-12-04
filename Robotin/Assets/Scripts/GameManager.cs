@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     public int maxLevelsPerLoop = 3;
 
-
+    public Sprite baseSkinPlayer;
 
 
     //TODO: implement a list of level managers (levels) and instantiate one depending on the data (current level)
@@ -136,6 +136,7 @@ public class GameManager : MonoBehaviour
         }
         var level = Instantiate(allLevels[(levelIndex)-1]);
         playerData.currentLevel = index;
+        playerData.SetPlayerSkin(baseSkinPlayer);
         level.Init(index, playerData.playerSkin);
         currentLevel = level;
 

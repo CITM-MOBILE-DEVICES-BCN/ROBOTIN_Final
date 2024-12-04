@@ -834,6 +834,12 @@ PrefabInstance:
         type: 3}
     - target: {fileID: -5898996036283102877, guid: 1bd7d96417bd93148a97d939ccd6962c,
         type: 3}
+      propertyPath: baseSkinPlayer
+      value: 
+      objectReference: {fileID: 21300000, guid: 7701735e7a964454c9a09fef1b10142e,
+        type: 3}
+    - target: {fileID: -5898996036283102877, guid: 1bd7d96417bd93148a97d939ccd6962c,
+        type: 3}
       propertyPath: allLevels.Array.data[0]
       value: 
       objectReference: {fileID: 8936773658351510781, guid: 65a07eb68ea3c7d4fbaace34bf1cbcb2,
@@ -924,6 +930,8 @@ MonoBehaviour:
   popUpList: []
   activeScreens: []
   activePopUps: []
+  maxLevelsPerLoop: 3
+  baseSkinPlayer: {fileID: 0}
   allLevels:
   - {fileID: 8936773658351510781, guid: 65a07eb68ea3c7d4fbaace34bf1cbcb2, type: 3}
   currentLevel: {fileID: 8936773658351510781, guid: 65a07eb68ea3c7d4fbaace34bf1cbcb2,

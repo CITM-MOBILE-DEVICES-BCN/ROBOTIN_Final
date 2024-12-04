@@ -185,6 +185,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
         {
             transform.Translate(-0.3f * direction, 0, 0);
+            
 
             if(state == playerState.falling && isJumpWallUnlocked)
             {
@@ -225,7 +226,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            direction *= -1;
+             direction *= -1;
 
         }
         

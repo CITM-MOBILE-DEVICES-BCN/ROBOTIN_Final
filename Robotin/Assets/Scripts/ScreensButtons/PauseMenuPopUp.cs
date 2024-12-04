@@ -22,6 +22,7 @@ public class PauseMenuPopUp : MonoBehaviour
 
     private void OnExitButtonClicked()
     {
+        Time.timeScale = 1;
         GameManager.instance.LoadScene("RobotinMeta");
         GameManager.instance.currentLevel.timerManager.ResetTimer();
     }

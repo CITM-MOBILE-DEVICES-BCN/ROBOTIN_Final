@@ -16,14 +16,17 @@ public class SelectLevelButton : MonoBehaviour
         if (level <= GameManager.instance.gameData.GetNextLevel())
         {
             levelButton.interactable = true;
+            levelScoreText.gameObject.SetActive(true);
             levelScoreText.text = GameManager.instance.gameData.GetHighScoreFromLevel(level - 1).ToString();
+            levelNameText.text = "Level " + level;
         }
         else
         {
+            levelScoreText.gameObject.SetActive(false);
             levelButton.interactable = false;
         }
 
-        levelNameText.text = "Level " + level;
+        
         levelButton.onClick.AddListener(() => OnLevelClicked(level));
         
     }

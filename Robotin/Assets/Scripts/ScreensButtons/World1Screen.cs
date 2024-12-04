@@ -7,17 +7,16 @@ using UnityEngine.UI;
 public class World1Screen : MonoBehaviour
 {
     [SerializeField] private List<SelectLevelButton> levelButtons;
+    [SerializeField] private Button backButton;
 
 
     private void Awake()
     {
-        for (int i = 0; GameManager.instance.gameData.GetNextLevel() > i; i++)
+        for (int i = 0; levelButtons.Count > i; i++)
         {
-            if(i < levelButtons.Count)
-            {
-                levelButtons[i].Init(i + 1);
-            }
+            levelButtons[i].Init(i + 1);
         }
+        backButton.onClick.AddListener(OnBackButtonClicked);
 
     }
 

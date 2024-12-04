@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour
 
     public GameObject player;
     public TimerManager timerManager;
+    public FloodController floodController;
     public int levelOnWorld;
     public float timeToCompleteLevel;
     [SerializeField] private int level = 1;
@@ -28,7 +29,7 @@ public class LevelManager : MonoBehaviour
 
         // Dependiendo del nivel desbloquea unas habilidades u otras
         player.GetComponent<PlayerController>().Init(level, skinPlayer);
-
+        floodController.Init(level);
 
     }
 

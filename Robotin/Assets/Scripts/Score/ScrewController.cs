@@ -24,9 +24,10 @@ public class ScrewController : MonoBehaviour
                 break;
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+   
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.collider.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
             if (GameManager.instance.scoreManager != null)
             {
@@ -35,7 +36,7 @@ public class ScrewController : MonoBehaviour
 
             Destroy(gameObject);
         }
-
     }
-  
 }
+
+

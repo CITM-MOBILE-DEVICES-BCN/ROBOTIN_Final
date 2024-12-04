@@ -9,13 +9,14 @@ public class DoubleJumpOrbController : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             StartCoroutine(Respawn());
-            gameObject.SetActive(false);
             
         }
     }
 
     IEnumerator Respawn()
     {
+        yield return null;
+        gameObject.SetActive(false);
         yield return new WaitForSeconds(5);
         gameObject.SetActive(true);
     }

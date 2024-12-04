@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float rayOffsetX = 0.5f;
     [SerializeField] private float jumpForce = 0;
     [SerializeField] private float maxJumpForce = 100f;
+    [SerializeField] float horizontalJumpScale = 0.5f;
     private RaycastHit2D hitLeft;
     private RaycastHit2D hitRight;
     private RaycastHit2D hitFront;
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private float wallJumpTimer = 0;
     [SerializeField] LayerMask levelMask;
     private bool isBorder = false;
+
 
     public SpriteRenderer playerSkin;
     enum playerState
@@ -122,10 +124,7 @@ public class PlayerController : MonoBehaviour
         {
             case playerState.idle:
                 break;
-            case playerState.moving:
-                Move();
-                break;
-                
+             
             case playerState.preparingToJump:
                 break;
             case playerState.jumping:
@@ -135,7 +134,7 @@ public class PlayerController : MonoBehaviour
             case playerState.preparingToWallJump:
                 rb.velocity = Vector2.zero;
                 wallJumpTimer += Time.deltaTime;
-                if (wallJumpTimer > 2)
+                if (wallJumpTimer > 1)
                 {
                     state = playerState.falling;
                     wallJumpTimer = 0;
@@ -145,7 +144,7 @@ public class PlayerController : MonoBehaviour
                 {
                     if (jumpForce < maxJumpForce)
                     {
-                        jumpForce += 0.5f;
+                        jumpForce += 0.1f;
                     }
                     
                 }
@@ -173,9 +172,13 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        
-           
-          
+        if (state == playerState.moving)
+        {
+            Move();
+        }
+
+
+
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -232,7 +235,7 @@ public class PlayerController : MonoBehaviour
     {
         if (IsTouchingGround())
         {
-            transform.Translate(0.05f * direction, 0, 0);
+            transform.Translate(0.1f * direction, 0, 0);
         }
 
         if((hitLeft.collider == null || hitRight.collider == null) && !isBorder)
@@ -248,7 +251,8 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        Vector2 jumpDirection = new Vector2(direction, 1.5f);
+       
+        Vector2 jumpDirection = new Vector2(direction * horizontalJumpScale, 1.5f);
         rb.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
         jumpForce = 0;
     }
@@ -323,10 +327,17 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.05f);
         state = playerState.falling;
     }
+    private void WallJump()
+    {
+        horizontalJumpScale = 0.08f;
+        Vector2 wallJumpDirection = new Vector2(direction * horizontalJumpScale, 1.5f);
+        rb.AddForce(wallJumpDirection * jumpForce, ForceMode2D.Impulse);
 
+        jumpForce = 0;
+    }
     IEnumerator WallJumpCoroutine()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         if(state == playerState.preparingToWallJump)
         {
             state = playerState.falling;

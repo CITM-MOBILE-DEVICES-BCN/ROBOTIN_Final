@@ -13,7 +13,7 @@ public class CameraController : MonoBehaviour
 
     private void Awake()
     {
-        player = GameManager.instance.currentLevel.player;
+        y = ymin;
     }
 
     void Start()
@@ -23,15 +23,20 @@ public class CameraController : MonoBehaviour
 
     void SetY()
     {
-        y = player.transform.position.y;;
-        if (y < ymin)
+        if(player != null)
         {
-            y = ymin;
+            y = player.transform.position.y; 
+            if (y < ymin)
+            {
+                y = ymin;
+            }
+            if (y > ymax)
+            {
+                y = ymax;
+            }
         }
-        if (y > ymax)
-        {
-            y = ymax;
-        }
+       
+        
     }
 
     void SetCameraPosition()

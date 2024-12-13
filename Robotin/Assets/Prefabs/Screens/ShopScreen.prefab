@@ -538,7 +538,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skin1Button: {fileID: 1652592256478081760}
   skin1: {fileID: 567861591095673492}
-  playerSkin1: {fileID: 0}
   skin2Button: {fileID: 5487125758302130681}
   skin2: {fileID: 4281119479539555402}
   skin3Button: {fileID: 3305957713476459147}

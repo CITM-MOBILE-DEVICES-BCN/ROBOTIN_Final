@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
 
     public SpriteRenderer playerSkin;
+    public Animator playerAnimator;
     enum playerState
     {
         idle,
@@ -49,8 +50,6 @@ public class PlayerController : MonoBehaviour
     {
         
         Camera.main.GetComponent<CameraController>().player = gameObject;
-        playerSkin = GetComponent<SpriteRenderer>();
-        playerSkin.sprite = GameManager.instance.playerData.playerSkin;
 
         // Configura el AudioSource si no está asignado.
         audioSource = GetComponent<AudioSource>();
@@ -153,12 +152,15 @@ public class PlayerController : MonoBehaviour
                 break;
              
             case playerState.preparingToJump:
+                playerAnimator.SetTrigger("jump");
                 break;
             case playerState.jumping:
+                playerAnimator.SetTrigger("jump");
                 Jump();
                 StartCoroutine(JumpCoroutine());
                 break;
             case playerState.preparingToWallJump:
+                playerAnimator.SetTrigger("jump");
                 rb.velocity = Vector2.zero;
                 wallJumpTimer += Time.deltaTime;
                 if (wallJumpTimer > 1)
@@ -184,7 +186,8 @@ public class PlayerController : MonoBehaviour
                 
                 break;
             case playerState.falling:
-                if(!hasDashed && isDashUnlocked)
+                playerAnimator.SetTrigger("walk");
+                if (!hasDashed && isDashUnlocked)
                 {
                     canDash = true;
                 }
@@ -194,8 +197,12 @@ public class PlayerController : MonoBehaviour
                     DoubleJump();
                 }
                 break;
+            case playerState.moving:
+                playerAnimator.SetTrigger("walk");
+                break;
         }
 
+        playerSkin.flipX = direction == -1 ? true : false;
     }
     private void FixedUpdate()
     {

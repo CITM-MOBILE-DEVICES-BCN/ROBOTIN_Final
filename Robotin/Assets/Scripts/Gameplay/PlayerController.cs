@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.iOS;
+using UnityEngine.Audio;
 
 public class PlayerController : MonoBehaviour
 {
@@ -28,6 +29,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask levelMask;
     private bool isBorder = false;
 
+    public AudioClip jumpChargeSound; 
+    private AudioSource audioSource;
+
 
     public SpriteRenderer playerSkin;
     enum playerState
@@ -47,12 +51,28 @@ public class PlayerController : MonoBehaviour
         Camera.main.GetComponent<CameraController>().player = gameObject;
         playerSkin = GetComponent<SpriteRenderer>();
         playerSkin.sprite = GameManager.instance.playerData.playerSkin;
+
+        // Configura el AudioSource si no está asignado.
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+        }
     }
 
     // Start is called before the first frame update
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void PlayJumpSound()
+    {
+        if (jumpChargeSound != null && !audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(jumpChargeSound);
+        }
     }
 
     public void Init(int level, Sprite skin)
@@ -82,6 +102,8 @@ public class PlayerController : MonoBehaviour
             SwipeDetection.instance.swipePerformed += context => { Dash(context); };
         }
     }
+
+   
 
     // Update is called once per frame
     private void Update()
@@ -114,12 +136,14 @@ public class PlayerController : MonoBehaviour
             {
                 jumpForce += 0.5f;
             }
-                
+            PlayJumpSound();
+
 
         }
         else if (Input.GetKeyUp(KeyCode.Space) && state == playerState.preparingToJump)
         {
             state = playerState.jumping;
+            PlayJumpSound();
         }
 
 

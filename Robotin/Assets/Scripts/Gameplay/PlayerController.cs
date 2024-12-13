@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
 
     public AudioClip jumpChargeSound; 
     private AudioSource audioSource;
+    public AudioClip collisionSound;
+    
 
 
     public SpriteRenderer playerSkin;
@@ -239,12 +241,21 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("FloodLayer"))
         {
+            PlayCollisionSound();
             GameManager.instance.LoadScene("RobotinMeta");
             Debug.Log("Game Over");
         }
 
 
 
+    }
+
+    private void PlayCollisionSound()
+    {
+        if (collisionSound != null)
+        {
+            audioSource.PlayOneShot(collisionSound);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

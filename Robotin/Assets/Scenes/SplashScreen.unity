@@ -1635,11 +1635,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 220452796461143761, guid: 852fda17c8c4c0247986a123c746f2f8,
+        type: 3}
+      propertyPath: sceneMusic.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 220452796461143761, guid: 852fda17c8c4c0247986a123c746f2f8,
+        type: 3}
+      propertyPath: sceneMusic.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: f52eef9f39194234f98a9c373f292e36, type: 3}
+    - target: {fileID: 220452796461143761, guid: 852fda17c8c4c0247986a123c746f2f8,
+        type: 3}
+      propertyPath: sceneMusic.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: f52eef9f39194234f98a9c373f292e36, type: 3}
+    - target: {fileID: 220452796461143761, guid: 852fda17c8c4c0247986a123c746f2f8,
+        type: 3}
+      propertyPath: sceneMusic.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: f52eef9f39194234f98a9c373f292e36, type: 3}
+    - target: {fileID: 220452796461143761, guid: 852fda17c8c4c0247986a123c746f2f8,
+        type: 3}
+      propertyPath: sceneMusic.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: f52eef9f39194234f98a9c373f292e36, type: 3}
     - target: {fileID: 973194507909205720, guid: 852fda17c8c4c0247986a123c746f2f8,
         type: 3}
       propertyPath: m_Name
       value: MusicManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1122209361791562053, guid: 852fda17c8c4c0247986a123c746f2f8,
+        type: 3}
+      propertyPath: buttonClickSound
+      value: 
+      objectReference: {fileID: 8300000, guid: bcdd79141a7367f41becc357c2980ab0, type: 3}
     - target: {fileID: 4635944988089384880, guid: 852fda17c8c4c0247986a123c746f2f8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1703,6 +1733,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 431054845807637505, guid: a4e35d6205e29cc48b2a8607da25dfb9,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f52eef9f39194234f98a9c373f292e36, type: 3}
     - target: {fileID: 1178439598639757581, guid: a4e35d6205e29cc48b2a8607da25dfb9,
         type: 3}
       propertyPath: m_LocalPosition.x

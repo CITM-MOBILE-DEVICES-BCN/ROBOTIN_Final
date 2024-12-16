@@ -20,12 +20,12 @@ public class ShopButtons : MonoBehaviour
 
     private void Awake()
     {
-        GameManager.instance.playerData.SetPlayerSkin(skin1.sprite);
-        skin1Button.onClick.AddListener(() => GameManager.instance.playerData.SetPlayerSkin(skin1.sprite));
-        skin2Button.onClick.AddListener(() => GameManager.instance.playerData.SetPlayerSkin(skin2.sprite));
-        skin3Button.onClick.AddListener(() => GameManager.instance.playerData.SetPlayerSkin(skin3.sprite));
-        skin4Button.onClick.AddListener(() => GameManager.instance.playerData.SetPlayerSkin(skin4.sprite));
-        skin5Button.onClick.AddListener(() => GameManager.instance.playerData.SetPlayerSkin(skin5.sprite));
-        skin6Button.onClick.AddListener(() => GameManager.instance.playerData.SetPlayerSkin(skin6.sprite));
+        GameManager_R.instance.playerData.SetPlayerSkin(skin1.sprite);
+        skin1Button.onClick.AddListener(() => GameManager_R.instance.playerData.SetPlayerSkin(skin1.sprite));
+        skin2Button.onClick.AddListener(() => GameManager_R.instance.playerData.SetPlayerSkin(skin2.sprite));
+        skin3Button.onClick.AddListener(() => GameManager_R.instance.playerData.SetPlayerSkin(skin3.sprite));
+        skin4Button.onClick.AddListener(() => GameManager_R.instance.playerData.SetPlayerSkin(skin4.sprite));
+        skin5Button.onClick.AddListener(() => GameManager_R.instance.playerData.SetPlayerSkin(skin5.sprite));
+        skin6Button.onClick.AddListener(() => GameManager_R.instance.playerData.SetPlayerSkin(skin6.sprite));
     }
 }

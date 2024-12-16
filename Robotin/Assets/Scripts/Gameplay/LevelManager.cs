@@ -48,7 +48,7 @@ public class LevelManager : MonoBehaviour
     public float CalculateMaxTime(int dificulty)
     {
         //Base num 30
-        return 30 - ((dificulty / GameManager.instance.maxLevelsPerLoop) * 5);
+        return 30 - ((dificulty / GameManager_R.instance.maxLevelsPerLoop) * 5);
     }
 
 

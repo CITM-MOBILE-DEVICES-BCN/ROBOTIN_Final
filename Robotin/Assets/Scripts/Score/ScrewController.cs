@@ -29,9 +29,9 @@ public class ScrewController : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            if (GameManager.instance.scoreManager != null)
+            if (GameManager_R.instance.scoreManager != null)
             {
-                GameManager.instance.scoreManager.AddScore(screwValue);
+                GameManager_R.instance.scoreManager.AddScore(screwValue);
             }
 
             Destroy(gameObject);

@@ -16,6 +16,6 @@ public class PlayerSkinPreview : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        skinPreview.sprite = GameManager.instance.playerData.playerSkin;
+        skinPreview.sprite = GameManager_R.instance.playerData.playerSkin;
     }
 }

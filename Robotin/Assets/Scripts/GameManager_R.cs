@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NavigationSystem;
-public class GameManager : MonoBehaviour
+public class GameManager_R : MonoBehaviour
 {
-    public static GameManager instance;
+    public static GameManager_R instance;
 
     Navigation navigation;
 
@@ -18,11 +18,11 @@ public class GameManager : MonoBehaviour
 
     private GameObject currentPopUp;
 
-    public ScoreManager scoreManager;
+    public ScoreManager_R scoreManager;
 
     public GameData gameData;
 
-    public PlayerData playerData;
+    public PlayerData_R playerData;
 
     public int maxLevelsPerLoop = 3;
 
@@ -42,9 +42,9 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this.gameObject);
             navigation = new Navigation();
-            scoreManager = new ScoreManager();
+            scoreManager = new ScoreManager_R();
             gameData = new GameData();
-            playerData = new PlayerData();
+            playerData = new PlayerData_R();
             //gameData.Reset();
         }
         else

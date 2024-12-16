@@ -8,9 +8,9 @@ public class LevelFinisher : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            GameManager.instance.OnLevelFinished();
-            GameManager.instance.LoadScene("RobotinMeta");
-            GameManager.instance.currentLevel.timerManager.ResetTimer();
+            GameManager_R.instance.OnLevelFinished();
+            GameManager_R.instance.LoadScene("RobotinMeta");
+            GameManager_R.instance.currentLevel.timerManager.ResetTimer();
         }
     }
 }

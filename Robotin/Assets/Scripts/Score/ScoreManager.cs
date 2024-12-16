@@ -3,16 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using TimerModule;
 using UnityEngine;
-public class ScoreManager
+public class ScoreManager_R
 {
     private int currentScore;
     private int highScore;
 
     // Configurable factors for scoring
     private int coinMultiplier = 10; 
-    private float timePenaltyFactor = 1f; 
+    private float timePenaltyFactor = 1f;
 
-    public ScoreManager()
+    public ScoreManager_R()
     {
         currentScore = 0;
         highScore = 0;

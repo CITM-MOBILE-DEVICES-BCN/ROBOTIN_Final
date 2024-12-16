@@ -1065,7 +1065,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1174201095}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1689197824}
+        m_TargetAssemblyTypeName: GameManager_R, Assembly-CSharp
+        m_MethodName: LoadPopUp
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1174201095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1467,6 +1479,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1bd7d96417bd93148a97d939ccd6962c, type: 3}
+--- !u!114 &1689197824 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -5898996036283102877, guid: 1bd7d96417bd93148a97d939ccd6962c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1689197823}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c59da9f82cd50c14ea1d3cb1384a4e35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1920787631
 GameObject:
   m_ObjectHideFlags: 0

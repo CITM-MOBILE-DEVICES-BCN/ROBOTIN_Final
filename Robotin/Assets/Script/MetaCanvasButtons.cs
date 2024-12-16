@@ -16,7 +16,7 @@ public class MetaCanvasButtons : MonoBehaviour
     {
         shopButton.onClick.AddListener(() => GameManager.instance.LoadScreenRequest("ShopCanvas"));
         playButton.onClick.AddListener(() => GameManager.instance.LoadSceneRequest("Game"));
-        returnLobbyButton.onClick.AddListener(() => GameManager.instance.LoadSceneRequest("Lobby"));
+        returnLobbyButton.onClick.AddListener(() => GameManager_R.instance.LoadScene("RobotinLobby"));
         currencyText.text = GameManager.instance.playerData.GetCurrency();
     }
 

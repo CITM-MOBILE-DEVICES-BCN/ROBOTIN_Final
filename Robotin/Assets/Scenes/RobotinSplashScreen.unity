@@ -1559,6 +1559,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 431054845807637505, guid: a4e35d6205e29cc48b2a8607da25dfb9,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 431054845807637505, guid: a4e35d6205e29cc48b2a8607da25dfb9,
+        type: 3}
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: f52eef9f39194234f98a9c373f292e36, type: 3}
@@ -1616,6 +1621,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BackgroundMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999820773430638631, guid: a4e35d6205e29cc48b2a8607da25dfb9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

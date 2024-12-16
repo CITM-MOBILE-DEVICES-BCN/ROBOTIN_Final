@@ -6662,9 +6662,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3139069225035574852, guid: ccd782c7719936649a35d73db7b92438,
         type: 3}
+      propertyPath: collisionSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 517f3fe8f82a6fd4cae094503c88df48, type: 3}
+    - target: {fileID: 3139069225035574852, guid: ccd782c7719936649a35d73db7b92438,
+        type: 3}
       propertyPath: isDashUnlocked
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3139069225035574852, guid: ccd782c7719936649a35d73db7b92438,
+        type: 3}
+      propertyPath: jumpChargeSound
+      value: 
+      objectReference: {fileID: 8300000, guid: ff2f01d34090c3e46b1601c392665683, type: 3}
     - target: {fileID: 3139069225035574852, guid: ccd782c7719936649a35d73db7b92438,
         type: 3}
       propertyPath: isDoubleJumpUnlocked

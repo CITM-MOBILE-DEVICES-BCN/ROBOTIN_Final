@@ -239,6 +239,7 @@ MonoBehaviour:
   levelMask:
     serializedVersion: 2
     m_Bits: 8
-  jumpChargeSound: {fileID: 0}
+  jumpChargeSound: {fileID: 8300000, guid: ff2f01d34090c3e46b1601c392665683, type: 3}
+  collisionSound: {fileID: 8300000, guid: 517f3fe8f82a6fd4cae094503c88df48, type: 3}
   playerSkin: {fileID: 3849888849260825694}
   playerAnimator: {fileID: 6270654040492627758}

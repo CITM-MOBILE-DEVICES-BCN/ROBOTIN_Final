@@ -15,7 +15,7 @@ public class ShopScreen : MonoBehaviour
 
     private void OnBackButtonClicked()
     {
-        GameManager.instance.UnLoadScreen(gameObject.name);
+        GameManager_R.instance.UnLoadScreen(gameObject.name);
     }
 
     private void OnItemExampleClicked()

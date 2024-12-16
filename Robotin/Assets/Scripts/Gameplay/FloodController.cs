@@ -9,7 +9,7 @@ public class FloodController : MonoBehaviour
 
     public void Init(int level)
     {
-        speedPipe = dificultyFactor*((level /GameManager.instance.maxLevelsPerLoop)+1);
+        speedPipe = dificultyFactor*((level /GameManager_R.instance.maxLevelsPerLoop)+1);
     }
     void Update()
     {

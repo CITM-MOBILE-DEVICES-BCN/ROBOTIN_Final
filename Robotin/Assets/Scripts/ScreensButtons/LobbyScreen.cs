@@ -13,6 +13,6 @@ public class LobbyScreen : MonoBehaviour
 
     private void OnRobotinButtonClicked()
     {
-        GameManager.instance.LoadScene("RobotinMeta");
+        GameManager_R.instance.LoadScene("RobotinMeta");
     }
 }

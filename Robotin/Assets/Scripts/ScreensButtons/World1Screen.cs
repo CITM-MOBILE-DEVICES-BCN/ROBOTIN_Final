@@ -34,7 +34,7 @@ public class World1Screen : MonoBehaviour
 
     private void OnBackButtonClicked()
     {
-        GameManager.instance.UnLoadScreen(gameObject.name);
+        GameManager_R.instance.UnLoadScreen(gameObject.name);
     }
 
     private void OnSliderValueChanged(float value)

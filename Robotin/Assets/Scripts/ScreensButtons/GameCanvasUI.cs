@@ -25,12 +25,12 @@ public class GameCanvasUI : MonoBehaviour
     private void Start()
     {
         pauseButton.onClick.AddListener(OnPauseButtonClicked);
-        scoreText.text = GameManager.instance.scoreManager.GetCurrentScore().ToString();
+        scoreText.text = GameManager_R.instance.scoreManager.GetCurrentScore().ToString();
        // bestText.text = GameManager.instance.levelData.best.ToString();
     }
     public void UpdateScoreUI()
     {
-        scoreText.text = GameManager.instance.scoreManager.GetCurrentScore().ToString();
+        scoreText.text = GameManager_R.instance.scoreManager.GetCurrentScore().ToString();
     }
     
 
@@ -44,10 +44,10 @@ public class GameCanvasUI : MonoBehaviour
 
     private void OnPauseButtonClicked()
     {
-        GameManager.instance.LoadPopUp(pauseMenuPopUp);
+        GameManager_R.instance.LoadPopUp(pauseMenuPopUp);
 
         //TODO: Make a system to load diferent levels but for now it will just call the current level manager to pause the game
-        GameManager.instance.currentLevel.timerManager.PauseResumeTimer();
+        GameManager_R.instance.currentLevel.timerManager.PauseResumeTimer();
 
         //You can add a pause game function here and if you want the same button to resume the
         //game create a bool so it unloads the popup and resumes the game

@@ -14,16 +14,16 @@ public class PauseMenuPopUp : MonoBehaviour
 
     private void OnPauseButtonClicked()
     {
-        
-        GameManager.instance.UnLoadPopUp(gameObject.name);
-        GameManager.instance.currentLevel.timerManager.PauseResumeTimer();
+
+        GameManager_R.instance.UnLoadPopUp(gameObject.name);
+        GameManager_R.instance.currentLevel.timerManager.PauseResumeTimer();
         //You can add a resume game function here
     }
 
     private void OnExitButtonClicked()
     {
         Time.timeScale = 1;
-        GameManager.instance.LoadScene("RobotinMeta");
-        GameManager.instance.currentLevel.timerManager.ResetTimer();
+        GameManager_R.instance.LoadScene("RobotinMeta");
+        GameManager_R.instance.currentLevel.timerManager.ResetTimer();
     }
 }

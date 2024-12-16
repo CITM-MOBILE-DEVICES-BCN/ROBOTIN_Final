@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerData
+public class PlayerData_R
 {
     public Sprite playerSkin;
     public int currentLevel;
 
-    public PlayerData()
+    public PlayerData_R()
     {
         playerSkin = null;
         currentLevel = 1;

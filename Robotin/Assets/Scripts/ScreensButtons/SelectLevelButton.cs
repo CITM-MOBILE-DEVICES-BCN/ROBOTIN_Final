@@ -13,11 +13,11 @@ public class SelectLevelButton : MonoBehaviour
     public void Init(int level)
     {
         this.level = level;
-        if (level <= GameManager.instance.gameData.GetNextLevel())
+        if (level <= GameManager_R.instance.gameData.GetNextLevel())
         {
             levelButton.interactable = true;
             levelScoreText.gameObject.SetActive(true);
-            levelScoreText.text = GameManager.instance.gameData.GetHighScoreFromLevel(level - 1).ToString();
+            levelScoreText.text = GameManager_R.instance.gameData.GetHighScoreFromLevel(level - 1).ToString();
             levelNameText.text = "Level " + level;
         }
         else
@@ -33,6 +33,6 @@ public class SelectLevelButton : MonoBehaviour
     }
     private void OnLevelClicked(int level)
     {
-        GameManager.instance.LoadSceneAndLevel("RobotinGame", level);
+        GameManager_R.instance.LoadSceneAndLevel("RobotinGame", level);
     }
 }

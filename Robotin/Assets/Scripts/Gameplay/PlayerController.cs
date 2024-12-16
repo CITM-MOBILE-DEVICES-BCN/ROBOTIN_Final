@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         
-        Camera.main.GetComponent<CameraController>().player = gameObject;
+        Camera.main.GetComponent<CameraController_R>().player = gameObject;
 
         // Configura el AudioSource si no está asignado.
         audioSource = GetComponent<AudioSource>();
@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
             isDoubleJumpUnlocked = true;
             isDashUnlocked = false;
         }
-        else if (level >= GameManager.instance.maxLevelsPerLoop)
+        else if (level >= GameManager_R.instance.maxLevelsPerLoop)
         {
             isJumpWallUnlocked = true;
             isDoubleJumpUnlocked = true;
@@ -242,7 +242,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("FloodLayer"))
         {
             PlayCollisionSound();
-            GameManager.instance.LoadScene("RobotinMeta");
+            GameManager_R.instance.LoadScene("RobotinMeta");
             Debug.Log("Game Over");
         }
 

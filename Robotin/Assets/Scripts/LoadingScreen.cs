@@ -26,7 +26,7 @@ public class LoadingScreen : MonoBehaviour
     private IEnumerator LoadGame()
     {
 
-        AsyncOperation loadingOperation = SceneManager.LoadSceneAsync("Lobby");
+        AsyncOperation loadingOperation = SceneManager.LoadSceneAsync("RobotinLobby");
         loadingOperation.allowSceneActivation = false;
 
         while (loadingOperation.isDone == false)

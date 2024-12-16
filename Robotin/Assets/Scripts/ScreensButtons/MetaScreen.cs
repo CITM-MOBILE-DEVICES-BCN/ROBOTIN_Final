@@ -36,7 +36,7 @@ public class MetaScreen : MonoBehaviour
 
     private void OnBackToMenuButtonClicked()
     {
-        GameManager_R.instance.LoadScene("Lobby");
+        GameManager_R.instance.LoadScene("RobotinLobby");
     }
 
     private void OnWorld1ButtonClicked() 

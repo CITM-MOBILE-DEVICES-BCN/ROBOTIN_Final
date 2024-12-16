@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.iOS;
+using UnityEngine.Audio;
 
 public class PlayerController : MonoBehaviour
 {
@@ -28,8 +29,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask levelMask;
     private bool isBorder = false;
 
+    public AudioClip jumpChargeSound; 
+    private AudioSource audioSource;
+    public AudioClip collisionSound;
+    
+
 
     public SpriteRenderer playerSkin;
+    public Animator playerAnimator;
     enum playerState
     {
         idle,
@@ -45,14 +52,28 @@ public class PlayerController : MonoBehaviour
     {
         
         Camera.main.GetComponent<CameraController>().player = gameObject;
-        playerSkin = GetComponent<SpriteRenderer>();
-        playerSkin.sprite = GameManager.instance.playerData.playerSkin;
+
+        // Configura el AudioSource si no está asignado.
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+        }
     }
 
     // Start is called before the first frame update
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void PlayJumpSound()
+    {
+        if (jumpChargeSound != null && !audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(jumpChargeSound);
+        }
     }
 
     public void Init(int level, Sprite skin)
@@ -82,6 +103,8 @@ public class PlayerController : MonoBehaviour
             SwipeDetection.instance.swipePerformed += context => { Dash(context); };
         }
     }
+
+   
 
     // Update is called once per frame
     private void Update()
@@ -114,12 +137,14 @@ public class PlayerController : MonoBehaviour
             {
                 jumpForce += 0.5f;
             }
-                
+            PlayJumpSound();
+
 
         }
         else if (Input.GetKeyUp(KeyCode.Space) && state == playerState.preparingToJump)
         {
             state = playerState.jumping;
+            PlayJumpSound();
         }
 
 
@@ -129,12 +154,15 @@ public class PlayerController : MonoBehaviour
                 break;
              
             case playerState.preparingToJump:
+                playerAnimator.SetTrigger("jump");
                 break;
             case playerState.jumping:
+                playerAnimator.SetTrigger("jump");
                 Jump();
                 StartCoroutine(JumpCoroutine());
                 break;
             case playerState.preparingToWallJump:
+                playerAnimator.SetTrigger("jump");
                 rb.velocity = Vector2.zero;
                 wallJumpTimer += Time.deltaTime;
                 if (wallJumpTimer > 1)
@@ -160,7 +188,8 @@ public class PlayerController : MonoBehaviour
                 
                 break;
             case playerState.falling:
-                if(!hasDashed && isDashUnlocked)
+                playerAnimator.SetTrigger("walk");
+                if (!hasDashed && isDashUnlocked)
                 {
                     canDash = true;
                 }
@@ -170,8 +199,12 @@ public class PlayerController : MonoBehaviour
                     DoubleJump();
                 }
                 break;
+            case playerState.moving:
+                playerAnimator.SetTrigger("walk");
+                break;
         }
 
+        playerSkin.flipX = direction == -1 ? true : false;
     }
     private void FixedUpdate()
     {
@@ -208,12 +241,21 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("FloodLayer"))
         {
+            PlayCollisionSound();
             GameManager.instance.LoadScene("RobotinMeta");
             Debug.Log("Game Over");
         }
 
 
 
+    }
+
+    private void PlayCollisionSound()
+    {
+        if (collisionSound != null)
+        {
+            audioSource.PlayOneShot(collisionSound);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -24,6 +24,7 @@ public class ScoreManager : MonoBehaviour
     public void IncreaseScore(int amount)
     {
         score += amount;
+        GlobalScoreManager.instance.SumToGlobalScore(amount);
         UpdateScoreText();
     }
   

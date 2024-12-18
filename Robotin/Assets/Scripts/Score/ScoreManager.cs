@@ -21,6 +21,7 @@ public class ScoreManager_R
     public void AddScore(int points)
     {
         currentScore += points;
+        GlobalScoreManager.instance.SumToGlobalScore(points);
         GameCanvasUI.instance.UpdateScoreUI();
     }
 

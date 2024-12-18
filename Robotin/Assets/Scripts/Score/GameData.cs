@@ -25,6 +25,7 @@ public class GameData
         PlayerPrefs.SetInt(NextLevelKey, nextLevel);
 
         PlayerPrefs.Save();
+        GlobalScoreManager.instance.SaveGlobalScore();
     }
 
     public void Reset()

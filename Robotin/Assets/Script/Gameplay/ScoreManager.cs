@@ -42,6 +42,7 @@ public class ScoreManager : MonoBehaviour
         {
             playerData.IncreaseCurrency(score);
             playerData.Save();
+            GlobalScoreManager.instance.SaveGlobalScore();
         }
         score = 0;
         UpdateScoreText();

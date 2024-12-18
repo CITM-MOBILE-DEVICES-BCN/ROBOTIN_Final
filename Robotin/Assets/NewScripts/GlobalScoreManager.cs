@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GlobalScoreManager : MonoBehaviour
@@ -15,17 +13,30 @@ public class GlobalScoreManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
 
-        globalScore = 0;
+        LoadGlobalScore();
     }
 
     public void SumToGlobalScore(int score)
     {
         globalScore += score;
         Debug.Log("Global Score: " + globalScore);
+
+        SaveGlobalScore();
     }
 
     public int GetCurrentGlobalScore()
     {
         return globalScore;
+    }
+
+    public void SaveGlobalScore()
+    {
+        PlayerPrefs.SetInt("GlobalScore", globalScore);
+        PlayerPrefs.Save();
+    }
+
+    private void LoadGlobalScore()
+    {
+        globalScore = PlayerPrefs.GetInt("GlobalScore", 0);
     }
 }

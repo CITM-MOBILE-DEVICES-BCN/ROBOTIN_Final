@@ -1,9 +1,12 @@
 using UnityEngine;
+using TMPro;
 
 public class GlobalScoreManager : MonoBehaviour
 {
     public static GlobalScoreManager instance;
     private int globalScore;
+
+    [SerializeField] private TextMeshProUGUI scoreText;
 
     public void Start()
     {
@@ -22,6 +25,7 @@ public class GlobalScoreManager : MonoBehaviour
         Debug.Log("Global Score: " + globalScore);
 
         SaveGlobalScore();
+        UpdateScoreText();
     }
 
     public int GetCurrentGlobalScore()
@@ -38,5 +42,17 @@ public class GlobalScoreManager : MonoBehaviour
     private void LoadGlobalScore()
     {
         globalScore = PlayerPrefs.GetInt("GlobalScore", 0);
+    }
+
+    private void UpdateScoreText()
+    {
+        if (scoreText != null)
+        {
+            scoreText.text = "Global Score: " + globalScore.ToString();
+        }
+        else
+        {
+            Debug.LogWarning("Score Text is not assigned in the inspector!");
+        }
     }
 }

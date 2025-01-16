@@ -33,8 +33,6 @@ public class PlayerController : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip collisionSound;
     
-
-
     public SpriteRenderer playerSkin;
     public Animator playerAnimator;
     enum playerState
@@ -103,8 +101,6 @@ public class PlayerController : MonoBehaviour
             SwipeDetection.instance.swipePerformed += context => { Dash(context); };
         }
     }
-
-   
 
     // Update is called once per frame
     private void Update()
@@ -245,9 +241,6 @@ public class PlayerController : MonoBehaviour
             GameManager_R.instance.LoadScene("RobotinMeta");
             Debug.Log("Game Over");
         }
-
-
-
     }
 
     private void PlayCollisionSound()

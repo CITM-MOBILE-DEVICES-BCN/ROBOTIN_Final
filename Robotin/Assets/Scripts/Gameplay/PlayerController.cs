@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool canDash = false;
     [SerializeField] private bool hasDashed = false;
     private float wallJumpTimer = 0;
-    [SerializeField] LayerMask levelMask;
+    [SerializeField] LayerMask levelMask; 
     private bool isBorder = false;
 
     public AudioClip jumpChargeSound; 

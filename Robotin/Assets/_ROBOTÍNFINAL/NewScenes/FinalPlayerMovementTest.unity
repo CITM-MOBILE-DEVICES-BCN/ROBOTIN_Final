@@ -302,6 +302,7 @@ MonoBehaviour:
   rb: {fileID: 560793230}
   playerCollision: {fileID: 560793234}
   robotinJump: {fileID: 560793233}
+  _walkSounds: {fileID: 11400000, guid: 3f1db3355a4455d45a93d87d823b64c1, type: 2}
 --- !u!114 &560793233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,6 +348,7 @@ MonoBehaviour:
   wallCheckDistance: 0.55
   jumpGroundCheckDistance: 0.3
   _stickSoundGroup: {fileID: 11400000, guid: 0f1e72f079f2a284a8f6b1e3334e3049, type: 2}
+  isSticked: 0
   IsGrounded: 0
   IsWallSliding: 0
   IsAtEdge: 0

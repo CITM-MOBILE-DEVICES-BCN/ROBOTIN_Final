@@ -1,4 +1,5 @@
 using UnityEngine;
+using Microlight.MicroAudio;
 
 public class RobotinMovement : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class RobotinMovement : MonoBehaviour
     public Rigidbody2D rb;
     public RobotinCollision playerCollision;
     public RobotinJump robotinJump;
+
+
+    [SerializeField] private MicroSoundGroup _walkingSounds;
 
     private float lastDirectionChangeTime;
 
@@ -44,6 +48,7 @@ public class RobotinMovement : MonoBehaviour
             }
 
             if (!robotinJump.isJumping) Move();
+            MicroAudio.PlayEffectSound(_walkingSounds.GetRandomClip, 0.5f,1, 1, true);
         }
 
         if (robotinJump.isJumpButtonPressed) rb.velocity = Vector2.zero; 
@@ -53,4 +58,5 @@ public class RobotinMovement : MonoBehaviour
     {
         return direction;
     }
+
 }

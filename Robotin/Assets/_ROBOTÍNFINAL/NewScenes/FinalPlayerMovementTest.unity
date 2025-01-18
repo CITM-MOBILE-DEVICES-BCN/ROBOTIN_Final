@@ -346,6 +346,7 @@ MonoBehaviour:
   upGravity: 8
   wallCheckDistance: 0.55
   jumpGroundCheckDistance: 0.3
+  _stickSoundGroup: {fileID: 11400000, guid: 0f1e72f079f2a284a8f6b1e3334e3049, type: 2}
   IsGrounded: 0
   IsWallSliding: 0
   IsAtEdge: 0
@@ -814,6 +815,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 575442272619672953, guid: d2d4d906339da84449019d36bd0e4ff3,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 575442273508186280, guid: d2d4d906339da84449019d36bd0e4ff3,
         type: 3}
       propertyPath: _debugMode
@@ -821,7 +827,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 575442273508186280, guid: d2d4d906339da84449019d36bd0e4ff3,
         type: 3}
+      propertyPath: _musicDebug
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 575442273508186280, guid: d2d4d906339da84449019d36bd0e4ff3,
+        type: 3}
       propertyPath: _soundsDebug
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 575442273508186280, guid: d2d4d906339da84449019d36bd0e4ff3,
+        type: 3}
+      propertyPath: _managerDebug
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 575442273508186280, guid: d2d4d906339da84449019d36bd0e4ff3,
+        type: 3}
+      propertyPath: crossfadeTime
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 575442273508186281, guid: d2d4d906339da84449019d36bd0e4ff3,
@@ -878,6 +899,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MicroAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 2941240202850099569, guid: d2d4d906339da84449019d36bd0e4ff3,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

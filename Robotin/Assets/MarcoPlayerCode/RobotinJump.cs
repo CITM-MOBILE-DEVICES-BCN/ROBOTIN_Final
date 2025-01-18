@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Microlight.MicroAudio;
 
 public class RobotinJump : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class RobotinJump : MonoBehaviour
     [SerializeField] private float maxJumpForce = 15f;
     [SerializeField] private float maxHoldTime = 1f;
     [SerializeField] private float horizontalJumpForce = 5f; // Add horizontal force
+    [SerializeField] MicroSoundGroup _jumpsounds;
 
     public Rigidbody2D rb;
     public RobotinCollision robotinCollision;
@@ -24,6 +26,7 @@ public class RobotinJump : MonoBehaviour
             jumpHoldTime = 0f;
             // Optionally, play a "charging" animation
             GetComponent<SpriteRenderer>().color = Color.red;
+
         }
 
         if (isJumpButtonPressed)
@@ -73,6 +76,9 @@ public class RobotinJump : MonoBehaviour
 
         robotinCollision.IsGrounded = false;
         robotinCollision.IsWallSliding = false;
+
+        MicroAudio.PlayEffectSound(_jumpsounds.GetRandomClip);
+
         // jump animation
     }
 }

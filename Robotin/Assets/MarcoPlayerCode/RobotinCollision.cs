@@ -86,7 +86,16 @@ public class RobotinCollision : MonoBehaviour
             RaycastHit2D hitLeft = Physics2D.Raycast(edgeCheckLeft, Vector2.down, edgeCheckDistance, groundLayer);
             RaycastHit2D hitRight = Physics2D.Raycast(edgeCheckRight, Vector2.down, edgeCheckDistance, groundLayer);
 
-            IsAtEdge = (!hitLeft && hitRight) || (hitLeft && !hitRight);
+            //check for direcction too when checking for edge
+            int direction = robotinMovement.GetDirection();
+            if (direction == -1)
+            {
+                IsAtEdge = !hitLeft && hitRight;
+            }
+            else if (direction == 1)
+            {
+                IsAtEdge = !hitRight && hitLeft;
+            }
         }
         else
         {

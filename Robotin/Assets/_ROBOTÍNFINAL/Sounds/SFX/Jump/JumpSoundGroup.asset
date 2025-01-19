@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72f4a146b6db8994cb5c97851b4a8237, type: 3}
   m_Name: JumpSoundGroup
   m_EditorClassIdentifier: 
-  groupName: JumpSoundGroup
+  groupName: Jump
   sounds:
   - name: Jump1
     clip: {fileID: 8300000, guid: a8a28df8e2e8edf47881eb64541dc2c1, type: 3}
-    volume: 0
+    volume: 1
     loop: 0
     source: {fileID: 0}
   - name: Jump2
     clip: {fileID: 8300000, guid: 885989f1b9a8e4045affbe0ca08e1e88, type: 3}
-    volume: 0
+    volume: 1
     loop: 0
     source: {fileID: 0}
   playSequentially: 0

@@ -196,7 +196,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundGroups:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 4c3d8427ad8899142b4bda8cc8af6aee, type: 2}
+  - {fileID: 11400000, guid: accfc0d2e2db3774b97bb0fee0dc472e, type: 2}
+  - {fileID: 11400000, guid: f8eac91c93a8cd440996ca2a834e535d, type: 2}
+  - {fileID: 11400000, guid: 745e8e8c9218b2242bf53a7fef8d63b2, type: 2}
 --- !u!4 &40544666
 Transform:
   m_ObjectHideFlags: 0

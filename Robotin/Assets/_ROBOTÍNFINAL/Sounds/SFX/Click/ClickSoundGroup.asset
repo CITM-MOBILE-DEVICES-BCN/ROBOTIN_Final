@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72f4a146b6db8994cb5c97851b4a8237, type: 3}
+  m_Name: ClickSoundGroup
+  m_EditorClassIdentifier: 
+  groupName: Click
+  sounds:
+  - name: Click1
+    clip: {fileID: 8300000, guid: 8954b1b7f6172f944827cd503abf7fad, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Click2
+    clip: {fileID: 8300000, guid: fd2a5ab58ee38294c8d42fae253ab4e4, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  playSequentially: 0
+  currentIndex: 0

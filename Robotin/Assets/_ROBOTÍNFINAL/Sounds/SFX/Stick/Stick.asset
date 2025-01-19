@@ -9,9 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424a815e9094a9e42a349c6a63288719, type: 3}
+  m_Script: {fileID: 11500000, guid: 72f4a146b6db8994cb5c97851b4a8237, type: 3}
   m_Name: Stick
   m_EditorClassIdentifier: 
-  clipList:
-  - {fileID: 8300000, guid: 7838416fd40a1d949bdacd62ceaa4ac6, type: 3}
-  - {fileID: 8300000, guid: ee01b6311c8879b459d44d6fc0c73ff1, type: 3}
+  groupName: Stick
+  sounds:
+  - name: Stick1
+    clip: {fileID: 8300000, guid: 7838416fd40a1d949bdacd62ceaa4ac6, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Stick2
+    clip: {fileID: 8300000, guid: ee01b6311c8879b459d44d6fc0c73ff1, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  playSequentially: 0
+  currentIndex: 0

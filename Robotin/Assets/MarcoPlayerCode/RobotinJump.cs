@@ -10,6 +10,9 @@ public class RobotinJump : MonoBehaviour
     [SerializeField] private float maxJumpForceX = 15f;
     [SerializeField] private float maxHoldTime = 1f;
     [SerializeField] private float jumpBufferTime = 0.1f;
+    [SerializeField] private string jumpChargeSound = "JumpCharge";
+    [SerializeField] private string jumpReleaseSound = "JumpRelease";
+    [SerializeField] private string landingSound = "Landing";
 
     public float additionalJumpForce = 0f;
     public Rigidbody2D rb;
@@ -38,9 +41,10 @@ public class RobotinJump : MonoBehaviour
             isJumpButtonPressed = true;
             jumpBufferCounter = 0;
             jumpHoldTime = 0f;
+            // Play charge sound
+            SFXManager.Instance.PlayEffect(jumpChargeSound);
             // Optionally, play a "charging" animation
             GetComponent<SpriteRenderer>().color = Color.red;
-
         }
 
         if (isJumpButtonPressed)
@@ -70,7 +74,15 @@ public class RobotinJump : MonoBehaviour
             }
         }
 
-        if (rb.velocity.y < 0.2f && isJumping) isJumping = false;
+        // Check for landing
+        if (rb.velocity.y < 0.2f && isJumping)
+        {
+            isJumping = false;
+            if (robotinCollision.IsGrounded)
+            {
+                SFXManager.Instance.PlayEffect(landingSound);
+            }
+        }
     }
 
     private void Jump(float jumpForceX, float jumpForceY)
@@ -83,11 +95,13 @@ public class RobotinJump : MonoBehaviour
             robotinMovement.ChangeDirection();
         }
         
+        // Play jump release sound
+        SFXManager.Instance.PlayEffect(jumpReleaseSound);
+        
         rb.AddForce(new Vector2(jumpForceX * robotinMovement.GetDirection(), jumpForceY + additionalJumpForce), ForceMode2D.Impulse);
 
         robotinCollision.IsGrounded = false;
         robotinCollision.IsWallSliding = false;
-
 
         // jump animation
     }

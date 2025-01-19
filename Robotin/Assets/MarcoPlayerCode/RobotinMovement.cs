@@ -5,11 +5,11 @@ public class RobotinMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private int direction = 1; // 1 for right, -1 for left
     [SerializeField] private float directionChangeCooldown = 0.2f; // Cooldown time in seconds
+    [SerializeField] private string walkingSoundGroup = "Walking";
+    [SerializeField] private string turnSoundGroup = "Turn";
     public Rigidbody2D rb;
     public RobotinCollision playerCollision;
     public RobotinJump robotinJump;
-
-
 
     private float lastDirectionChangeTime;
     private Vector2 windForce = Vector2.zero;
@@ -35,6 +35,9 @@ public class RobotinMovement : MonoBehaviour
             scale.x *= -1;
             transform.localScale = scale;
 
+            // Play turn sound
+            SFXManager.Instance.PlayEffect(turnSoundGroup);
+
             lastDirectionChangeTime = Time.time; // Update the last change time
         }
     }
@@ -51,8 +54,15 @@ public class RobotinMovement : MonoBehaviour
                 playerCollision.IsNearWall = false;
             }
 
-            if (!robotinJump.isJumping) Move();
-            //MicroAudio.PlayEffectSound(_walkingSounds.GetRandomClip, 0.5f, 1, 1, false);
+            if (!robotinJump.isJumping)
+            {
+                Move();
+                // Play walking sound when moving and grounded
+                if (Mathf.Abs(rb.velocity.x) > 0.1f)
+                {
+                    SFXManager.Instance.PlayEffect(walkingSoundGroup);
+                }
+            }
         }
 
         if (robotinJump.isJumpButtonPressed) rb.velocity = Vector2.zero; 

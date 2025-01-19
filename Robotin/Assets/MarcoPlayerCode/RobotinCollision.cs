@@ -13,6 +13,7 @@ public class RobotinCollision : MonoBehaviour
     [SerializeField] private float wallCheckDistance = 0.1f;
     [SerializeField] private float jumpGroundCheckDistance = 0.3f; // Distance to check for ground to confirm landing
     [SerializeField] private LayerMask noWallJumpLayer;
+    [SerializeField] private string wallSlideSound = "WallSlide";
 
     public bool isSticked = false;
 
@@ -63,14 +64,12 @@ public class RobotinCollision : MonoBehaviour
     {
         if (IsWallSliding)
         {
-
             rb.velocity = new Vector2(rb.velocity.x, -wallSlideSpeed);
             rb.gravityScale = 0f;
 
             if(isSticked == false)
             {
-                //MicroAudio.PlayEffectSound(_stickSoundGroup.GetRandomClip);
-
+                SFXManager.Instance.PlayEffect(wallSlideSound);
                 isSticked = true;
             }
         }

@@ -8,7 +8,7 @@ public class RobotinCollision : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float wallSlideSpeed = 1f;
     [SerializeField] private float edgeCheckDistance = 0.1f;
-    [SerializeField] private float downGravity = 5f;
+    [SerializeField] public float downGravity = 5f;
     [SerializeField] private float upGravity = 4f;
     [SerializeField] private float wallCheckDistance = 0.1f;
     [SerializeField] private float jumpGroundCheckDistance = 0.3f; // Distance to check for ground to confirm landing

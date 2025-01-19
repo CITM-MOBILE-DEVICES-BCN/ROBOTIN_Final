@@ -14,7 +14,13 @@ public class RobotinMovement : MonoBehaviour
     [SerializeField] private MicroSoundGroup _walkingSounds;
 
     private float lastDirectionChangeTime;
+    private Vector2 windForce = Vector2.zero;
 
+    private void Start()
+    {
+        FindObjectOfType<WindSystem>().OnWindStart += ApplyWindForce;
+        FindObjectOfType<WindSystem>().OnWindStop += StopWindForce;
+    }
     public void Move()
     {
         rb.velocity = new Vector2(direction * moveSpeed, rb.velocity.y);
@@ -52,6 +58,24 @@ public class RobotinMovement : MonoBehaviour
         }
 
         if (robotinJump.isJumpButtonPressed) rb.velocity = Vector2.zero; 
+    }
+
+    private void FixedUpdate()
+    {
+        if (windForce != Vector2.zero)
+        {
+            rb.AddForce(windForce, ForceMode2D.Force);
+        }
+    }
+
+    private void ApplyWindForce(Vector2 force)
+    {
+        windForce = force;
+    }
+
+    private void StopWindForce()
+    {
+        windForce = Vector2.zero;
     }
 
     public int GetDirection()

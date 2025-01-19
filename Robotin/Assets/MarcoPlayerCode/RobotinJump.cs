@@ -5,24 +5,40 @@ using Microlight.MicroAudio;
 
 public class RobotinJump : MonoBehaviour
 {
-    [SerializeField] private float minJumpForce = 5f;
-    [SerializeField] private float maxJumpForce = 15f;
+    [SerializeField] private float minJumpForceY = 5f;
+    [SerializeField] private float maxJumpForceY = 15f;
+    [SerializeField] private float minJumpForceX = 5f;
+    [SerializeField] private float maxJumpForceX = 15f;
     [SerializeField] private float maxHoldTime = 1f;
-    [SerializeField] private float horizontalJumpForce = 5f; // Add horizontal force
-    [SerializeField] MicroSoundGroup _jumpsounds;
+    [SerializeField] private float jumpBufferTime = 0.1f;
+    [SerializeField] MicroSoundGroup jumpSounds; // always write varibles in camelCase pls
 
+    public float additionalJumpForce = 0f;
     public Rigidbody2D rb;
     public RobotinCollision robotinCollision;
     public RobotinMovement robotinMovement;
     public float jumpHoldTime;
     public bool isJumping;
-    public bool isJumpButtonPressed; // Track if the jump button is pressed
+    public bool isJumpButtonPressed;
+    private float jumpBufferCounter;
 
     private void Update()
     {
-        if (Input.GetButtonDown("Jump") && (robotinCollision.IsGrounded || robotinCollision.IsWallSliding))
+        // Jump Input Buffering
+        if (Input.GetButtonDown("Jump"))
+        {
+            jumpBufferCounter = jumpBufferTime;
+        }
+        else if (jumpBufferCounter > 0)
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+
+        // Jumping Logic
+        if (jumpBufferCounter > 0 && (robotinCollision.IsGrounded || robotinCollision.IsWallSliding))
         {
             isJumpButtonPressed = true;
+            jumpBufferCounter = 0;
             jumpHoldTime = 0f;
             // Optionally, play a "charging" animation
             GetComponent<SpriteRenderer>().color = Color.red;
@@ -39,18 +55,19 @@ public class RobotinJump : MonoBehaviour
                 {
                     jumpHoldTime = maxHoldTime;
                     isJumpButtonPressed = false;
-                    Jump(maxJumpForce);
+                    Jump(maxJumpForceX, maxJumpForceY);
                 }
             }
             else
             {
-                isJumpButtonPressed = false; 
+                isJumpButtonPressed = false;
             }
 
             if (!isJumpButtonPressed && jumpHoldTime > 0)
             {
-                float jumpForce = Mathf.Lerp(minJumpForce, maxJumpForce, jumpHoldTime / maxHoldTime);
-                Jump(jumpForce);
+                float jumpForceY = Mathf.Lerp(minJumpForceY, maxJumpForceY, jumpHoldTime / maxHoldTime);
+                float jumpForceX = Mathf.Lerp(minJumpForceX, maxJumpForceX, jumpHoldTime / maxHoldTime);
+                Jump(jumpForceX, jumpForceY);
                 GetComponent<SpriteRenderer>().color = Color.blue;
             }
         }
@@ -58,27 +75,33 @@ public class RobotinJump : MonoBehaviour
         if (rb.velocity.y < 0.2f && isJumping) isJumping = false;
     }
 
-    private void Jump(float jumpForce)
+    private void Jump(float jumpForceX, float jumpForceY)
     {
         isJumping = true;
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        rb.velocity = Vector2.zero;
 
         if (robotinCollision.IsWallSliding)
         {
             robotinMovement.ChangeDirection();
-            rb.AddForce(new Vector2(robotinMovement.GetDirection() * horizontalJumpForce, 0f), ForceMode2D.Impulse);
         }
-        else
-        {
-            // Add horizontal force based on the current direction
-            rb.AddForce(new Vector2(robotinMovement.GetDirection() * horizontalJumpForce, 0f), ForceMode2D.Impulse);
-        }
+        
+        rb.AddForce(new Vector2(jumpForceX * robotinMovement.GetDirection(), jumpForceY + additionalJumpForce), ForceMode2D.Impulse);
 
         robotinCollision.IsGrounded = false;
         robotinCollision.IsWallSliding = false;
 
-        MicroAudio.PlayEffectSound(_jumpsounds.GetRandomClip);
+        MicroAudio.PlayEffectSound(jumpSounds.GetRandomClip);
 
         // jump animation
+    }
+
+    public void ApplyAdditionalJumpForce(float force)
+    {
+        additionalJumpForce += force;
+    }
+
+    public void RemoveAdditionalJumpForce(float force)
+    {
+        additionalJumpForce -= force;
     }
 }

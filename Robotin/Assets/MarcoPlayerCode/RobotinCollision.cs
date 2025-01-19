@@ -13,6 +13,7 @@ public class RobotinCollision : MonoBehaviour
     [SerializeField] private float upGravity = 4f;
     [SerializeField] private float wallCheckDistance = 0.1f;
     [SerializeField] private float jumpGroundCheckDistance = 0.3f; // Distance to check for ground to confirm landing
+    [SerializeField] private LayerMask noWallJumpLayer;
 
     [SerializeField] private MicroSoundGroup _stickSoundGroup;
     public bool isSticked = false;
@@ -101,7 +102,16 @@ public class RobotinCollision : MonoBehaviour
             RaycastHit2D hitLeft = Physics2D.Raycast(edgeCheckLeft, Vector2.down, edgeCheckDistance, groundLayer);
             RaycastHit2D hitRight = Physics2D.Raycast(edgeCheckRight, Vector2.down, edgeCheckDistance, groundLayer);
 
-            IsAtEdge = (!hitLeft && hitRight) || (hitLeft && !hitRight);
+            //check for direcction too when checking for edge
+            int direction = robotinMovement.GetDirection();
+            if (direction == -1)
+            {
+                IsAtEdge = !hitLeft && hitRight;
+            }
+            else if (direction == 1)
+            {
+                IsAtEdge = !hitRight && hitLeft;
+            }
         }
         else
         {
@@ -118,13 +128,20 @@ public class RobotinCollision : MonoBehaviour
         IsNearWall = hit;
         if (IsNearWall)
         {
-            if (rb.velocity.y < 0)
+            if (((1 << hit.collider.gameObject.layer) & noWallJumpLayer) != 0)
             {
                 IsWallSliding = true;
             }
             else
             {
-                IsWallSliding = false;
+                if (rb.velocity.y < 0)
+                {
+                    IsWallSliding = true;
+                }
+                else
+                {
+                    IsWallSliding = false;
+                }
             }
         }
         else

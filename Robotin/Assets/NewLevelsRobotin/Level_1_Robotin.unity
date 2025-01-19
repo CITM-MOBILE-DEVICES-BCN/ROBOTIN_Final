@@ -18206,6 +18206,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2065610947617090763, guid: 264e6176797e5ed44ae0ca78a0a58552,
+        type: 3}
+      propertyPath: musicTracks.Array.data[0].volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6016552398496295119, guid: 264e6176797e5ed44ae0ca78a0a58552,
         type: 3}
       propertyPath: m_Name

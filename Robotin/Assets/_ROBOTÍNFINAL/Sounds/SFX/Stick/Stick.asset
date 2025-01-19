@@ -16,12 +16,12 @@ MonoBehaviour:
   sounds:
   - name: Stick1
     clip: {fileID: 8300000, guid: 7838416fd40a1d949bdacd62ceaa4ac6, type: 3}
-    volume: 1
+    volume: 0.5
     loop: 0
     source: {fileID: 0}
   - name: Stick2
     clip: {fileID: 8300000, guid: ee01b6311c8879b459d44d6fc0c73ff1, type: 3}
-    volume: 1
+    volume: 0.5
     loop: 0
     source: {fileID: 0}
   playSequentially: 0

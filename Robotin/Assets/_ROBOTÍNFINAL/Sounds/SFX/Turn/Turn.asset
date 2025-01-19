@@ -16,13 +16,13 @@ MonoBehaviour:
   sounds:
   - name: Turn1
     clip: {fileID: 8300000, guid: ea4e721c675320f4493a58baeaf7b519, type: 3}
-    volume: 0.7
+    volume: 0.5
     loop: 0
     source: {fileID: 0}
   - name: Turn2
     clip: {fileID: 8300000, guid: 465f8a9d6648a8e4080058c030f664b0, type: 3}
-    volume: 0.7
+    volume: 0.5
     loop: 0
     source: {fileID: 0}
   playSequentially: 1
-  currentIndex: 0
+  currentIndex: 1

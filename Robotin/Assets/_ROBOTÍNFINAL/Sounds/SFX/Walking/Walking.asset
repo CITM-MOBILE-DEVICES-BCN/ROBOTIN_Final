@@ -16,12 +16,12 @@ MonoBehaviour:
   sounds:
   - name: Walk1
     clip: {fileID: 8300000, guid: a92a641f962203c4e94ceff91405791b, type: 3}
-    volume: 0.151
+    volume: 0.3
     loop: 0
     source: {fileID: 0}
   - name: Walk2
     clip: {fileID: 8300000, guid: d829eb38a0d8dbd43be5d096ba961559, type: 3}
-    volume: 0.179
+    volume: 0.3
     loop: 0
     source: {fileID: 0}
   playSequentially: 1

@@ -16,27 +16,12 @@ MonoBehaviour:
   sounds:
   - name: WallSlide1
     clip: {fileID: 8300000, guid: b1cbc156f2f14954e8ac8ab56612f102, type: 3}
-    volume: 0.584
+    volume: 0.4
     loop: 0
     source: {fileID: 0}
   - name: WallSlide2
     clip: {fileID: 8300000, guid: 4dd4ec4413e994b4a8210f3bcb82619b, type: 3}
-    volume: 0.7
-    loop: 0
-    source: {fileID: 0}
-  - name: WallSlide3
-    clip: {fileID: 8300000, guid: bf2f5776efebd9e47939e48605b32989, type: 3}
-    volume: 0.645
-    loop: 0
-    source: {fileID: 0}
-  - name: WallSlide4
-    clip: {fileID: 8300000, guid: 4b9f6d6337c531d48a7e69ac9fb79068, type: 3}
-    volume: 0.564
-    loop: 0
-    source: {fileID: 0}
-  - name: WallSlide5
-    clip: {fileID: 8300000, guid: 4e8739643176d694ba8253f5a375f10f, type: 3}
-    volume: 0.564
+    volume: 0.4
     loop: 0
     source: {fileID: 0}
   playSequentially: 0

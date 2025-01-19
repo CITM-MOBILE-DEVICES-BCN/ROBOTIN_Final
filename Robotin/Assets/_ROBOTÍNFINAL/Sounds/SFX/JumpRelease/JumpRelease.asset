@@ -16,12 +16,7 @@ MonoBehaviour:
   sounds:
   - name: JumpRelease1
     clip: {fileID: 8300000, guid: 98bc97f5d17892442915345a4e6498c3, type: 3}
-    volume: 0.7
-    loop: 0
-    source: {fileID: 0}
-  - name: JumpRelease2
-    clip: {fileID: 8300000, guid: d2ac1671a42aef9498c13bd98259c81d, type: 3}
-    volume: 0.7
+    volume: 0.4
     loop: 0
     source: {fileID: 0}
   playSequentially: 0

@@ -13,6 +13,7 @@ public class RobotinJump : MonoBehaviour
     [SerializeField] private float jumpBufferTime = 0.1f;
     [SerializeField] MicroSoundGroup jumpSounds; // always write varibles in camelCase pls
 
+    public float additionalJumpForce = 0f;
     public Rigidbody2D rb;
     public RobotinCollision robotinCollision;
     public RobotinMovement robotinMovement;
@@ -84,7 +85,7 @@ public class RobotinJump : MonoBehaviour
             robotinMovement.ChangeDirection();
         }
         
-        rb.AddForce(new Vector2(jumpForceX * robotinMovement.GetDirection(), jumpForceY), ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(jumpForceX * robotinMovement.GetDirection(), jumpForceY + additionalJumpForce), ForceMode2D.Impulse);
 
         robotinCollision.IsGrounded = false;
         robotinCollision.IsWallSliding = false;
@@ -92,5 +93,15 @@ public class RobotinJump : MonoBehaviour
         MicroAudio.PlayEffectSound(jumpSounds.GetRandomClip);
 
         // jump animation
+    }
+
+    public void ApplyAdditionalJumpForce(float force)
+    {
+        additionalJumpForce += force;
+    }
+
+    public void RemoveAdditionalJumpForce(float force)
+    {
+        additionalJumpForce -= force;
     }
 }

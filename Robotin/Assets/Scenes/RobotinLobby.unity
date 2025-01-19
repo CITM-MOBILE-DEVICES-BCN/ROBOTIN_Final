@@ -206,10 +206,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
-  m_fontSizeBase: 24
+  m_fontSize: 112.25
+  m_fontSizeBase: 112.25
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
@@ -721,9 +721,9 @@ MonoBehaviour:
     m_Bottom: 0
   m_ChildAlignment: 4
   m_StartCorner: 0
-  m_StartAxis: 0
-  m_CellSize: {x: 392.47, y: 452.39}
-  m_Spacing: {x: 49.61, y: 3.38}
+  m_StartAxis: 1
+  m_CellSize: {x: 1180.8, y: 200}
+  m_Spacing: {x: 49.61, y: 116.7}
   m_Constraint: 0
   m_ConstraintCount: 4
 --- !u!114 &594377093
@@ -1010,12 +1010,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8a14ff1e28e6ed4890d3dc1790eb55b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  growDuration: 0.5
-  growEase: 27
-  delay: 0.4
-  rotationDuration: 0.5
-  rotationEase: 27
-  rotationAngle: 360
+  initialSpeed: 0.5
+  hoverSpeed: 0.2
 --- !u!1 &1112062314
 GameObject:
   m_ObjectHideFlags: 0
@@ -1201,8 +1197,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 112.25
+  m_fontSizeBase: 112.25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1406,9 +1402,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'WALTER''s
-
-    Walk'
+  m_text: WALTERS WALK
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1435,8 +1429,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 52
-  m_fontSizeBase: 52
+  m_fontSize: 112.25
+  m_fontSizeBase: 112.25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1700,12 +1694,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8a14ff1e28e6ed4890d3dc1790eb55b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  growDuration: 0.5
-  growEase: 27
-  delay: 0.6
-  rotationDuration: 0.5
-  rotationEase: 27
-  rotationAngle: 360
+  initialSpeed: 0.5
+  hoverSpeed: 0.2
 --- !u!1 &1861103738
 GameObject:
   m_ObjectHideFlags: 0
@@ -1790,10 +1780,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
-  m_fontSizeBase: 24
+  m_fontSize: 112.25
+  m_fontSizeBase: 112.25
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
@@ -1975,12 +1965,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8a14ff1e28e6ed4890d3dc1790eb55b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  growDuration: 0.5
-  growEase: 27
-  delay: 0.2
-  rotationDuration: 0.5
-  rotationEase: 27
-  rotationAngle: 360
+  initialSpeed: 0.5
+  hoverSpeed: 0.2
 --- !u!1001 &1932612411
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2123,7 +2109,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
@@ -2199,12 +2185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8a14ff1e28e6ed4890d3dc1790eb55b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  growDuration: 0.5
-  growEase: 27
-  delay: 0
-  rotationDuration: 0.5
-  rotationEase: 27
-  rotationAngle: 360
+  initialSpeed: 0.7
+  hoverSpeed: 0.2
 --- !u!1001 &8753929524518208637
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2216,7 +2198,26 @@ PrefabInstance:
     - target: {fileID: 1568824496091697529, guid: 8ef0ce0d816baf64cba2d983264916bc,
         type: 3}
       propertyPath: m_text
+      value: 'Global Score
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1568824496091697529, guid: 8ef0ce0d816baf64cba2d983264916bc,
+        type: 3}
+      propertyPath: m_fontAsset
       value: 
+      objectReference: {fileID: 11400000, guid: 7ed6bac93555d194abb61ce2fc984662,
+        type: 2}
+    - target: {fileID: 1568824496091697529, guid: 8ef0ce0d816baf64cba2d983264916bc,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 5117239424114926883, guid: 7ed6bac93555d194abb61ce2fc984662,
+        type: 2}
+    - target: {fileID: 1568824496091697529, guid: 8ef0ce0d816baf64cba2d983264916bc,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6975650382183155928, guid: 8ef0ce0d816baf64cba2d983264916bc,
         type: 3}
@@ -2301,7 +2302,7 @@ PrefabInstance:
     - target: {fileID: 6975650382183155928, guid: 8ef0ce0d816baf64cba2d983264916bc,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 431
+      value: 1264
       objectReference: {fileID: 0}
     - target: {fileID: 6975650382183155928, guid: 8ef0ce0d816baf64cba2d983264916bc,
         type: 3}

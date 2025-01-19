@@ -3,42 +3,55 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class PopUpDoTween : MonoBehaviour
 {
-    [Header("Grow Settings")]
-    public float growDuration = 0.5f;
-    public Ease growEase = Ease.OutBack;
-    public float delay = 0f;
+    private Button button;
+    private Vector3 defaultScale;
 
-    [Header("Rotation Settings")]
-    public float rotationDuration = 0.5f;
-    public Ease rotationEase = Ease.OutBack;
-    public float rotationAngle = 360f;
+    [Header("Variables")]
+    public float initialSpeed = 0.5f;
+    public float hoverSpeed = 0.2f;
 
-    private RectTransform rectTransform;
-    private Vector3 initialScale;
-
-    private void Awake()
+    public void Awake()
     {
-        rectTransform = GetComponent<RectTransform>();
-        if (rectTransform == null)
-        {
-            return;
-        }
+        button = GetComponent<Button>();
+        
+        defaultScale = transform.localScale;
+    }
+    
+    private void Start()
+    {
+        EventTrigger trigger = button.gameObject.AddComponent<EventTrigger>();
 
-        initialScale = rectTransform.localScale;
-        rectTransform.localScale = Vector3.zero;
+        EventTrigger.Entry entry = new EventTrigger.Entry();
+        entry.eventID = EventTriggerType.PointerEnter;
+        entry.callback.AddListener((data) => { OnMouseEnter(); });
+        trigger.triggers.Add(entry);
+
+        entry = new EventTrigger.Entry();
+        entry.eventID = EventTriggerType.PointerExit;
+        entry.callback.AddListener((data) => { OnMouseExit(); });
+        trigger.triggers.Add(entry);
+        
+        button.onClick.AddListener(OnMouseClick);
     }
 
-    private void OnEnable()
+    private void OnMouseEnter()
     {
-        rectTransform.localScale = Vector3.zero;
-        rectTransform.DOScale(initialScale, growDuration).SetEase(growEase).SetDelay(delay);
-
-        rectTransform.localRotation = Quaternion.Euler(0, 0, 0);
-        rectTransform.DORotate(new Vector3(0, 0, rotationAngle), rotationDuration, RotateMode.FastBeyond360)
-                     .SetEase(rotationEase).SetDelay(delay);
+        transform.DOScale(defaultScale * 1.1f, hoverSpeed);
     }
+
+    private void OnMouseExit()
+    {
+        transform.DOScale(defaultScale, hoverSpeed);
+    }
+
+    private void OnMouseClick()
+    {
+        transform.DOScale(defaultScale * 0.8f, hoverSpeed);
+    }
+
 }

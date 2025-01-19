@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Unity.VisualScripting;
 
 public class RobotinCollision : MonoBehaviour
 {
@@ -11,12 +8,12 @@ public class RobotinCollision : MonoBehaviour
     [SerializeField] public float downGravity = 5f;
     [SerializeField] private float upGravity = 4f;
     [SerializeField] private float wallCheckDistance = 0.1f;
-    [SerializeField] private float jumpGroundCheckDistance = 0.3f; // Distance to check for ground to confirm landing
+    [SerializeField] private float offsetWallCheck = 0.3f;
+    [SerializeField] private float jumpGroundCheckDistance = 0.3f;
     [SerializeField] private LayerMask noWallJumpLayer;
     [SerializeField] private string wallSlideSound = "WallSlide";
 
     public bool isSticked = false;
-
 
     public bool IsGrounded;
     public bool IsWallSliding;
@@ -99,7 +96,6 @@ public class RobotinCollision : MonoBehaviour
             RaycastHit2D hitLeft = Physics2D.Raycast(edgeCheckLeft, Vector2.down, edgeCheckDistance, groundLayer);
             RaycastHit2D hitRight = Physics2D.Raycast(edgeCheckRight, Vector2.down, edgeCheckDistance, groundLayer);
 
-            //check for direcction too when checking for edge
             int direction = robotinMovement.GetDirection();
             if (direction == -1)
             {
@@ -118,27 +114,23 @@ public class RobotinCollision : MonoBehaviour
 
     private void CheckForWall()
     {
-        // Cast a ray horizontally in the direction of movement to check for walls
         Vector2 wallCheckOrigin = (Vector2)transform.position;
-        RaycastHit2D hit = Physics2D.Raycast(wallCheckOrigin, new Vector2(robotinMovement.GetDirection(), 0), wallCheckDistance, groundLayer);
+        RaycastHit2D topWallCheck = Physics2D.Raycast(new (wallCheckOrigin.x , wallCheckOrigin.y + offsetWallCheck), new (robotinMovement.GetDirection(), 0), jumpGroundCheckDistance, groundLayer);
+        RaycastHit2D middleWallCheck = Physics2D.Raycast(wallCheckOrigin, new (robotinMovement.GetDirection(), 0), wallCheckDistance, groundLayer);
+        RaycastHit2D bottomWallCheck = Physics2D.Raycast(new (wallCheckOrigin.x, wallCheckOrigin.y - offsetWallCheck), new (robotinMovement.GetDirection(), 0), jumpGroundCheckDistance, groundLayer);
 
-        IsNearWall = hit;
+        IsNearWall = middleWallCheck || topWallCheck || bottomWallCheck;
         if (IsNearWall)
         {
+            RaycastHit2D hit = middleWallCheck ? middleWallCheck : (topWallCheck ? topWallCheck : bottomWallCheck);
+
             if (((1 << hit.collider.gameObject.layer) & noWallJumpLayer) != 0)
             {
                 IsWallSliding = true;
             }
             else
             {
-                if (rb.velocity.y < 0)
-                {
-                    IsWallSliding = true;
-                }
-                else
-                {
-                    IsWallSliding = false;
-                }
+                IsWallSliding = rb.velocity.y < 0;
             }
         }
         else
@@ -152,17 +144,17 @@ public class RobotinCollision : MonoBehaviour
     {
         Gizmos.color = Color.magenta;
 
-        // Left edge check
         Vector2 edgeCheckLeft = (Vector2)transform.position + new Vector2(-col.bounds.extents.x, -col.bounds.extents.y);
         Gizmos.DrawLine(edgeCheckLeft, edgeCheckLeft + Vector2.down * edgeCheckDistance);
 
-        // Right edge check
         Vector2 edgeCheckRight = (Vector2)transform.position + new Vector2(col.bounds.extents.x, -col.bounds.extents.y);
         Gizmos.DrawLine(edgeCheckRight, edgeCheckRight + Vector2.down * edgeCheckDistance);
 
-        // Draw wall check ray
+        //wallcheck topmid and bot
         Vector2 wallCheckOrigin = (Vector2)transform.position;
-        Gizmos.DrawLine(wallCheckOrigin, wallCheckOrigin + new Vector2(robotinMovement.GetDirection(), 0) * wallCheckDistance);
+        //Gizmos.DrawLine(wallCheckOrigin, wallCheckOrigin + new Vector2(robotinMovement.GetDirection(), 0) * wallCheckDistance);
+        Gizmos.DrawLine(new Vector2(wallCheckOrigin.x, wallCheckOrigin.y + offsetWallCheck), new Vector2(wallCheckOrigin.x, wallCheckOrigin.y + offsetWallCheck) + new Vector2(robotinMovement.GetDirection(), 0) * wallCheckDistance);
+        Gizmos.DrawLine(new Vector2(wallCheckOrigin.x, wallCheckOrigin.y - offsetWallCheck), new Vector2(wallCheckOrigin.x, wallCheckOrigin.y - offsetWallCheck) + new Vector2(robotinMovement.GetDirection(), 0) * wallCheckDistance);
     }
 #endif
 }

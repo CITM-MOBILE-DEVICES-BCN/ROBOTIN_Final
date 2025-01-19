@@ -182,6 +182,7 @@ MonoBehaviour:
   downGravity: 15
   upGravity: 12
   wallCheckDistance: 0.55
+  offsetWallCheck: 0.48
   jumpGroundCheckDistance: 0.3
   noWallJumpLayer:
     serializedVersion: 2

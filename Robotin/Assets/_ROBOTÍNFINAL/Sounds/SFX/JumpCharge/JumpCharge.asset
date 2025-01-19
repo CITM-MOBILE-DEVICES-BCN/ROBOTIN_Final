@@ -16,12 +16,12 @@ MonoBehaviour:
   sounds:
   - name: JumpCharge1
     clip: {fileID: 8300000, guid: ecf59a3dced6b724b894598fd85d3f0f, type: 3}
-    volume: 1
+    volume: 0.7
     loop: 0
     source: {fileID: 0}
   - name: JumpCharge2
     clip: {fileID: 8300000, guid: 1572b3dce74b93646ab7f2d3291f7247, type: 3}
-    volume: 1
+    volume: 0.7
     loop: 0
     source: {fileID: 0}
   playSequentially: 0

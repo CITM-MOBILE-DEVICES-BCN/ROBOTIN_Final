@@ -18,6 +18,8 @@ public class RobotinMovement : MonoBehaviour
     {
         FindObjectOfType<WindSystem>().OnWindStart += ApplyWindForce;
         FindObjectOfType<WindSystem>().OnWindStop += StopWindForce;
+
+        SoundTrackManager.Instance.PlayMusic("Track1"); // Quick test before GameManager
     }
     public void Move()
     {

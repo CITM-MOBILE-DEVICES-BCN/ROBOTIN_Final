@@ -16,26 +16,18 @@ MonoBehaviour:
   sounds:
   - name: Landing1
     clip: {fileID: 8300000, guid: 81036c386eb17124f9b3b8c755292a93, type: 3}
-    volume: 1
+    volume: 0.7
     loop: 0
-    individualDelay: 0
     source: {fileID: 0}
-    lastPlayTime: -999
   - name: Landing2
     clip: {fileID: 8300000, guid: 0abbc9d0a34ba094b89387af88600d28, type: 3}
-    volume: 1
+    volume: 0.7
     loop: 0
-    individualDelay: 0
     source: {fileID: 0}
-    lastPlayTime: -999
   - name: Landing3
     clip: {fileID: 8300000, guid: 63bf85abcdc9ee847879f4f0d11707bf, type: 3}
-    volume: 1
+    volume: 0.7
     loop: 0
-    individualDelay: 0
     source: {fileID: 0}
-    lastPlayTime: -999
   playSequentially: 0
-  globalDelay: 0
   currentIndex: 0
-  lastGroupPlayTime: -999

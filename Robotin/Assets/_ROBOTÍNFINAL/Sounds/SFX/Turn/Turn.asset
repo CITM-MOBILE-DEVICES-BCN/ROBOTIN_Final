@@ -16,19 +16,13 @@ MonoBehaviour:
   sounds:
   - name: Turn1
     clip: {fileID: 8300000, guid: ea4e721c675320f4493a58baeaf7b519, type: 3}
-    volume: 1
+    volume: 0.7
     loop: 0
-    individualDelay: 0
     source: {fileID: 0}
-    lastPlayTime: 35.721645
   - name: Turn2
     clip: {fileID: 8300000, guid: 465f8a9d6648a8e4080058c030f664b0, type: 3}
-    volume: 1
+    volume: 0.7
     loop: 0
-    individualDelay: 0
     source: {fileID: 0}
-    lastPlayTime: 38.079685
   playSequentially: 1
-  globalDelay: 0
   currentIndex: 0
-  lastGroupPlayTime: 38.079685

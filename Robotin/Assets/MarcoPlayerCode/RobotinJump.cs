@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Microlight.MicroAudio;
 
 public class RobotinJump : MonoBehaviour
 {
@@ -11,7 +10,6 @@ public class RobotinJump : MonoBehaviour
     [SerializeField] private float maxJumpForceX = 15f;
     [SerializeField] private float maxHoldTime = 1f;
     [SerializeField] private float jumpBufferTime = 0.1f;
-    [SerializeField] MicroSoundGroup jumpSounds; // always write varibles in camelCase pls
 
     public float additionalJumpForce = 0f;
     public Rigidbody2D rb;
@@ -90,7 +88,6 @@ public class RobotinJump : MonoBehaviour
         robotinCollision.IsGrounded = false;
         robotinCollision.IsWallSliding = false;
 
-        MicroAudio.PlayEffectSound(jumpSounds.GetRandomClip);
 
         // jump animation
     }

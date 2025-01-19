@@ -1,5 +1,4 @@
 using UnityEngine;
-using Microlight.MicroAudio;
 
 public class RobotinMovement : MonoBehaviour
 {
@@ -11,7 +10,6 @@ public class RobotinMovement : MonoBehaviour
     public RobotinJump robotinJump;
 
 
-    [SerializeField] private MicroSoundGroup _walkingSounds;
 
     private float lastDirectionChangeTime;
     private Vector2 windForce = Vector2.zero;

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Microlight.MicroAudio;
 using Unity.VisualScripting;
 
 public class RobotinCollision : MonoBehaviour
@@ -15,7 +14,6 @@ public class RobotinCollision : MonoBehaviour
     [SerializeField] private float jumpGroundCheckDistance = 0.3f; // Distance to check for ground to confirm landing
     [SerializeField] private LayerMask noWallJumpLayer;
 
-    [SerializeField] private MicroSoundGroup _stickSoundGroup;
     public bool isSticked = false;
 
 
@@ -71,7 +69,7 @@ public class RobotinCollision : MonoBehaviour
 
             if(isSticked == false)
             {
-                MicroAudio.PlayEffectSound(_stickSoundGroup.GetRandomClip);
+                //MicroAudio.PlayEffectSound(_stickSoundGroup.GetRandomClip);
 
                 isSticked = true;
             }

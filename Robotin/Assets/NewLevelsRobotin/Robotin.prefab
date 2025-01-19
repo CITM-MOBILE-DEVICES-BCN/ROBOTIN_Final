@@ -183,6 +183,9 @@ MonoBehaviour:
   upGravity: 12
   wallCheckDistance: 0.55
   jumpGroundCheckDistance: 0.3
+  noWallJumpLayer:
+    serializedVersion: 2
+    m_Bits: 0
   IsGrounded: 0
   IsWallSliding: 0
   IsAtEdge: 0
@@ -203,13 +206,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6789d568f7711164eb7e7f6d752d5ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minJumpForceY: 15
-  maxJumpForceY: 45
+  minJumpForceY: 20
+  maxJumpForceY: 50
   minJumpForceX: 10
-  maxJumpForceX: 30
+  maxJumpForceX: 20
   maxHoldTime: 0.8
   jumpBufferTime: 0.1
   jumpSounds: {fileID: 11400000, guid: 37d15c7b21684c248bdea4176732802c, type: 2}
+  additionalJumpForce: 0
   rb: {fileID: 1448829700629783454}
   robotinCollision: {fileID: 7416606127824776107}
   robotinMovement: {fileID: 2180478983442421765}

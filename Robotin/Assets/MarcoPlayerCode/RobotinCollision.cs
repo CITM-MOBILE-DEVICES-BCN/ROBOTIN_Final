@@ -11,6 +11,7 @@ public class RobotinCollision : MonoBehaviour
     [SerializeField] private float upGravity = 4f;
     [SerializeField] private float wallCheckDistance = 0.1f;
     [SerializeField] private float jumpGroundCheckDistance = 0.3f; // Distance to check for ground to confirm landing
+    [SerializeField] private LayerMask noWallJumpLayer;
 
     public bool IsGrounded;
     public bool IsWallSliding;
@@ -112,13 +113,20 @@ public class RobotinCollision : MonoBehaviour
         IsNearWall = hit;
         if (IsNearWall)
         {
-            if (rb.velocity.y < 0)
+            if (((1 << hit.collider.gameObject.layer) & noWallJumpLayer) != 0)
             {
                 IsWallSliding = true;
             }
             else
             {
-                IsWallSliding = false;
+                if (rb.velocity.y < 0)
+                {
+                    IsWallSliding = true;
+                }
+                else
+                {
+                    IsWallSliding = false;
+                }
             }
         }
         else

@@ -6223,7 +6223,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 13.333333
+  orthographic size: 15.4375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -7379,6 +7379,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2180478983442421765, guid: ce5cc8641bbf45d40ac7671838aedaf7,
+        type: 3}
+      propertyPath: _walkingSounds
+      value: 
+      objectReference: {fileID: 11400000, guid: 104ed96afdba4164a958fcabf3b22d64,
+        type: 2}
     - target: {fileID: 2971159581336574543, guid: ce5cc8641bbf45d40ac7671838aedaf7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7429,6 +7435,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7416606127824776107, guid: ce5cc8641bbf45d40ac7671838aedaf7,
+        type: 3}
+      propertyPath: _stickSoundGroup
+      value: 
+      objectReference: {fileID: 11400000, guid: 0f1e72f079f2a284a8f6b1e3334e3049,
+        type: 2}
     - target: {fileID: 7586891624617907080, guid: ce5cc8641bbf45d40ac7671838aedaf7,
         type: 3}
       propertyPath: m_Name

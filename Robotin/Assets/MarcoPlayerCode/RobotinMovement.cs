@@ -54,7 +54,7 @@ public class RobotinMovement : MonoBehaviour
             }
 
             if (!robotinJump.isJumping) Move();
-            MicroAudio.PlayEffectSound(_walkingSounds.GetRandomClip, 0.5f,1, 1, true);
+            //MicroAudio.PlayEffectSound(_walkingSounds.GetRandomClip, 0.5f, 1, 1, false);
         }
 
         if (robotinJump.isJumpButtonPressed) rb.velocity = Vector2.zero; 

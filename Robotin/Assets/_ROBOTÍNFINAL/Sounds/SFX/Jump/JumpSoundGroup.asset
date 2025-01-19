@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72f4a146b6db8994cb5c97851b4a8237, type: 3}
-  m_Name: Dash
+  m_Name: JumpSoundGroup
   m_EditorClassIdentifier: 
-  groupName: 
+  groupName: JumpSoundGroup
   sounds:
-  - name: Dash1
-    clip: {fileID: 8300000, guid: d441b88139fd77c459cde73505b4c67d, type: 3}
+  - name: Jump1
+    clip: {fileID: 8300000, guid: a8a28df8e2e8edf47881eb64541dc2c1, type: 3}
     volume: 0
     loop: 0
     source: {fileID: 0}
-  - name: Dash2
-    clip: {fileID: 8300000, guid: c4097ea05c3368f4db2e7eb51cc49c03, type: 3}
+  - name: Jump2
+    clip: {fileID: 8300000, guid: 885989f1b9a8e4045affbe0ca08e1e88, type: 3}
     volume: 0
     loop: 0
     source: {fileID: 0}

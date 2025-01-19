@@ -57,8 +57,8 @@ public class RobotinMovement : MonoBehaviour
             if (!robotinJump.isJumping)
             {
                 Move();
-                // Play walking sound when moving and grounded
-                if (Mathf.Abs(rb.velocity.x) > 0.1f)
+                // Play walking sound when moving and grounded, but not during landing
+                if (Mathf.Abs(rb.velocity.x) > 0.1f && !robotinJump.IsInLandingCooldown())
                 {
                     SFXManager.Instance.PlayEffect(walkingSoundGroup);
                 }

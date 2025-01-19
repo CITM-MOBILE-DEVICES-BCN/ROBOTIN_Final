@@ -13,6 +13,7 @@ public class RobotinJump : MonoBehaviour
     [SerializeField] private string jumpChargeSound = "JumpCharge";
     [SerializeField] private string jumpReleaseSound = "JumpRelease";
     [SerializeField] private string landingSound = "Landing";
+    [SerializeField] private float landingSoundDelay = 0.1f; // Delay before walking sounds can play
 
     public float additionalJumpForce = 0f;
     public Rigidbody2D rb;
@@ -22,9 +23,15 @@ public class RobotinJump : MonoBehaviour
     public bool isJumping;
     public bool isJumpButtonPressed;
     private float jumpBufferCounter;
+    private float landingCooldown;
 
     private void Update()
     {
+        if (landingCooldown > 0)
+        {
+            landingCooldown -= Time.deltaTime;
+        }
+
         // Jump Input Buffering
         if (Input.GetButtonDown("Jump"))
         {
@@ -81,8 +88,14 @@ public class RobotinJump : MonoBehaviour
             if (robotinCollision.IsGrounded)
             {
                 SFXManager.Instance.PlayEffect(landingSound);
+                landingCooldown = landingSoundDelay;
             }
         }
+    }
+
+    public bool IsInLandingCooldown()
+    {
+        return landingCooldown > 0;
     }
 
     private void Jump(float jumpForceX, float jumpForceY)

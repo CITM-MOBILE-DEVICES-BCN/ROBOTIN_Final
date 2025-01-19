@@ -186,6 +186,8 @@ MonoBehaviour:
   noWallJumpLayer:
     serializedVersion: 2
     m_Bits: 0
+  wallSlideSound: WallSlide
+  isSticked: 0
   IsGrounded: 0
   IsWallSliding: 0
   IsAtEdge: 0
@@ -212,7 +214,10 @@ MonoBehaviour:
   maxJumpForceX: 20
   maxHoldTime: 0.8
   jumpBufferTime: 0.1
-  jumpSounds: {fileID: 11400000, guid: 37d15c7b21684c248bdea4176732802c, type: 2}
+  jumpChargeSound: JumpCharge
+  jumpReleaseSound: JumpRelease
+  landingSound: Landing
+  landingSoundDelay: 0.3
   additionalJumpForce: 0
   rb: {fileID: 1448829700629783454}
   robotinCollision: {fileID: 7416606127824776107}
@@ -235,6 +240,8 @@ MonoBehaviour:
   moveSpeed: 5
   direction: 1
   directionChangeCooldown: 0.2
+  walkingSoundGroup: Walking
+  turnSoundGroup: Turn
   rb: {fileID: 1448829700629783454}
   playerCollision: {fileID: 7416606127824776107}
   robotinJump: {fileID: 4150409576249699643}

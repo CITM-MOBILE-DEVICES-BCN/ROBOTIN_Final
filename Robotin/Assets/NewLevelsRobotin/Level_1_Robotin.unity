@@ -20449,6 +20449,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4150409576249699643, guid: ce5cc8641bbf45d40ac7671838aedaf7,
+        type: 3}
+      propertyPath: landingSoundDelay
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 7586891624617907080, guid: ce5cc8641bbf45d40ac7671838aedaf7,
         type: 3}
       propertyPath: m_Name

@@ -15,14 +15,14 @@ MonoBehaviour:
   groupName: Walking
   sounds:
   - name: Walk1
-    clip: {fileID: 8300000, guid: bda175d589da59a46b374917060cc3e2, type: 3}
+    clip: {fileID: 8300000, guid: 870151ebe80ebdd4c80bbe108c26abbb, type: 3}
     volume: 1
     loop: 0
     source: {fileID: 0}
   - name: Walk2
-    clip: {fileID: 8300000, guid: 87e0c58654f646f4582de0910595eb3a, type: 3}
+    clip: {fileID: 8300000, guid: f44de7590fb267945a697161706975c8, type: 3}
     volume: 1
     loop: 0
     source: {fileID: 0}
   playSequentially: 1
-  currentIndex: 1
+  currentIndex: 0

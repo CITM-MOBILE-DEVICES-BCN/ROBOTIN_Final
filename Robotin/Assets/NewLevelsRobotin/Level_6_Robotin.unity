@@ -22595,7 +22595,7 @@ PrefabInstance:
     - target: {fileID: 5714187443646418410, guid: 0df7fe908a6a19b458c6d32fad7cadff,
         type: 3}
       propertyPath: levelTimeLimit
-      value: 12000
+      value: 300
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

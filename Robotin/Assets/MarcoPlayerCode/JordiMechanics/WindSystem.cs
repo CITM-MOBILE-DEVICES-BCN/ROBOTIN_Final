@@ -47,38 +47,66 @@ public class WindSystem : MonoBehaviour
 
         OnWindStart?.Invoke(windForce);
 
-        ChangeParticleDirection();
+        StartCoroutine(ChangeParticleDirectionSmoothly());
     }
 
     private void StopWind()
     {
         OnWindStop?.Invoke();
-        ResetParticleDirection();
+        StartCoroutine(ResetParticleDirectionSmoothly());
     }
 
-    private void ChangeParticleDirection()
+    private IEnumerator ChangeParticleDirectionSmoothly()
     {
         var velocityModule = windParticles.velocityOverLifetime;
-
-        if (isWindBlowingRight)
-        {
-            velocityModule.x = new ParticleSystem.MinMaxCurve(minMaxParticleVelocity.x, minMaxParticleVelocity.x);
-        }
-        else
-        {
-            velocityModule.x = new ParticleSystem.MinMaxCurve(-minMaxParticleVelocity.x, -minMaxParticleVelocity.x);
-        }
-
         var emissionModule = windParticles.emission;
-        emissionModule.rateOverTime = emissionRate;
+
+        float startVelocity = velocityModule.x.constantMax;
+        float targetVelocity = isWindBlowingRight ? -minMaxParticleVelocity.x : minMaxParticleVelocity.x;
+        float startEmission = emissionModule.rateOverTime.constant;
+        float targetEmission = emissionRate;
+
+        float elapsedTime = 0;
+        while (elapsedTime < 1)
+        {
+            float newVelocity = Mathf.Lerp(startVelocity, targetVelocity, elapsedTime / 1);
+            velocityModule.x = new ParticleSystem.MinMaxCurve(newVelocity, newVelocity);
+
+            float newEmission = Mathf.Lerp(startEmission, targetEmission, elapsedTime / 1);
+            emissionModule.rateOverTime = newEmission;
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        velocityModule.x = new ParticleSystem.MinMaxCurve(targetVelocity, targetVelocity);
+        emissionModule.rateOverTime = targetEmission;
     }
 
-    private void ResetParticleDirection()
+    private IEnumerator ResetParticleDirectionSmoothly()
     {
         var velocityModule = windParticles.velocityOverLifetime;
-        velocityModule.x = new ParticleSystem.MinMaxCurve(0f, 0f);
-
         var emissionModule = windParticles.emission;
-        emissionModule.rateOverTime = defaultEmission;
+
+        float startVelocity = velocityModule.x.constantMax;
+        float targetVelocity = 0f;
+        float startEmission = emissionModule.rateOverTime.constant;
+        float targetEmission = defaultEmission;
+
+        float elapsedTime = 0;
+        while (elapsedTime < 1)
+        {
+            float newVelocity = Mathf.Lerp(startVelocity, targetVelocity, elapsedTime / 1);
+            velocityModule.x = new ParticleSystem.MinMaxCurve(newVelocity, newVelocity);
+
+            float newEmission = Mathf.Lerp(startEmission, targetEmission, elapsedTime / 1);
+            emissionModule.rateOverTime = newEmission;
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        velocityModule.x = new ParticleSystem.MinMaxCurve(targetVelocity, targetVelocity);
+        emissionModule.rateOverTime = targetEmission;
     }
 }

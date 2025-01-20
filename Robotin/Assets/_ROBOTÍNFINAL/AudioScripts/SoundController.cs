@@ -23,7 +23,7 @@ public class SoundController : MonoBehaviour
         if (SFXManager.Instance != null)
         {
             // Assuming SFXManager has volume control
-            // SFXManager.Instance.SetVolume(sfxVolume);
+            //SFXManager.Instance.SetVolume(sfxVolume);
         }
 
         // Start ambient music with delay

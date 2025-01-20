@@ -4843,9 +4843,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 625c5d6b158258447902f8257aef34c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windForceMagnitude: 75
-  windDuration: 10
-  windInterval: 4
+  windForceMagnitude: 25
+  windDuration: 5
+  windInterval: 15
   windParticles: {fileID: 6136335676969901100}
   minMaxParticleVelocity: {x: 30, y: 40}
   emissionRate: 300

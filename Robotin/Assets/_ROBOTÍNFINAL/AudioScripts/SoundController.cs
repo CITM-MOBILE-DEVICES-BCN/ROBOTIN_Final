@@ -20,6 +20,11 @@ public class SoundController : MonoBehaviour
             // Assuming SFXManager has volume control
             //SFXManager.Instance.SetVolume(sfxVolume);
         }
+
+        if (EnvironmentSFXManager.Instance != null)
+        {
+            EnvironmentSFXManager.Instance.PlayEnvironmentSound("AmbientSound");
+        }
     }
 
     // Volume Control Methods

@@ -97,4 +97,15 @@ public class SoundController : MonoBehaviour
     }
 
     // Add more game-specific sound methods as needed
+
+    // Example methods:
+    public void PlayBossMusic()
+    {
+        SoundTrackManager.Instance.PlayMusic("BossTrack");
+    }
+    
+    public void PlayEnvironmentAmbience(string soundName)
+    {
+        EnvironmentSFXManager.Instance.PlayEnvironmentSound(soundName);
+    }
 } 

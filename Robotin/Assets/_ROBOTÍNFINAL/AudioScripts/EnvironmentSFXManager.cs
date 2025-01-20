@@ -1,7 +1,9 @@
 using UnityEngine;
 
-public class EnvironmentSFXController : MonoBehaviour
+public class EnvironmentSFXManager : MonoBehaviour
 {
+    public static EnvironmentSFXManager Instance { get; private set; }
+
     [System.Serializable]
     public class EnvironmentSoundEntry
     {
@@ -20,6 +22,19 @@ public class EnvironmentSFXController : MonoBehaviour
     }
 
     [SerializeField] private EnvironmentSoundEntry[] environmentSounds;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     
     private void Start()
     {

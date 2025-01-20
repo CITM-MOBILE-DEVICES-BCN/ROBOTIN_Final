@@ -44,7 +44,7 @@ public class PlayerStats : MonoBehaviour
                 print("dead");
                 AudioManager.instance.PlayDeathSound();
                 AudioManager.instance.PlayTitleMusic();
-                NavigationManager.Instance.LoadScene("MainMenuKyoto_1");
+                NavigationManager.Instance.LoadScene("KyotoMeta");
             }
             else
             {
@@ -78,7 +78,7 @@ public class PlayerStats : MonoBehaviour
         {
             AudioManager.instance.PlayDeathSound();
             AudioManager.instance.PlayTitleMusic();
-            NavigationManager.Instance.LoadScene("MainMenuKyoto_1");
+            NavigationManager.Instance.LoadScene("KyotoMeta");
         }
     }
 

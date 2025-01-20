@@ -2086,7 +2086,7 @@ MonoBehaviour:
   inGameSceneName: InGame
   settingsPanelId: SettingsPanel
   shopSceneName: Shop_1
-  exitSceneName: 2.Game Selector
+  exitSceneName: RobotinLobby
 --- !u!1 &1348642121
 GameObject:
   m_ObjectHideFlags: 0

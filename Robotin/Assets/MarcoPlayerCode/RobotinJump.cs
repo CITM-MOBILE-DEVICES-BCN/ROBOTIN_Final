@@ -77,7 +77,7 @@ public class RobotinJump : MonoBehaviour
                 float jumpForceY = Mathf.Lerp(minJumpForceY, maxJumpForceY, jumpHoldTime / maxHoldTime);
                 float jumpForceX = Mathf.Lerp(minJumpForceX, maxJumpForceX, jumpHoldTime / maxHoldTime);
                 Jump(jumpForceX, jumpForceY);
-                GetComponent<SpriteRenderer>().color = Color.blue;
+                GetComponent<SpriteRenderer>().color = Color.white;
             }
         }
 

@@ -15,6 +15,11 @@ public class WindSystem : MonoBehaviour
     public event Action<Vector2> OnWindStart;
     public event Action OnWindStop;
 
+    public ParticleSystem windParticles;
+    [SerializeField] private Vector2 minMaxParticleVelocity = new Vector2(5f, 0f);
+    [SerializeField] private float emissionRate = 10f;
+    [SerializeField] private float defaultEmission;
+
     private void Start()
     {
         StartCoroutine(WindRoutine());
@@ -42,13 +47,38 @@ public class WindSystem : MonoBehaviour
 
         OnWindStart?.Invoke(windForce);
 
-        Debug.Log($"Viento iniciado: Dirección {(windForce.x > 0 ? "Derecha" : "Izquierda")}");
+        ChangeParticleDirection();
     }
 
     private void StopWind()
     {
         OnWindStop?.Invoke();
+        ResetParticleDirection();
+    }
 
-        Debug.Log("Viento detenido.");
+    private void ChangeParticleDirection()
+    {
+        var velocityModule = windParticles.velocityOverLifetime;
+
+        if (isWindBlowingRight)
+        {
+            velocityModule.x = new ParticleSystem.MinMaxCurve(minMaxParticleVelocity.x, minMaxParticleVelocity.x);
+        }
+        else
+        {
+            velocityModule.x = new ParticleSystem.MinMaxCurve(-minMaxParticleVelocity.x, -minMaxParticleVelocity.x);
+        }
+
+        var emissionModule = windParticles.emission;
+        emissionModule.rateOverTime = emissionRate;
+    }
+
+    private void ResetParticleDirection()
+    {
+        var velocityModule = windParticles.velocityOverLifetime;
+        velocityModule.x = new ParticleSystem.MinMaxCurve(0f, 0f);
+
+        var emissionModule = windParticles.emission;
+        emissionModule.rateOverTime = defaultEmission;
     }
 }

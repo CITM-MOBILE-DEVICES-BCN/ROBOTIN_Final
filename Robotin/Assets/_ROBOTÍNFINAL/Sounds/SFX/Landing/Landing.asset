@@ -16,12 +16,12 @@ MonoBehaviour:
   sounds:
   - name: Landing1
     clip: {fileID: 8300000, guid: 81036c386eb17124f9b3b8c755292a93, type: 3}
-    volume: 0.4
+    volume: 0.3
     loop: 0
     source: {fileID: 0}
   - name: Landing2
     clip: {fileID: 8300000, guid: 0abbc9d0a34ba094b89387af88600d28, type: 3}
-    volume: 0.4
+    volume: 0.3
     loop: 0
     source: {fileID: 0}
   playSequentially: 0

@@ -6,6 +6,7 @@ public class EnvironmentSoundGroup : ScriptableObject
 {
     public string groupName;
     public bool playSequentially = false;
+    public bool isLoopingGroup = true; // Whether this group contains looping ambient sounds or one-shot effects
     public List<EnvironmentSound> sounds = new List<EnvironmentSound>();
     
     [HideInInspector]
@@ -18,9 +19,6 @@ public class EnvironmentSoundGroup : ScriptableObject
         public AudioClip clip;
         [Range(0f, 1f)]
         public float volume = 1f;
-        public bool playOnStart;
-        public bool loop;
-        [Tooltip("Time to wait before playing the sound again (0 for immediate replay)")]
         public float playInterval = 0f;
         
         [HideInInspector]

@@ -53,23 +53,19 @@ public class EnvironmentSFXManager : MonoBehaviour
             {
                 soundEntry.source = gameObject.AddComponent<AudioSource>();
                 soundEntry.source.clip = soundEntry.clip;
-                soundEntry.source.volume = 0f; // Start with volume at 0 for fading
+                soundEntry.source.volume = 0f;
                 soundEntry.source.loop = false;
                 soundEntry.source.playOnAwake = false;
-                
-                if (soundEntry.playOnStart)
-                {
-                    PlayEnvironmentSound(group, soundEntry.soundName);
-                }
             }
         }
     }
 
     private void Update()
     {
+        // Only check for continuous playback for looping groups
         foreach (var currentGroup in soundGroups)
         {
-            if (currentGroup == null) continue;
+            if (currentGroup == null || !currentGroup.isLoopingGroup) continue;
 
             // Check if any sound in the group is currently playing
             bool isAnyPlaying = false;
@@ -93,13 +89,16 @@ public class EnvironmentSFXManager : MonoBehaviour
     public void PlayEnvironmentSound(EnvironmentSoundGroup group)
     {
         if (group == null) return;
-        
-        // Stop any currently playing sounds in this group
-        foreach (var groupSound in group.sounds)
+
+        if (group.isLoopingGroup)
         {
-            if (groupSound.isPlaying)
+            // For looping groups, stop other sounds in the group
+            foreach (var groupSound in group.sounds)
             {
-                StopSound(groupSound);
+                if (groupSound.isPlaying)
+                {
+                    StopSound(groupSound);
+                }
             }
         }
 
@@ -132,26 +131,37 @@ public class EnvironmentSFXManager : MonoBehaviour
     {
         if (soundToPlay == null || soundToPlay.source == null) return;
 
-        // Cancel any ongoing fade for this group
-        if (fadeCoroutines.ContainsKey(group) && fadeCoroutines[group] != null)
+        if (group.isLoopingGroup)
         {
-            StopCoroutine(fadeCoroutines[group]);
+            // For looping sounds, use crossfade
+            if (fadeCoroutines.ContainsKey(group) && fadeCoroutines[group] != null)
+            {
+                StopCoroutine(fadeCoroutines[group]);
+            }
+            fadeCoroutines[group] = StartCoroutine(CrossFadeSound(soundToPlay, group));
         }
-
-        // Start crossfade
-        fadeCoroutines[group] = StartCoroutine(CrossFadeSound(soundToPlay, group));
+        else
+        {
+            // For one-shot sounds, play directly
+            soundToPlay.isPlaying = true;
+            soundToPlay.source.volume = soundToPlay.volume;
+            soundToPlay.source.Play();
+        }
 
         // Schedule next play time based on clip length and interval
         float clipLength = soundToPlay.clip != null ? soundToPlay.clip.length : 0f;
         
-        // If interval is 0, schedule next sound to play immediately after this one
-        if (soundToPlay.playInterval == 0)
+        if (group.isLoopingGroup)
         {
-            nextGroupPlayTime[group] = Time.time + clipLength - crossFadeDuration;
-        }
-        else
-        {
-            nextGroupPlayTime[group] = Time.time + clipLength + soundToPlay.playInterval;
+            // For looping sounds, schedule next play considering crossfade
+            if (soundToPlay.playInterval == 0)
+            {
+                nextGroupPlayTime[group] = Time.time + clipLength - crossFadeDuration;
+            }
+            else
+            {
+                nextGroupPlayTime[group] = Time.time + clipLength + soundToPlay.playInterval;
+            }
         }
     }
 
@@ -260,7 +270,21 @@ public class EnvironmentSFXManager : MonoBehaviour
     {
         if (groupDictionary.TryGetValue(groupName, out var group))
         {
-            StopEnvironmentSound(group, soundName);
+            var sound = group.GetSpecificSound(soundName);
+            if (sound != null)
+            {
+                if (group.isLoopingGroup)
+                {
+                    StopSound(sound); // Fade out looping sounds
+                }
+                else
+                {
+                    // For one-shot sounds, stop immediately
+                    sound.isPlaying = false;
+                    sound.source.Stop();
+                    sound.source.volume = 0f;
+                }
+            }
         }
     }
 

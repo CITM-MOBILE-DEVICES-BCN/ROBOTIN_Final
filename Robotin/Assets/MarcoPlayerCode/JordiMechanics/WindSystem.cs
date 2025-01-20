@@ -11,6 +11,7 @@ public class WindSystem : MonoBehaviour
 
     private Vector2 windForce; 
     private bool isWindBlowingRight = true; 
+    private bool isWindActive = false;
 
     public event Action<Vector2> OnWindStart;
     public event Action OnWindStop;
@@ -23,6 +24,14 @@ public class WindSystem : MonoBehaviour
     private void Start()
     {
         StartCoroutine(WindRoutine());
+    }
+
+    private void OnDisable()
+    {
+        if (isWindActive)
+        {
+            StopWind();
+        }
     }
 
     private IEnumerator WindRoutine()
@@ -41,23 +50,30 @@ public class WindSystem : MonoBehaviour
 
     private void StartWind()
     {
+        if (isWindActive) return;
+        
+        isWindActive = true;
         windForce = isWindBlowingRight ? Vector2.right * windForceMagnitude : Vector2.left * windForceMagnitude;
-
         isWindBlowingRight = !isWindBlowingRight;
 
         OnWindStart?.Invoke(windForce);
-
         StartCoroutine(ChangeParticleDirectionSmoothly());
+        EnvironmentSFXManager.Instance.PlayEnvironmentSound("WindSoundGroup");
     }
 
     private void StopWind()
     {
+        if (!isWindActive) return;
+        
+        isWindActive = false;
         OnWindStop?.Invoke();
         StartCoroutine(ResetParticleDirectionSmoothly());
+        EnvironmentSFXManager.Instance.StopEnvironmentSound("WindSoundGroup", "Wind1");
     }
 
     private IEnumerator ChangeParticleDirectionSmoothly()
     {
+
         var velocityModule = windParticles.velocityOverLifetime;
         var emissionModule = windParticles.emission;
 
@@ -79,12 +95,15 @@ public class WindSystem : MonoBehaviour
             yield return null;
         }
 
+
         velocityModule.x = new ParticleSystem.MinMaxCurve(targetVelocity, targetVelocity);
         emissionModule.rateOverTime = targetEmission;
     }
 
     private IEnumerator ResetParticleDirectionSmoothly()
     {
+
+
         var velocityModule = windParticles.velocityOverLifetime;
         var emissionModule = windParticles.emission;
 

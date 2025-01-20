@@ -9,25 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72f4a146b6db8994cb5c97851b4a8237, type: 3}
+  m_Script: {fileID: 11500000, guid: fe54452ec0765904297b7ab219f4c6e9, type: 3}
   m_Name: AmbientSound
   m_EditorClassIdentifier: 
-  groupName: AmbientSound
-  sounds:
-  - name: Ambient1
-    clip: {fileID: 8300000, guid: ab382e36f13a1dc448d212c2bf6c91d4, type: 3}
-    volume: 0.2
-    loop: 0
-    source: {fileID: 0}
-  - name: Ambient2
-    clip: {fileID: 8300000, guid: 139982ee37a243d40aab3b2b96b2c253, type: 3}
-    volume: 0.2
-    loop: 0
-    source: {fileID: 0}
-  - name: Ambient3
-    clip: {fileID: 8300000, guid: 1931e41fd8e3b5f42a814ee01c74f5cc, type: 3}
-    volume: 0.2
-    loop: 0
-    source: {fileID: 0}
-  playSequentially: 0
-  currentIndex: 0
+  groupName: 
+  sounds: []

@@ -28750,6 +28750,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3670376257142449622, guid: f156375c1168f474280288d36c8a550e,
+        type: 3}
+      propertyPath: musicTracks.Array.data[0].layers.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8743811340966940105, guid: f156375c1168f474280288d36c8a550e,
         type: 3}
       propertyPath: m_Name

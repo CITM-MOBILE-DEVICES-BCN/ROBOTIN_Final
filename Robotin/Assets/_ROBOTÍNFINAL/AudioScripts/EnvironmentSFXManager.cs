@@ -1,27 +1,12 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class EnvironmentSFXManager : MonoBehaviour
 {
     public static EnvironmentSFXManager Instance { get; private set; }
 
-    [System.Serializable]
-    public class EnvironmentSoundEntry
-    {
-        public string soundName;
-        public string soundGroup;
-        [Range(0f, 1f)]
-        public float volumeMultiplier = 1f;
-        public bool playOnStart;
-        public bool loop;
-        [HideInInspector]
-        public bool isPlaying;
-        [Tooltip("Time to wait before playing the sound again")]
-        public float playInterval = 0f;
-        [HideInInspector]
-        public float nextPlayTime;
-    }
-
-    [SerializeField] private EnvironmentSoundEntry[] environmentSounds;
+    [SerializeField] private List<SoundGroup> soundGroups = new List<SoundGroup>();
+    private Dictionary<string, SoundGroup> groupDictionary = new Dictionary<string, SoundGroup>();
 
     private void Awake()
     {
@@ -29,135 +14,101 @@ public class EnvironmentSFXManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            InitializeAudioSources();
+            InitializeGroups();
         }
         else
         {
             Destroy(gameObject);
         }
     }
+
+    private void InitializeGroups()
+    {
+        groupDictionary.Clear();
+        foreach (var group in soundGroups)
+        {
+            if (group != null && !string.IsNullOrEmpty(group.groupName))
+            {
+                groupDictionary[group.groupName] = group;
+            }
+        }
+    }
     
-    private void Start()
+    private void InitializeAudioSources()
     {
-        // Play sounds marked as playOnStart
-        for (int i = 0; i < environmentSounds.Length; i++)
+        foreach (var group in soundGroups)
         {
-            if (environmentSounds[i].playOnStart)
+            if (group == null) continue;
+            
+            foreach (var sound in group.sounds)
             {
-                PlayEnvironmentSound(i);
+                sound.source = gameObject.AddComponent<AudioSource>();
+                sound.source.clip = sound.clip;
+                sound.source.volume = sound.volume;
+                sound.source.loop = sound.loop;
+                sound.source.playOnAwake = false;
             }
         }
     }
 
-    private void Update()
+    public void PlayEnvironmentSound(SoundGroup group)
     {
-        // Handle looping sounds with intervals
-        for (int i = 0; i < environmentSounds.Length; i++)
+        if (group == null) return;
+        
+        Sound sound = group.playSequentially ? group.GetNextSound() : group.sounds[Random.Range(0, group.sounds.Count)];
+        if (sound != null && sound.source != null)
         {
-            if (environmentSounds[i].loop && environmentSounds[i].isPlaying && environmentSounds[i].playInterval > 0)
+            sound.source.Play();
+        }
+    }
+
+    public void PlayEnvironmentSound(string groupName)
+    {
+        if (groupDictionary.TryGetValue(groupName, out var group))
+        {
+            PlayEnvironmentSound(group);
+        }
+    }
+
+    public void PlaySpecificSound(SoundGroup group, string soundName)
+    {
+        if (group == null) return;
+        var sound = group.GetSpecificSound(soundName);
+        if (sound != null && sound.source != null)
+        {
+            sound.source.Play();
+        }
+    }
+
+    public void StopEnvironmentSound(SoundGroup group, string soundName)
+    {
+        if (group == null) return;
+        var sound = group.GetSpecificSound(soundName);
+        if (sound != null && sound.source != null)
+        {
+            sound.source.Stop();
+        }
+    }
+
+    public void StopAllSounds()
+    {
+        foreach (var group in soundGroups)
+        {
+            if (group == null) continue;
+            
+            foreach (var sound in group.sounds)
             {
-                if (Time.time >= environmentSounds[i].nextPlayTime)
+                if (sound.source != null)
                 {
-                    PlayEnvironmentSoundDirectly(i);
+                    sound.source.Stop();
                 }
-            }
-        }
-    }
-
-    public void PlayEnvironmentSound(int index)
-    {
-        if (index < 0 || index >= environmentSounds.Length) return;
-        
-        var sound = environmentSounds[index];
-        
-        if (sound.loop)
-        {
-            if (!sound.isPlaying)
-            {
-                sound.isPlaying = true;
-                PlayEnvironmentSoundDirectly(index);
-            }
-        }
-        else
-        {
-            PlayEnvironmentSoundDirectly(index);
-        }
-    }
-
-    private void PlayEnvironmentSoundDirectly(int index)
-    {
-        var sound = environmentSounds[index];
-        if (sound.loop)
-        {
-            // For looping sounds with intervals, schedule next play
-            if (sound.playInterval > 0)
-            {
-                sound.nextPlayTime = Time.time + sound.playInterval;
-            }
-        }
-        
-        // Use specific sound name if provided, otherwise use group for random variation
-        if (!string.IsNullOrEmpty(sound.soundName))
-        {
-            SFXManager.Instance.PlaySpecificEffect(sound.soundGroup, sound.soundName, sound.volumeMultiplier);
-        }
-        else
-        {
-            SFXManager.Instance.PlayEffect(sound.soundGroup, sound.volumeMultiplier);
-        }
-    }
-
-    public void PlayEnvironmentSound(string soundName)
-    {
-        for (int i = 0; i < environmentSounds.Length; i++)
-        {
-            if (environmentSounds[i].soundName == soundName)
-            {
-                PlayEnvironmentSound(i);
-                return;
-            }
-        }
-    }
-
-    public void StopEnvironmentSound(int index)
-    {
-        if (index < 0 || index >= environmentSounds.Length) return;
-        
-        var sound = environmentSounds[index];
-        if (sound.isPlaying)
-        {
-            sound.isPlaying = false;
-            if (!string.IsNullOrEmpty(sound.soundName))
-            {
-                SFXManager.Instance.StopEffect(sound.soundGroup, sound.soundName);
-            }
-        }
-    }
-
-    public void StopEnvironmentSound(string soundName)
-    {
-        for (int i = 0; i < environmentSounds.Length; i++)
-        {
-            if (environmentSounds[i].soundName == soundName)
-            {
-                StopEnvironmentSound(i);
-                return;
-            }
-        }
-    }
-
-    public void StopAllEnvironmentSounds()
-    {
-        for (int i = 0; i < environmentSounds.Length; i++)
-        {
-            if (environmentSounds[i].isPlaying)
-            {
-                StopEnvironmentSound(i);
             }
         }
     }
 
     private void OnDisable()
     {
-        StopAllEnvironmentSounds();
+        StopAllSounds();
     }
 } 

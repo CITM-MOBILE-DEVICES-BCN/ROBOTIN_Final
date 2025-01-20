@@ -6,11 +6,15 @@ public class LobbyScreen : MonoBehaviour
 {
     [SerializeField] Button RobotinButton;
     [SerializeField] Button WaltersButton;
+    [SerializeField] Button KyotoButton;
+    [SerializeField] Button RuinButton;
 
     private void Start()
     {
         RobotinButton.onClick.AddListener(OnRobotinButtonClicked);
         WaltersButton.onClick.AddListener(OnWaltersButtonClicked);
+        KyotoButton.onClick.AddListener(OnKyotoButtonClicked);
+        RuinButton.onClick.AddListener(OnRuinButtonClicked);
     }
 
     private void OnRobotinButtonClicked()
@@ -21,5 +25,15 @@ public class LobbyScreen : MonoBehaviour
     private void OnWaltersButtonClicked()
     {
         GameManager_R.instance.LoadScene("Meta");
+    }
+
+    private void OnKyotoButtonClicked()
+    {
+        GameManager_R.instance.LoadScene("KyotoMeta");
+    }
+
+    private void OnRuinButtonClicked()
+    {
+        GameManager_R.instance.LoadScene("RuinMeta");
     }
 }

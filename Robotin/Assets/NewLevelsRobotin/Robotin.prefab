@@ -77,10 +77,10 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 19
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
     type: 3}
-  m_Color: {r: 0.21537916, g: 0.3668148, b: 0.8301887, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -177,12 +177,12 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
-  wallSlideSpeed: 2
+  wallSlideSpeed: 3
   edgeCheckDistance: 0.1
   downGravity: 15
   upGravity: 12
   apexGravity: 5
-  maxVerticalSpeed: 10
+  maxVerticalSpeed: 40
   wallCheckDistance: 0.55
   offsetWallCheck: 0.48
   jumpGroundCheckDistance: 0.3
@@ -212,9 +212,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minJumpForceY: 20
-  maxJumpForceY: 50
+  maxJumpForceY: 47
   minJumpForceX: 10
-  maxJumpForceX: 20
+  maxJumpForceX: 18
   maxHoldTime: 0.8
   jumpBufferTime: 0.1
   jumpChargeSound: JumpCharge
@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3da0f32b67966848b90a63c485f8a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 7
   direction: 1
   directionChangeCooldown: 0.2
   walkingSoundGroup: Walking

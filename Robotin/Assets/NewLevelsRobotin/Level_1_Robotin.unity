@@ -28750,6 +28750,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4321649324480720451, guid: f156375c1168f474280288d36c8a550e,
+        type: 3}
+      propertyPath: soundGroups.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321649324480720451, guid: f156375c1168f474280288d36c8a550e,
+        type: 3}
+      propertyPath: soundGroups.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3ae6d6c2cf23d264e813a34d037f6644,
+        type: 2}
     - target: {fileID: 6762128184755228971, guid: f156375c1168f474280288d36c8a550e,
         type: 3}
       propertyPath: crossFadeDuration

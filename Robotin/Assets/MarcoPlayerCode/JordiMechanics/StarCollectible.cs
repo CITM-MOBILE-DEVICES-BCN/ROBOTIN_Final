@@ -16,6 +16,7 @@ public class StarCollectible : MonoBehaviour
             {
                 scoreManager.AddScore(scoreValue);
             }
+            SFXManager.Instance.PlayEffect("Star");
 
             // efectos
 

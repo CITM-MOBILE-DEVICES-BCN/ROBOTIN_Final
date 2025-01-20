@@ -17,7 +17,7 @@ MonoBehaviour:
   isLoopingGroup: 0
   sounds:
   - soundName: Wind1
-    clip: {fileID: 8300000, guid: 2333b726d05c74cd59cd763bcc388443, type: 3}
+    clip: {fileID: 8300000, guid: 9f61c9d34a9743e4bb97b8a52fdfd586, type: 3}
     volume: 0.5
     playInterval: 0
     source: {fileID: 0}

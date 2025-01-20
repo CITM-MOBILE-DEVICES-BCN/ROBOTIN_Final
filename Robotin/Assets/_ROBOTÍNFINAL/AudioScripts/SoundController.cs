@@ -23,7 +23,7 @@ public class SoundController : MonoBehaviour
         if (SFXManager.Instance != null)
         {
             // Assuming SFXManager has volume control
-            // SFXManager.Instance.SetVolume(sfxVolume);
+            //SFXManager.Instance.SetVolume(sfxVolume);
         }
 
         // Start ambient music with delay
@@ -97,4 +97,15 @@ public class SoundController : MonoBehaviour
     }
 
     // Add more game-specific sound methods as needed
+
+    // Example methods:
+    public void PlayBossMusic()
+    {
+        SoundTrackManager.Instance.PlayMusic("BossTrack");
+    }
+    
+    public void PlayEnvironmentAmbience(string soundName)
+    {
+        EnvironmentSFXManager.Instance.PlayEnvironmentSound(soundName);
+    }
 } 

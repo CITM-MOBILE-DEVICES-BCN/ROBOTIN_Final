@@ -24,5 +24,10 @@ MonoBehaviour:
     volume: 0.2
     loop: 0
     source: {fileID: 0}
+  - name: Ambient3
+    clip: {fileID: 8300000, guid: 1931e41fd8e3b5f42a814ee01c74f5cc, type: 3}
+    volume: 0.2
+    loop: 0
+    source: {fileID: 0}
   playSequentially: 0
   currentIndex: 0

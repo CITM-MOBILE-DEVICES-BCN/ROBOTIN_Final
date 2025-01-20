@@ -188,7 +188,7 @@ MonoBehaviour:
   jumpGroundCheckDistance: 0.3
   noWallJumpLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   wallSlideSound: WallSlide
   isSticked: 0
   IsGrounded: 0

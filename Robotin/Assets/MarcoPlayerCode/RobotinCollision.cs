@@ -13,6 +13,7 @@ public class RobotinCollision : MonoBehaviour
     [SerializeField] private float offsetWallCheck = 0.3f;
     [SerializeField] private float jumpGroundCheckDistance = 0.3f;
     [SerializeField] private LayerMask noWallJumpLayer;
+    [SerializeField] private float fastWallSlideSpeed = 3f;
     [SerializeField] private string wallSlideSound = "WallSlide";
 
     public bool isSticked = false;
@@ -22,6 +23,7 @@ public class RobotinCollision : MonoBehaviour
     public bool IsAtEdge;
     public bool IsNearWall;
     public bool isJumping;
+    public bool isNoWallCollision;
 
     public Rigidbody2D rb;
     public Collider2D col;
@@ -63,10 +65,25 @@ public class RobotinCollision : MonoBehaviour
     {
         if (IsWallSliding)
         {
-            rb.velocity = new Vector2(rb.velocity.x, -wallSlideSpeed);
+            float currentWallSlideSpeed = wallSlideSpeed;
+
+            Vector2 wallCheckOrigin = (Vector2)transform.position;
+            RaycastHit2D topWallCheck = Physics2D.Raycast(new(wallCheckOrigin.x, wallCheckOrigin.y + offsetWallCheck), new(robotinMovement.GetDirection(), 0), jumpGroundCheckDistance, noWallJumpLayer);
+            RaycastHit2D middleWallCheck = Physics2D.Raycast(wallCheckOrigin, new(robotinMovement.GetDirection(), 0), wallCheckDistance, noWallJumpLayer);
+            RaycastHit2D bottomWallCheck = Physics2D.Raycast(new(wallCheckOrigin.x, wallCheckOrigin.y - offsetWallCheck), new(robotinMovement.GetDirection(), 0), jumpGroundCheckDistance, noWallJumpLayer);
+
+            isNoWallCollision = topWallCheck || middleWallCheck || bottomWallCheck;
+
+            if (isNoWallCollision)
+            {
+                robotinMovement.ChangeDirection();
+                IsWallSliding = false;
+            }
+
+            rb.velocity = new Vector2(0.0f, -currentWallSlideSpeed);
             rb.gravityScale = 0f;
 
-            if(isSticked == false)
+            if (isSticked == false)
             {
                 SFXManager.Instance.PlayEffect(wallSlideSound);
                 isSticked = true;
@@ -101,11 +118,9 @@ public class RobotinCollision : MonoBehaviour
         CheckForEdge();
         CheckForWall();
 
-        //clamp velocity y to avoid falling through the ground
         if (rb.velocity.y < -maxVerticalSpeed)
         {
             rb.velocity = new Vector2(rb.velocity.x, -maxVerticalSpeed);
-            Debug.Log("Velocity clamped MINOR");
         }
     }
 
@@ -136,7 +151,7 @@ public class RobotinCollision : MonoBehaviour
     }
 
     private void CheckForWall()
-    {
+    {        
         Vector2 wallCheckOrigin = (Vector2)transform.position;
         RaycastHit2D topWallCheck = Physics2D.Raycast(new (wallCheckOrigin.x , wallCheckOrigin.y + offsetWallCheck), new (robotinMovement.GetDirection(), 0), jumpGroundCheckDistance, groundLayer);
         RaycastHit2D middleWallCheck = Physics2D.Raycast(wallCheckOrigin, new (robotinMovement.GetDirection(), 0), wallCheckDistance, groundLayer);

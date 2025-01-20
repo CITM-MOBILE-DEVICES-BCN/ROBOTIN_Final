@@ -23,7 +23,9 @@ public class SoundController : MonoBehaviour
 
         if (EnvironmentSFXManager.Instance != null)
         {
+            SoundTrackManager.Instance.PlayMusic("MenuMusic");
             EnvironmentSFXManager.Instance.PlayEnvironmentSound("AmbientSound");
+
         }
     }
 

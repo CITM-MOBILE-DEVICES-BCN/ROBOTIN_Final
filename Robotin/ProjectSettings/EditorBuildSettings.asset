@@ -44,4 +44,28 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/NewLevelsRobotin/Level_5_Robotin.unity
     guid: 711a0c856a92bff4ab8190ac0eb32d8e
+  - enabled: 1
+    path: Assets/ScenesRuin/4.Game1.unity
+    guid: d048db92539ef414694ab70fd19186c5
+  - enabled: 1
+    path: Assets/ScenesRuin/5.Game2.unity
+    guid: 8f58e6984722d884fb8960206bf73873
+  - enabled: 1
+    path: Assets/ScenesRuin/6.Game3.unity
+    guid: a039716526d73044b94b4da7a098ae7c
+  - enabled: 1
+    path: Assets/ScenesRuin/RuinMeta.unity
+    guid: 71e2ce42734ca374085ed28438410ee9
+  - enabled: 1
+    path: Assets/ScenesKyoto/KyotoMeta.unity
+    guid: 5c15c8852d2d23d4985b77666019b9ec
+  - enabled: 1
+    path: Assets/ScenesKyoto/InGame.unity
+    guid: f2b7ce81a4c552649ae5da20ea6ae865
+  - enabled: 1
+    path: Assets/ScenesKyoto/InGame_1.unity
+    guid: fdf077fb61811844cbdee123acce8e90
+  - enabled: 1
+    path: Assets/ScenesKyoto/Shop_1.unity
+    guid: 883fd2d1c41fa094db816e4b2e897f41
   m_configObjects: {}

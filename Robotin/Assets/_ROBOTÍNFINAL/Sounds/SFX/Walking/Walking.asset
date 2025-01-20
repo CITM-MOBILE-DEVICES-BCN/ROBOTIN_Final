@@ -25,4 +25,4 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   playSequentially: 1
-  currentIndex: 1
+  currentIndex: 0

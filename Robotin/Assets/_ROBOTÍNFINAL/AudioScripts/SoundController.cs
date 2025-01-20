@@ -5,7 +5,7 @@ public class SoundController : MonoBehaviour
 {
     [Header("Music Settings")]
     [SerializeField] private float musicStartDelay = 2f;
-    [SerializeField] private string ambientTrackGroup = "AmbientTrackGroup1";
+    [SerializeField] private string ambientTrackGroup;
     
     [Header("Sound Settings")]
     [SerializeField] private float masterVolume = 1f;

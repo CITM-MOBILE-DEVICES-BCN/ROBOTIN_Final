@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6146484683117256620
 Transform:
@@ -47,7 +47,7 @@ MonoBehaviour:
   musicTracks:
   - name: Track1
     clip: {fileID: 8300000, guid: 7911a9192a7cf4b4a91379fefa85e79d, type: 3}
-    volume: 0.7
+    volume: 1
     loop: 1
     fadeInDuration: 1
     fadeOutDuration: 1

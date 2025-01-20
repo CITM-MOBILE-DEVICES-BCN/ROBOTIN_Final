@@ -181,6 +181,8 @@ MonoBehaviour:
   edgeCheckDistance: 0.1
   downGravity: 15
   upGravity: 12
+  apexGravity: 5
+  maxVerticalSpeed: 10
   wallCheckDistance: 0.55
   offsetWallCheck: 0.48
   jumpGroundCheckDistance: 0.3

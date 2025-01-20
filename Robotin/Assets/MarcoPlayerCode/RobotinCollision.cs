@@ -7,6 +7,8 @@ public class RobotinCollision : MonoBehaviour
     [SerializeField] private float edgeCheckDistance = 0.1f;
     [SerializeField] public float downGravity = 5f;
     [SerializeField] private float upGravity = 4f;
+    [SerializeField] private float apexGravity = 5f;
+    [SerializeField] private float maxVerticalSpeed = 10f;
     [SerializeField] private float wallCheckDistance = 0.1f;
     [SerializeField] private float offsetWallCheck = 0.3f;
     [SerializeField] private float jumpGroundCheckDistance = 0.3f;
@@ -72,18 +74,39 @@ public class RobotinCollision : MonoBehaviour
         }
         else
         {
-            if (rb.velocity.y < 0)
+            if (rb.velocity.y < -1f)
             {
                 rb.gravityScale = downGravity;
             }
-            else
+            else if (rb.velocity.y > 1f)
             {
                 rb.gravityScale = upGravity;
+            }
+            else
+            {
+                rb.gravityScale = apexGravity;
+            }
+
+            if (IsNearWall && rb.velocity.y > 0.5f)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.98f);
+
+                if (rb.velocity.y < 0.01f)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, 0f);
+                }
             }
         }
 
         CheckForEdge();
         CheckForWall();
+
+        //clamp velocity y to avoid falling through the ground
+        if (rb.velocity.y < -maxVerticalSpeed)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, -maxVerticalSpeed);
+            Debug.Log("Velocity clamped MINOR");
+        }
     }
 
     private void CheckForEdge()

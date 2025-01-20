@@ -7,6 +7,7 @@ public class EnvironmentSFXManager : MonoBehaviour
 
     [SerializeField] private List<EnvironmentSoundGroup> soundGroups = new List<EnvironmentSoundGroup>();
     private Dictionary<string, EnvironmentSoundGroup> groupDictionary = new Dictionary<string, EnvironmentSoundGroup>();
+    private Dictionary<EnvironmentSoundGroup, float> nextGroupPlayTime = new Dictionary<EnvironmentSoundGroup, float>();
 
     private void Awake()
     {
@@ -26,11 +27,13 @@ public class EnvironmentSFXManager : MonoBehaviour
     private void InitializeGroups()
     {
         groupDictionary.Clear();
+        nextGroupPlayTime.Clear();
         foreach (var group in soundGroups)
         {
             if (group != null && !string.IsNullOrEmpty(group.groupName))
             {
                 groupDictionary[group.groupName] = group;
+                nextGroupPlayTime[group] = 0f;
             }
         }
     }
@@ -41,17 +44,17 @@ public class EnvironmentSFXManager : MonoBehaviour
         {
             if (group == null) continue;
             
-            foreach (var sound in group.sounds)
+            foreach (var soundEntry in group.sounds)
             {
-                sound.source = gameObject.AddComponent<AudioSource>();
-                sound.source.clip = sound.clip;
-                sound.source.volume = sound.volume;
-                sound.source.loop = sound.loop;
-                sound.source.playOnAwake = false;
+                soundEntry.source = gameObject.AddComponent<AudioSource>();
+                soundEntry.source.clip = soundEntry.clip;
+                soundEntry.source.volume = soundEntry.volume;
+                soundEntry.source.loop = false; // We'll handle looping ourselves
+                soundEntry.source.playOnAwake = false;
                 
-                if (sound.playOnStart)
+                if (soundEntry.playOnStart)
                 {
-                    PlayEnvironmentSound(group, sound.soundName);
+                    PlayEnvironmentSound(group, soundEntry.soundName);
                 }
             }
         }
@@ -59,20 +62,25 @@ public class EnvironmentSFXManager : MonoBehaviour
 
     private void Update()
     {
-        // Handle interval-based sounds
-        foreach (var group in soundGroups)
+        foreach (var currentGroup in soundGroups)
         {
-            if (group == null) continue;
-            
-            foreach (var sound in group.sounds)
+            if (currentGroup == null) continue;
+
+            // Check if any sound in the group is currently playing
+            bool isAnyPlaying = false;
+            foreach (var groupSound in currentGroup.sounds)
             {
-                if (sound.isPlaying && sound.playInterval > 0)
+                if (groupSound.isPlaying && groupSound.source.isPlaying)
                 {
-                    if (Time.time >= sound.nextPlayTime)
-                    {
-                        PlaySoundDirectly(sound);
-                    }
+                    isAnyPlaying = true;
+                    break;
                 }
+            }
+
+            // If no sound is playing and it's time for the next sound
+            if (!isAnyPlaying && Time.time >= nextGroupPlayTime[currentGroup])
+            {
+                PlayEnvironmentSound(currentGroup);
             }
         }
     }
@@ -81,10 +89,19 @@ public class EnvironmentSFXManager : MonoBehaviour
     {
         if (group == null) return;
         
-        var sound = group.GetNextSound();
-        if (sound != null)
+        // Stop any currently playing sounds in this group
+        foreach (var groupSound in group.sounds)
         {
-            PlaySound(sound);
+            if (groupSound.isPlaying)
+            {
+                StopSound(groupSound);
+            }
+        }
+
+        var nextSound = group.GetNextSound();
+        if (nextSound != null)
+        {
+            PlaySound(nextSound, group);
         }
     }
 
@@ -99,38 +116,47 @@ public class EnvironmentSFXManager : MonoBehaviour
     public void PlayEnvironmentSound(EnvironmentSoundGroup group, string soundName)
     {
         if (group == null) return;
-        var sound = group.GetSpecificSound(soundName);
-        if (sound != null)
+        var foundSound = group.GetSpecificSound(soundName);
+        if (foundSound != null)
         {
-            PlaySound(sound);
+            PlaySound(foundSound, group);
         }
     }
 
-    private void PlaySound(EnvironmentSoundGroup.EnvironmentSound sound)
+    private void PlaySound(EnvironmentSoundGroup.EnvironmentSound soundToPlay, EnvironmentSoundGroup group)
     {
-        if (sound == null || sound.source == null) return;
+        if (soundToPlay == null || soundToPlay.source == null) return;
 
-        sound.isPlaying = true;
-        PlaySoundDirectly(sound);
+        // Stop any currently playing sounds in this group
+        foreach (var groupSound in group.sounds)
+        {
+            if (groupSound != soundToPlay && groupSound.isPlaying)
+            {
+                StopSound(groupSound);
+            }
+        }
+
+        soundToPlay.isPlaying = true;
+        soundToPlay.source.Play();
+
+        // Schedule next play time based on clip length and interval
+        float clipLength = soundToPlay.clip != null ? soundToPlay.clip.length : 0f;
+        nextGroupPlayTime[group] = Time.time + clipLength + soundToPlay.playInterval;
     }
 
-    private void PlaySoundDirectly(EnvironmentSoundGroup.EnvironmentSound sound)
+    private void PlaySoundDirectly(EnvironmentSoundGroup.EnvironmentSound soundToPlay)
     {
-        if (sound.playInterval > 0)
-        {
-            sound.nextPlayTime = Time.time + sound.playInterval;
-        }
-        
-        sound.source.Play();
+        if (soundToPlay == null || soundToPlay.source == null) return;
+        soundToPlay.source.Play();
     }
 
     public void StopEnvironmentSound(EnvironmentSoundGroup group, string soundName)
     {
         if (group == null) return;
-        var sound = group.GetSpecificSound(soundName);
-        if (sound != null)
+        var foundSound = group.GetSpecificSound(soundName);
+        if (foundSound != null)
         {
-            StopSound(sound);
+            StopSound(foundSound);
         }
     }
 
@@ -142,12 +168,12 @@ public class EnvironmentSFXManager : MonoBehaviour
         }
     }
 
-    private void StopSound(EnvironmentSoundGroup.EnvironmentSound sound)
+    private void StopSound(EnvironmentSoundGroup.EnvironmentSound soundToStop)
     {
-        if (sound == null || sound.source == null) return;
+        if (soundToStop == null || soundToStop.source == null) return;
         
-        sound.isPlaying = false;
-        sound.source.Stop();
+        soundToStop.isPlaying = false;
+        soundToStop.source.Stop();
     }
 
     public void StopAllSounds()
@@ -156,11 +182,11 @@ public class EnvironmentSFXManager : MonoBehaviour
         {
             if (group == null) continue;
             
-            foreach (var sound in group.sounds)
+            foreach (var groupSound in group.sounds)
             {
-                if (sound.isPlaying)
+                if (groupSound.isPlaying)
                 {
-                    StopSound(sound);
+                    StopSound(groupSound);
                 }
             }
         }

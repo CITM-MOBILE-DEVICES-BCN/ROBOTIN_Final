@@ -43,6 +43,10 @@ public class UpdateAnimationsRobotin : MonoBehaviour
         {
             playerState = PlayerState.ChargingWall;
         }
+        else if (robotinCollision.IsNearWall && !robotinCollision.IsGrounded)
+        {
+            playerState = PlayerState.WallSliding;
+        }
         else if (robotinCollision.IsWallSliding)
         {
             playerState = PlayerState.WallSliding;

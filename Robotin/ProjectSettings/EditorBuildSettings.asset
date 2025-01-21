@@ -71,4 +71,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/NewLevelsRobotin/Level_6_Robotin.unity
     guid: ca302cac1f63ad9488e0737e613b8cb8
+  - enabled: 1
+    path: "Assets/_ROBOT\xCDNFINAL/NewScenes/RobotinShop.unity"
+    guid: 402cf6ebd048d9043a503ddfcafd4747
   m_configObjects: {}

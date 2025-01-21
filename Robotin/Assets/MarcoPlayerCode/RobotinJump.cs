@@ -51,7 +51,6 @@ public class RobotinJump : MonoBehaviour
             // Play charge sound
             SFXManager.Instance.PlayEffect(jumpChargeSound);
             // Optionally, play a "charging" animation
-            GetComponent<SpriteRenderer>().color = Color.red;
         }
 
         if (isJumpButtonPressed)
@@ -77,7 +76,6 @@ public class RobotinJump : MonoBehaviour
                 float jumpForceY = Mathf.Lerp(minJumpForceY, maxJumpForceY, jumpHoldTime / maxHoldTime);
                 float jumpForceX = Mathf.Lerp(minJumpForceX, maxJumpForceX, jumpHoldTime / maxHoldTime);
                 Jump(jumpForceX, jumpForceY);
-                GetComponent<SpriteRenderer>().color = Color.white;
             }
         }
 

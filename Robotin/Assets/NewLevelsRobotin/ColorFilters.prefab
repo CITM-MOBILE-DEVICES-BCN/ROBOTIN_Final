@@ -62,5 +62,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5c7bb72223f01d4f9dec888e8cd8ec4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorFilter: 3
+  colorFilter: 4
   volume: {fileID: 1869743824234249624}

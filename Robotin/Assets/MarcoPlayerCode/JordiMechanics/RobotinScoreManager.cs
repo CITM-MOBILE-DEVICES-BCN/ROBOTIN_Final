@@ -6,14 +6,13 @@ using TMPro;
 public class RobotinScoreManager : MonoBehaviour
 {
     [Header("Score Settings")]
-    [SerializeField] private ScoreData scoreData;
     [SerializeField] private TextMeshProUGUI scoreText;
 
     private int currentScore;
 
     private void Start()
     {
-        currentScore = 0;
+        currentScore = PlayerPrefs.GetInt("PlayerScore", 0);
         UpdateScoreUI();
     }
 
@@ -30,7 +29,8 @@ public class RobotinScoreManager : MonoBehaviour
 
     public void SaveScore()
     {
-        scoreData.SaveScore(currentScore);
+        PlayerPrefs.SetInt("PlayerScore", currentScore);
+        PlayerPrefs.Save();
     }
 
     private void UpdateScoreUI()

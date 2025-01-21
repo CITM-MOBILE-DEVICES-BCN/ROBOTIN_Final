@@ -12,14 +12,18 @@ public class LevelEnd : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            SavePlayerScore();
-            SceneManager.LoadScene(nextLevelName);
+            SavePlayerProgress();
+            LoadNextLevel(); 
         }
     }
 
-    private void SavePlayerScore()
+    private void SavePlayerProgress()
     {
         scoreManager.SaveScore();
+        PlayerPrefs.SetString("HighestUnlockedLevelName", nextLevelName);
+        Debug.Log($"Progreso guardado: {nextLevelName}");
+        PlayerPrefs.Save();
+
     }
 
     private void LoadNextLevel()

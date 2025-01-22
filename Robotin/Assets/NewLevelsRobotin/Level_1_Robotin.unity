@@ -21770,6 +21770,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6232322358278147416, guid: 281f5965d48155f4a91b7ff6cd231b0b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -28899,18 +28904,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19b5e7963ccb9384d9831b8fc7b740eb, type: 3}
---- !u!198 &1258640381 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 214065685952706507, guid: e2af181f6bbb19c43ba08e9d79642867,
-    type: 3}
-  m_PrefabInstance: {fileID: 2043295985556804844}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1258640382 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3056798552881127555, guid: e2af181f6bbb19c43ba08e9d79642867,
-    type: 3}
-  m_PrefabInstance: {fileID: 2043295985556804844}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1260401319
 GameObject:
   m_ObjectHideFlags: 0
@@ -30369,7 +30362,7 @@ PrefabInstance:
         type: 3}
       propertyPath: movementParticles
       value: 
-      objectReference: {fileID: 1258640381}
+      objectReference: {fileID: 0}
     - target: {fileID: 2971159581336574543, guid: ce5cc8641bbf45d40ac7671838aedaf7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -30427,81 +30420,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 2971159581336574543, guid: ce5cc8641bbf45d40ac7671838aedaf7,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1258640382}
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ce5cc8641bbf45d40ac7671838aedaf7, type: 3}
---- !u!1001 &2043295985556804844
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 560793225}
-    m_Modifications:
-    - target: {fileID: 3056798552881127555, guid: e2af181f6bbb19c43ba08e9d79642867,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.38333333
-      objectReference: {fileID: 0}
-    - target: {fileID: 3056798552881127555, guid: e2af181f6bbb19c43ba08e9d79642867,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.42266655
-      objectReference: {fileID: 0}
-    - target: {fileID: 3056798552881127555, guid: e2af181f6bbb19c43ba08e9d79642867,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.15333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 3056798552881127555, guid: e2af181f6bbb19c43ba08e9d79642867,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3056798552881127555, guid: e2af181f6bbb19c43ba08e9d79642867,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3056798552881127555, guid: e2af181f6bbb19c43ba08e9d79642867,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3056798552881127555, guid: e2af181f6bbb19c43ba08e9d79642867,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3056798552881127555, guid: e2af181f6bbb19c43ba08e9d79642867,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3056798552881127555, guid: e2af181f6bbb19c43ba08e9d79642867,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3056798552881127555, guid: e2af181f6bbb19c43ba08e9d79642867,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6857141241713498351, guid: e2af181f6bbb19c43ba08e9d79642867,
-        type: 3}
-      propertyPath: m_Name
-      value: MovementParticle
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e2af181f6bbb19c43ba08e9d79642867, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: ce5cc8641bbf45d40ac7671838aedaf7, type: 3}
 --- !u!1001 &5349174044080479703
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -68,7 +68,11 @@ public class WindSystem : MonoBehaviour
         isWindActive = false;
         OnWindStop?.Invoke();
         StartCoroutine(ResetParticleDirectionSmoothly());
-        EnvironmentSFXManager.Instance.StopEnvironmentSound("WindSoundGroup", "Wind1");
+        
+        if (EnvironmentSFXManager.Instance != null)
+        {
+            EnvironmentSFXManager.Instance.StopEnvironmentSound("WindSoundGroup", "Wind1");
+        }
     }
 
     private IEnumerator ChangeParticleDirectionSmoothly()

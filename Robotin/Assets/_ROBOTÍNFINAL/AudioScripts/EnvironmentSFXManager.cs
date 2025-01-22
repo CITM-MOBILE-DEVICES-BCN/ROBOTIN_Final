@@ -268,10 +268,13 @@ public class EnvironmentSFXManager : MonoBehaviour
 
     public void StopEnvironmentSound(string groupName, string soundName)
     {
+        if (this == null) return; // Check if manager is being destroyed
+        if (string.IsNullOrEmpty(groupName) || string.IsNullOrEmpty(soundName)) return;
+        
         if (groupDictionary.TryGetValue(groupName, out var group))
         {
             var sound = group.GetSpecificSound(soundName);
-            if (sound != null)
+            if (sound != null && sound.source != null)
             {
                 if (group.isLoopingGroup)
                 {
@@ -281,8 +284,11 @@ public class EnvironmentSFXManager : MonoBehaviour
                 {
                     // For one-shot sounds, stop immediately
                     sound.isPlaying = false;
-                    sound.source.Stop();
-                    sound.source.volume = 0f;
+                    if (sound.source != null)
+                    {
+                        sound.source.Stop();
+                        sound.source.volume = 0f;
+                    }
                 }
             }
         }

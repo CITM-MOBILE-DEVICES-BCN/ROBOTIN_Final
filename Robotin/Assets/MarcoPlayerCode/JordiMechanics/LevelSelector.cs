@@ -23,19 +23,22 @@ public class LevelSelector : MonoBehaviour
 
     private void UpdateLevelButtons()
     {
-        string highestUnlockedLevelName = PlayerPrefs.GetString("HighestUnlockedLevel", levelSceneNames[0]);
+        // Obtener el último nivel completado desde PlayerPrefs
+        string lastLevelName = PlayerPrefs.GetString("NextLevel", levelSceneNames[0]);
+
+        Debug.Log($"Último nivel completado: {lastLevelName}");
 
         Button[] buttons = buttonParent.GetComponentsInChildren<Button>();
-        Debug.Log($"Nivel desbloqueado más alto: {highestUnlockedLevelName}");
 
-        for (int i=0; i < buttons.Length; i++)
+        for (int i = 0; i < buttons.Length; i++)
         {
-            Debug.Log($"Nivel {i}: {levelSceneNames[i]}");
             if (i < levelSceneNames.Length)
             {
                 string sceneName = levelSceneNames[i];
+                Debug.Log($"Verificando botón para nivel: {sceneName}");
 
-                if (IsLevelUnlocked(sceneName, highestUnlockedLevelName))
+                // Habilitar o deshabilitar el botón según si el nivel está desbloqueado
+                if (IsLevelUnlocked(sceneName, lastLevelName))
                 {
                     buttons[i].interactable = true;
                     buttons[i].onClick.RemoveAllListeners();
@@ -44,11 +47,8 @@ public class LevelSelector : MonoBehaviour
                 else
                 {
                     buttons[i].interactable = false;
-
-                    // Change button sprite
                 }
             }
-            
         }
     }
 
@@ -66,7 +66,8 @@ public class LevelSelector : MonoBehaviour
 
     public void ResetProgress()
     {
-        PlayerPrefs.SetInt("HighestUnlockedLevel", 0);
+        PlayerPrefs.SetString("LastLevel", "Level_1_Robotin");
+        PlayerPrefs.SetString("NextLevel", "Level_1_Robotin");
         PlayerPrefs.SetInt("PlayerScore", 0);
         PlayerPrefs.Save();
 

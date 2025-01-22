@@ -13,24 +13,25 @@ public class LevelEnd : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             SavePlayerProgress();
-            LoadNextLevel(); 
+            LoadTransition(); 
         }
     }
 
     private void SavePlayerProgress()
     {
         scoreManager.SaveScore();
-        PlayerPrefs.SetString("HighestUnlockedLevelName", nextLevelName);
+        scoreManager.SaveLevel();
+        PlayerPrefs.SetString("NextLevel", nextLevelName);
         Debug.Log($"Progreso guardado: {nextLevelName}");
         PlayerPrefs.Save();
 
     }
 
-    private void LoadNextLevel()
+    private void LoadTransition()
     {
         if (!string.IsNullOrEmpty(nextLevelName))
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(nextLevelName);
+            UnityEngine.SceneManagement.SceneManager.LoadScene("LevelTransition");
         }
         else
         {

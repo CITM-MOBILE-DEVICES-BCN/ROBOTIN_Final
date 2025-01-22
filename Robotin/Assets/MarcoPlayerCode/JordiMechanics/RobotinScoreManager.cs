@@ -33,6 +33,12 @@ public class RobotinScoreManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    public void SaveLevel()
+    {
+        PlayerPrefs.SetString("LastLevel", UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        PlayerPrefs.Save();
+    }
+
     private void UpdateScoreUI()
     {
         if (scoreText != null)

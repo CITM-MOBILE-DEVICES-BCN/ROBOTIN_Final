@@ -7,6 +7,7 @@ public class RobotinMovement : MonoBehaviour
     [SerializeField] private float directionChangeCooldown = 0.2f; // Cooldown time in seconds
     [SerializeField] private string walkingSoundGroup = "Walking";
     [SerializeField] private string turnSoundGroup = "Turn";
+    [SerializeField] private ParticleSystem movementParticles;
     public Rigidbody2D rb;
     public RobotinCollision playerCollision;
     public RobotinJump robotinJump;
@@ -19,6 +20,15 @@ public class RobotinMovement : MonoBehaviour
         FindObjectOfType<WindSystem>().OnWindStart += ApplyWindForce;
         FindObjectOfType<WindSystem>().OnWindStop += StopWindForce;
 
+        if (movementParticles == null)
+        {
+            Debug.LogError("Movement particles not assigned!");
+        }
+        else
+        {
+            movementParticles.Stop(); // Ensure particles are disabled at the start
+            Debug.Log("Movement particles assigned and stopped at start.");
+        }
     }
     public void Move()
     {
@@ -62,11 +72,37 @@ public class RobotinMovement : MonoBehaviour
                 if (Mathf.Abs(rb.velocity.x) > 0.1f && !robotinJump.IsInLandingCooldown())
                 {
                     SFXManager.Instance.PlayEffect(walkingSoundGroup);
+
+                    if (movementParticles != null && !movementParticles.isPlaying)
+                    {
+                        movementParticles.Play();
+                        Debug.Log("Movement particles started.");
+                    }
+
+                }
+
+                else
+                {
+                    // Stop particles when not moving
+                    if (movementParticles != null && movementParticles.isPlaying)
+                    {
+                        movementParticles.Stop();
+                    }
                 }
             }
         }
 
-        if (robotinJump.isJumpButtonPressed) rb.velocity = Vector2.zero; 
+        if (robotinJump.isJumpButtonPressed)
+        {
+            rb.velocity = Vector2.zero;
+
+            if (movementParticles != null && movementParticles.isPlaying)
+            {
+                movementParticles.Stop();
+            }
+
+
+        }
     }
 
     private void FixedUpdate()

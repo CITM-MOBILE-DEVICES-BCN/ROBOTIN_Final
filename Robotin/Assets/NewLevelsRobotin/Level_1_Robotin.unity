@@ -29397,7 +29397,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 12.796875
+  orthographic size: 14.625
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -30465,6 +30465,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3670376257142449622, guid: f156375c1168f474280288d36c8a550e,
+        type: 3}
+      propertyPath: musicTracks.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7b8aa69b2aa77e447a88936cceb8f88a, type: 3}
+    - target: {fileID: 3670376257142449622, guid: f156375c1168f474280288d36c8a550e,
+        type: 3}
+      propertyPath: musicTracks.Array.data[0].volume
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 8743811340966940105, guid: f156375c1168f474280288d36c8a550e,
         type: 3}

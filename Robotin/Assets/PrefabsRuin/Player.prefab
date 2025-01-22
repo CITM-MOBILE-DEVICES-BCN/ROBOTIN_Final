@@ -188,13 +188,13 @@ MonoBehaviour:
   wallCheckOffset: 0.4405
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 13312
   wallLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 6144
   headLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 5120
   coyoteTime: 0.1
   inputBufferTime: 0.1
   rb: {fileID: 7600608693879890457}
@@ -339,7 +339,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 15
-  m_Sprite: {fileID: -433293486, guid: df703b34c9e92544ca75a75f66091ff0, type: 3}
+  m_Sprite: {fileID: -2006451985, guid: bd5a59a71a234d646b1c0f7b10160859, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -347,7 +347,7 @@ SpriteRenderer:
   m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &4266046474787460790

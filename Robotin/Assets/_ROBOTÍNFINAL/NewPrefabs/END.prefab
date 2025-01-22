@@ -30,8 +30,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 19.77, y: 55.94, z: -14.135254}
-  m_LocalScale: {x: 2.833009, y: 2.833009, z: 2.833009}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 4.46, y: 4.46, z: 4.46}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25ef0d1d2c6178642a8298cdde4b6317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLevelName: Level_3_Robotin
+  nextLevelName: Level_2_Robotin
   scoreManager: {fileID: 0}
 --- !u!58 &887044710832942069
 CircleCollider2D:

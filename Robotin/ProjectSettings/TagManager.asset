@@ -8,6 +8,7 @@ TagManager:
   - Terrain
   - Orb
   - FloodLayer
+  - Dead
   layers:
   - Default
   - TransparentFX
@@ -19,11 +20,11 @@ TagManager:
   - Surface
   - NoWallJump
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - ground
+  - wall
+  - wallground
+  - platform
+  - dead
   - 
   - 
   - 

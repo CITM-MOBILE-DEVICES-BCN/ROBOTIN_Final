@@ -30357,7 +30357,7 @@ PrefabInstance:
         type: 3}
       propertyPath: movementParticles
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1999346900586344470}
     - target: {fileID: 2971159581336574543, guid: ce5cc8641bbf45d40ac7671838aedaf7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -30418,6 +30418,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce5cc8641bbf45d40ac7671838aedaf7, type: 3}
+--- !u!198 &1999346900586344470 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1532014069610477102, guid: ce5cc8641bbf45d40ac7671838aedaf7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1999346900586344469}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5349174044080479703
 PrefabInstance:
   m_ObjectHideFlags: 0

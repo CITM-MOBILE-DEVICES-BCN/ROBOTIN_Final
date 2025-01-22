@@ -27,7 +27,6 @@ public class RobotinMovement : MonoBehaviour
         else
         {
             movementParticles.Stop(); // Ensure particles are disabled at the start
-            Debug.Log("Movement particles assigned and stopped at start.");
         }
     }
     public void Move()
@@ -76,7 +75,6 @@ public class RobotinMovement : MonoBehaviour
                     if (movementParticles != null && !movementParticles.isPlaying)
                     {
                         movementParticles.Play();
-                        Debug.Log("Movement particles started.");
                     }
 
                 }

@@ -20091,7 +20091,12 @@ PrefabInstance:
         type: 3}
       propertyPath: musicTracks.Array.data[0].clip
       value: 
-      objectReference: {fileID: 8300000, guid: be637c8b0c1ce0140b7cbab36716113f, type: 3}
+      objectReference: {fileID: 8300000, guid: 02b1d5536e5729b4e847029e3a44bc19, type: 3}
+    - target: {fileID: 3670376257142449622, guid: fe81de61aab0f2e4caa0876ce8831b1d,
+        type: 3}
+      propertyPath: musicTracks.Array.data[0].volume
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 8743811340966940105, guid: fe81de61aab0f2e4caa0876ce8831b1d,
         type: 3}
       propertyPath: m_Name

@@ -2705,7 +2705,7 @@ MonoBehaviour:
   - Level_3_Robotin
   - Level_4_Robotin
   - Level_5_Robotin
-  - Level_5_Robotin
+  - Level_6_Robotin
   - RobotinLobby
   - RobotinShop
 --- !u!4 &1215388679
@@ -3008,7 +3008,6 @@ GameObject:
   - component: {fileID: 1615677061}
   - component: {fileID: 1615677060}
   - component: {fileID: 1615677059}
-  - component: {fileID: 1615677064}
   m_Layer: 5
   m_Name: MetaCanvas
   m_TagString: Untagged
@@ -3104,28 +3103,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1615677064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1615677058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 045b4f0c96a42d64e80ad4d4c8fc8ae1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shopButton: {fileID: 0}
-  backToMenuButton: {fileID: 851178250}
-  world1Button: {fileID: 0}
-  world2Button: {fileID: 0}
-  world3Button: {fileID: 0}
-  shopScreen: ShopScreen
-  world1: World1Screen
-  world2: 
-  world3: 
-  totalScoreText: {fileID: 0}
 --- !u!1 &1753813815
 GameObject:
   m_ObjectHideFlags: 0

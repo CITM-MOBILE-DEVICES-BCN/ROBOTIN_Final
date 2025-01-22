@@ -27859,6 +27859,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3456546679444934283, guid: e9498645434df674da775709db3f6ea2,
+        type: 3}
+      propertyPath: windDuration
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7944879733974988623, guid: e9498645434df674da775709db3f6ea2,
         type: 3}
       propertyPath: m_Name
@@ -29397,7 +29402,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 14.625
+  orthographic size: 13.333333
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

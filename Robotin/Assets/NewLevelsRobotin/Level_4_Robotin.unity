@@ -38248,89 +38248,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a8a05de0ac134f4f9d01bef6b9da077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &1518245192
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1022932652415460125, guid: b2d396fe3f36742498bf63da28bb998d,
-        type: 3}
-      propertyPath: windDuration
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1022932652415460125, guid: b2d396fe3f36742498bf63da28bb998d,
-        type: 3}
-      propertyPath: windInterval
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 1022932652415460125, guid: b2d396fe3f36742498bf63da28bb998d,
-        type: 3}
-      propertyPath: windForceMagnitude
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2903225139710897686, guid: b2d396fe3f36742498bf63da28bb998d,
-        type: 3}
-      propertyPath: m_Name
-      value: WindSystem
-      objectReference: {fileID: 0}
-    - target: {fileID: 5976150267926523882, guid: b2d396fe3f36742498bf63da28bb998d,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -33.66923
-      objectReference: {fileID: 0}
-    - target: {fileID: 5976150267926523882, guid: b2d396fe3f36742498bf63da28bb998d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.3563924
-      objectReference: {fileID: 0}
-    - target: {fileID: 5976150267926523882, guid: b2d396fe3f36742498bf63da28bb998d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 10198.937
-      objectReference: {fileID: 0}
-    - target: {fileID: 5976150267926523882, guid: b2d396fe3f36742498bf63da28bb998d,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5976150267926523882, guid: b2d396fe3f36742498bf63da28bb998d,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5976150267926523882, guid: b2d396fe3f36742498bf63da28bb998d,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5976150267926523882, guid: b2d396fe3f36742498bf63da28bb998d,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5976150267926523882, guid: b2d396fe3f36742498bf63da28bb998d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5976150267926523882, guid: b2d396fe3f36742498bf63da28bb998d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5976150267926523882, guid: b2d396fe3f36742498bf63da28bb998d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b2d396fe3f36742498bf63da28bb998d, type: 3}
 --- !u!1 &1568931039
 GameObject:
   m_ObjectHideFlags: 3
@@ -38439,7 +38356,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 14.625
+  orthographic size: 13.333333
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -44287,7 +44204,7 @@ PrefabInstance:
     - target: {fileID: 1558524440815874446, guid: e9498645434df674da775709db3f6ea2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 26.8
+      value: 39.8
       objectReference: {fileID: 0}
     - target: {fileID: 1558524440815874446, guid: e9498645434df674da775709db3f6ea2,
         type: 3}
@@ -44337,12 +44254,17 @@ PrefabInstance:
     - target: {fileID: 3456546679444934283, guid: e9498645434df674da775709db3f6ea2,
         type: 3}
       propertyPath: windInterval
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3456546679444934283, guid: e9498645434df674da775709db3f6ea2,
         type: 3}
       propertyPath: windForceMagnitude
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136335676969901100, guid: e9498645434df674da775709db3f6ea2,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 113.45
       objectReference: {fileID: 0}
     - target: {fileID: 7944879733974988623, guid: e9498645434df674da775709db3f6ea2,
         type: 3}
@@ -44949,7 +44871,6 @@ SceneRoots:
   - {fileID: 1999346900586344469}
   - {fileID: 1626234615}
   - {fileID: 1260401321}
-  - {fileID: 1518245192}
   - {fileID: 77083290}
   - {fileID: 571018499}
   - {fileID: 2026525502}

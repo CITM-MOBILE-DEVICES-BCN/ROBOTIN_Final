@@ -23433,7 +23433,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 1
+  m_Priority: 0
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 560793225}
@@ -23592,7 +23592,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 14.625
+  orthographic size: 13.333333
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -23617,7 +23617,7 @@ Transform:
   m_GameObject: {fileID: 1585512888}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.7, y: 52.7, z: -14.109595}
+  m_LocalPosition: {x: 15.7, y: -0.65, z: -14.109595}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24317,6 +24317,11 @@ PrefabInstance:
     - target: {fileID: 1558524440815874446, guid: e9498645434df674da775709db3f6ea2,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3456546679444934283, guid: e9498645434df674da775709db3f6ea2,
+        type: 3}
+      propertyPath: windDuration
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3456546679444934283, guid: e9498645434df674da775709db3f6ea2,

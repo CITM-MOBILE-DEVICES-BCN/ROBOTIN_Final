@@ -22,6 +22,6 @@ public class PausePanelManager : MonoBehaviour
         settingsButton.onClick.AddListener(() => NavigationManager.Instance.ShowPopUp(settingsPanelId));
         mainMenuButton.onClick.AddListener(() => AudioManager.instance.PlayButtonSound());
         mainMenuButton.onClick.AddListener(() => NavigationManager.Instance.HidePopUp(pausePanelId));
-        mainMenuButton.onClick.AddListener(() => NavigationManager.Instance.LoadSceneAsync(menuScene)); 
+        mainMenuButton.onClick.AddListener(() => NavigationManager.Instance.LoadSceneAsync("KyotoMeta")); 
     }
 }

@@ -29,7 +29,7 @@ public class LobbyScreen : MonoBehaviour
 
     private void OnKyotoButtonClicked()
     {
-        GameManager_R.instance.LoadScene("MainMenu_1");
+        GameManager_R.instance.LoadScene("KyotoMeta");
     }
 
     private void OnRuinButtonClicked()

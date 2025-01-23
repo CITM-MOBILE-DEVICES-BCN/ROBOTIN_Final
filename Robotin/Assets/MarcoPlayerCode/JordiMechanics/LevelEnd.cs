@@ -12,6 +12,12 @@ public class LevelEnd : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            // Play the finish level sound effect
+            if (SFXManager.Instance != null)
+            {
+                SFXManager.Instance.PlayEffect("LevelComplete");
+            }
+            
             SavePlayerProgress();
             LoadTransition(); 
         }

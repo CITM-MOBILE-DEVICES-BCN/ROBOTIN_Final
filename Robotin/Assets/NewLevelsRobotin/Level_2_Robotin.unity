@@ -23065,6 +23065,11 @@ PrefabInstance:
       propertyPath: scoreManager
       value: 
       objectReference: {fileID: 1595435492}
+    - target: {fileID: 8854207107452523449, guid: 33513548665fa4e41b16b903e4fd36ac,
+        type: 3}
+      propertyPath: nextLevelName
+      value: Level_3_Robotin
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

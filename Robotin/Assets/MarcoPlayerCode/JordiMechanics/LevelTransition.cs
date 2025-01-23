@@ -17,6 +17,6 @@ public class LevelTransition : MonoBehaviour
 
     public void LoadMainMenu()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("RobotinLobby");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("RobotinMeta");
     }
 }

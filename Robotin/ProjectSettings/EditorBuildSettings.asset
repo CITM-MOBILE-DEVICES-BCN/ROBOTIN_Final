@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RobotinMeta.unity
     guid: b1ecacad305feb1428b0dcb2dda25f8f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/RobotinGame.unity
     guid: 63a719f7f6a2bbe47b3a640ece875139
   - enabled: 1
@@ -23,7 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Meta.unity
     guid: 63d1e0f7cab5f3240afbfe25f060eb12
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SplashScreen.unity
     guid: 15d9698570576314e9622f2270a36af4
   - enabled: 1
@@ -57,7 +57,7 @@ EditorBuildSettings:
     path: Assets/ScenesRuin/6.Game3.unity
     guid: a039716526d73044b94b4da7a098ae7c
   - enabled: 1
-    path: Assets/ScenesRuin/RuinMeta.unity
+    path: Assets/ScenesRuin/3.Meta.unity
     guid: 71e2ce42734ca374085ed28438410ee9
   - enabled: 1
     path: Assets/ScenesKyoto/KyotoMeta.unity

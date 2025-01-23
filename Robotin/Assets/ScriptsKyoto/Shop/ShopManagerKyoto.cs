@@ -48,7 +48,7 @@ public class ShopManager : MonoBehaviour
 
         NavigationManager.Instance.StartAnim(images, 2);
 
-        mainMenuButton.onClick.AddListener(() => NavigationManager.Instance.LoadSceneAsync(mainMenuSceneId));
+        mainMenuButton.onClick.AddListener(() => NavigationManager.Instance.LoadSceneAsync("KyotoMeta"));
 
 
         purchaseButton1.onClick.AddListener(() => BuyItem("Dash"));

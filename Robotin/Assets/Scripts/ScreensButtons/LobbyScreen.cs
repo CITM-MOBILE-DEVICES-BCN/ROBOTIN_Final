@@ -34,6 +34,6 @@ public class LobbyScreen : MonoBehaviour
 
     private void OnRuinButtonClicked()
     {
-        GameManager_R.instance.LoadScene("RuinMeta");
+        GameManager_R.instance.LoadScene("3.Meta");
     }
 }

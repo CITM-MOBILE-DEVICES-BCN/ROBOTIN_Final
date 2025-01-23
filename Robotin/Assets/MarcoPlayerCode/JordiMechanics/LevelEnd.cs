@@ -22,7 +22,6 @@ public class LevelEnd : MonoBehaviour
         scoreManager.SaveScore();
         scoreManager.SaveLevel();
         PlayerPrefs.SetString("NextLevel", nextLevelName);
-        Debug.Log($"Progreso guardado: {nextLevelName}");
         PlayerPrefs.Save();
 
     }

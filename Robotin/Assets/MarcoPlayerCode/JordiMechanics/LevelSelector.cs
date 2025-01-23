@@ -26,8 +26,6 @@ public class LevelSelector : MonoBehaviour
         // Obtener el último nivel completado desde PlayerPrefs
         string lastLevelName = PlayerPrefs.GetString("NextLevel", levelSceneNames[0]);
 
-        Debug.Log($"Último nivel completado: {lastLevelName}");
-
         Button[] buttons = buttonParent.GetComponentsInChildren<Button>();
 
         for (int i = 0; i < buttons.Length; i++)
@@ -35,8 +33,6 @@ public class LevelSelector : MonoBehaviour
             if (i < levelSceneNames.Length)
             {
                 string sceneName = levelSceneNames[i];
-                Debug.Log($"Verificando botón para nivel: {sceneName}");
-
                 // Habilitar o deshabilitar el botón según si el nivel está desbloqueado
                 if (IsLevelUnlocked(sceneName, lastLevelName))
                 {

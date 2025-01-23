@@ -363,6 +363,21 @@ PrefabInstance:
       propertyPath: levelTimeLimit
       value: 120
       objectReference: {fileID: 0}
+    - target: {fileID: 8394467245899865074, guid: 0df7fe908a6a19b458c6d32fad7cadff,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394467245899865074, guid: 0df7fe908a6a19b458c6d32fad7cadff,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1029040861}
+    - target: {fileID: 8394467245899865074, guid: 0df7fe908a6a19b458c6d32fad7cadff,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PauseGame
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20533,6 +20548,18 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!114 &1029040861 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1746552613352148267, guid: 281f5965d48155f4a91b7ff6cd231b0b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1234946440}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2abf368ea5476949985d05b2a50f66b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1144185200
 GameObject:
   m_ObjectHideFlags: 3
@@ -20969,6 +20996,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1746552613352148267, guid: 281f5965d48155f4a91b7ff6cd231b0b,
+        type: 3}
+      propertyPath: pauseButton
+      value: 
+      objectReference: {fileID: 1811092470}
     - target: {fileID: 5296903900160636392, guid: 281f5965d48155f4a91b7ff6cd231b0b,
         type: 3}
       propertyPath: m_Camera
@@ -20978,6 +21010,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PauseMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5544119083216341955, guid: 281f5965d48155f4a91b7ff6cd231b0b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5744087674695454497, guid: 281f5965d48155f4a91b7ff6cd231b0b,
         type: 3}
@@ -21077,6 +21114,11 @@ PrefabInstance:
     - target: {fileID: 5744087674695454497, guid: 281f5965d48155f4a91b7ff6cd231b0b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232322358278147416, guid: 281f5965d48155f4a91b7ff6cd231b0b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -21715,7 +21757,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 16.291666
+  orthographic size: 13.333333
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -22118,6 +22160,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a8a05de0ac134f4f9d01bef6b9da077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1811092470 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8394467245899865074, guid: 0df7fe908a6a19b458c6d32fad7cadff,
+    type: 3}
+  m_PrefabInstance: {fileID: 131147519}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1829619111

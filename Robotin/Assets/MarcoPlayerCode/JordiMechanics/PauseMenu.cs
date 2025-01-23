@@ -2,12 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenuUI;
+    [SerializeField] private Button pauseButton;
 
     private bool isPaused = false;
+
+    private void Start()
+    {
+        pauseButton.onClick.AddListener(OnPauseButtonClick);
+    }
 
     private void Update()
     {
@@ -23,7 +29,7 @@ public class PauseMenu : MonoBehaviour
             }
         }
     }
-    
+
     public void ResumeGame()
     {
         if (SFXManager.Instance != null)
@@ -54,5 +60,17 @@ public class PauseMenu : MonoBehaviour
         }
         Time.timeScale = 1f;
         SceneManager.LoadScene("RobotinMeta");
+    }
+
+    private void OnPauseButtonClick()
+    {
+        if (isPaused)
+        {
+            ResumeGame();
+        }
+        else
+        {
+            PauseGame();
+        }
     }
 }

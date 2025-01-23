@@ -46,7 +46,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneMusic:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 155c1440fe614e64a9c5e7c431eb3ae9, type: 3}
+  - {fileID: 8300000, guid: 155c1440fe614e64a9c5e7c431eb3ae9, type: 3}
+  - {fileID: 8300000, guid: 155c1440fe614e64a9c5e7c431eb3ae9, type: 3}
+  - {fileID: 8300000, guid: 155c1440fe614e64a9c5e7c431eb3ae9, type: 3}
 --- !u!114 &1122209361791562053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,4 +62,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd680b94d0d1a74489aa540986e60733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonClickSound: {fileID: 0}
+  buttonClickSound: {fileID: 8300000, guid: bcdd79141a7367f41becc357c2980ab0, type: 3}

@@ -26,6 +26,10 @@ public class PauseMenu : MonoBehaviour
     
     public void ResumeGame()
     {
+        if (SFXManager.Instance != null)
+        {
+            SFXManager.Instance.PlayEffect("ButtonClick");
+        }
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
@@ -33,6 +37,10 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseGame()
     {
+        if (SFXManager.Instance != null)
+        {
+            SFXManager.Instance.PlayEffect("ButtonClick");
+        }
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
@@ -40,6 +48,10 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMainMenu()
     {
+        if (SFXManager.Instance != null)
+        {
+            SFXManager.Instance.PlayEffect("ButtonClick");
+        }
         Time.timeScale = 1f;
         SceneManager.LoadScene("RobotinMeta");
     }

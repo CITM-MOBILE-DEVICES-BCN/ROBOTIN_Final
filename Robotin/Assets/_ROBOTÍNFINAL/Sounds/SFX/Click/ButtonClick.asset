@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72f4a146b6db8994cb5c97851b4a8237, type: 3}
-  m_Name: ClickSoundGroup
+  m_Name: ButtonClick
   m_EditorClassIdentifier: 
-  groupName: Click
+  groupName: ButtonClick
   sounds:
   - name: Click1
     clip: {fileID: 8300000, guid: 8954b1b7f6172f944827cd503abf7fad, type: 3}
-    volume: 1
+    volume: 0.5
     loop: 0
     source: {fileID: 0}
   - name: Click2
     clip: {fileID: 8300000, guid: fd2a5ab58ee38294c8d42fae253ab4e4, type: 3}
-    volume: 1
+    volume: 0.5
     loop: 0
     source: {fileID: 0}
   playSequentially: 0
